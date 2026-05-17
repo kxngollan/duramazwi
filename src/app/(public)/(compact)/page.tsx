@@ -133,7 +133,7 @@ export default async function HomePage({
 
               <div className="relative z-10 flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
                 <div className="text-left">
-                  <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 text-sm font-medium backdrop-blur">
+                  <div className="theme-hero-pill mb-4 inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium backdrop-blur">
                     <span aria-hidden="true">
                       <IoLanguage />
                     </span>
@@ -278,19 +278,19 @@ function WelcomeContent() {
                   <SvgIcon className="h-8 w-8" icon="Trophy" />
                 </span>
                 <div>
-                  <h2 className="text-3xl font-bold text-white mb-1">
+                  <h2 className="text-3xl font-bold text-[var(--color-hero-text)] mb-1">
                     Daily Shona Challenge
                   </h2>
-                  <p className="text-[var(--color-hero-text)]/90 text-lg">
+                  <p className="text-white text-lg">
                     Test your Shona knowledge today!
                   </p>
                 </div>
               </div>
-              <p className="text-white/90 text-lg mb-4 max-w-xl">
+              <p className="text-white text-lg mb-4 max-w-xl">
                 Take on fun challenges to improve your vocabulary. New
                 challenges every day!
               </p>
-              <div className="inline-flex items-center gap-2 bg-[var(--color-accent)] px-4 py-2 rounded-lg text-[#1B1B1B] font-semibold group-hover:brightness-95 transition-colors border border-[var(--color-accent)]">
+              <div className="inline-flex items-center gap-2 theme-button-accent px-4 py-2 rounded-lg font-semibold group-hover:brightness-95 transition-colors border">
                 <span>Start Challenge</span>
                 <svg
                   className="w-5 h-5 transform group-hover:translate-x-1 transition-transform"
@@ -390,7 +390,7 @@ function WelcomeContent() {
         <div className="mt-6 text-center">
           <Link
             href="/browse"
-            className="inline-flex items-center px-4 py-2 bg-[var(--color-accent)] hover:brightness-95 text-[#1B1B1B] rounded-md transition-colors"
+            className="inline-flex items-center px-4 py-2 theme-button-accent hover:brightness-95 rounded-md transition-colors"
             title="Browse all dictionary entries"
             aria-label="Browse all dictionary entries"
           >

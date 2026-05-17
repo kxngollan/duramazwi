@@ -29,12 +29,12 @@ export default function StreakDisplay({ className = '', showDetails = false }: S
     <div className={`text-center ${className}`}>
       {/* Current Streak */}
       <div className="flex items-center justify-center space-x-2 mb-2">
-        <InlineIcon className="h-6 w-6 text-orange-600 dark:text-orange-400" name="flame" />
+        <InlineIcon className="h-6 w-6 text-[var(--color-accent)]" name="flame" />
         <div>
-          <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">
+          <div className="text-2xl font-bold text-[var(--color-primary)]">
             {streakInfo.currentStreak}
           </div>
-          <div className="text-sm text-gray-600 dark:text-gray-400">
+          <div className="text-sm text-[var(--color-muted)]">
             day{streakInfo.currentStreak !== 1 ? 's' : ''} streak
           </div>
         </div>
@@ -42,20 +42,20 @@ export default function StreakDisplay({ className = '', showDetails = false }: S
 
       {/* Additional Details */}
       {showDetails && (
-        <div className="grid grid-cols-2 gap-4 mt-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg">
+        <div className="grid grid-cols-2 gap-4 mt-4 p-4 theme-panel rounded-lg">
           <div className="text-center">
-            <div className="text-lg font-semibold text-blue-600 dark:text-blue-400">
+            <div className="text-lg font-semibold text-[var(--color-primary)]">
               {streakInfo.longestStreak}
             </div>
-            <div className="text-xs text-gray-600 dark:text-gray-400">
+            <div className="text-xs text-[var(--color-muted)]">
               Longest Streak
             </div>
           </div>
           <div className="text-center">
-            <div className="text-lg font-semibold text-green-600 dark:text-green-400">
+            <div className="text-lg font-semibold text-[var(--color-primary)]">
               {streakInfo.totalCompletions}
             </div>
-            <div className="text-xs text-gray-600 dark:text-gray-400">
+            <div className="text-xs text-[var(--color-muted)]">
               Total Completed
             </div>
           </div>
@@ -64,7 +64,7 @@ export default function StreakDisplay({ className = '', showDetails = false }: S
 
       {/* Streak Status */}
       {streakInfo.isOnStreak && streakInfo.currentStreak > 0 && (
-        <div className="mt-2 text-sm text-orange-600 dark:text-orange-400 font-medium">
+        <div className="mt-2 text-sm text-[var(--color-primary)] font-medium">
           {streakInfo.currentStreak === 1
             ? "Great start! Keep it up tomorrow!"
             : streakInfo.currentStreak < 7

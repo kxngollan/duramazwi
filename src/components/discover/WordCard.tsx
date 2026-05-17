@@ -151,7 +151,7 @@ export default function WordCard({ word }: WordCardProps) {
         >
           {/* Front of card - Word */}
           <div
-            className="absolute inset-0 backface-hidden dark:bg-[var(--color-primary)] bg-[var(--color-muted)] rounded-3xl shadow-2xl p-8 flex flex-col items-center justify-center text-[var(--color-hero-text)]"
+            className="absolute inset-0 backface-hidden bg-[var(--color-primary)] rounded-3xl shadow-2xl p-8 flex flex-col items-center justify-center text-[var(--color-hero-text)]"
             style={{ backfaceVisibility: "hidden" }}
           >
             <div className="text-center">
@@ -263,7 +263,7 @@ export default function WordCard({ word }: WordCardProps) {
               <Link
                 href={`/word/${encodeURIComponent(word.word)}`}
                 onClick={handleLinkClick}
-                className="inline-block px-6 py-3 bg-[var(--color-accent)] text-[#1B1B1B] rounded-full font-medium hover:brightness-95 transition-colors"
+                className="inline-block px-6 py-3 theme-button-accent rounded-full font-medium hover:brightness-95 transition-colors"
               >
                 View Full Details →
               </Link>

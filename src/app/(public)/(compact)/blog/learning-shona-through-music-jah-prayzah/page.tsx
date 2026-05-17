@@ -383,7 +383,7 @@ export default function JahPrayzahBlogPost() {
           <div className="flex flex-wrap gap-4 justify-center">
             <Link
               href="/"
-              className="px-6 py-3 bg-[var(--color-accent)] hover:brightness-95 text-[#1B1B1B] rounded-lg font-medium transition-colors"
+              className="px-6 py-3 theme-button-accent hover:brightness-95 rounded-lg font-medium transition-colors"
             >
               Browse Dictionary
             </Link>

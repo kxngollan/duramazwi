@@ -69,7 +69,7 @@ export default function TranslateClient() {
           type="submit"
           disabled={!inputText.trim() || status === "loading"}
           title={!inputText.trim() ? "Enter text to translate" : status === "loading" ? "Translation in progress..." : "Translate text"}
-          className="px-6 py-2 bg-[var(--color-accent)] hover:brightness-95 disabled:bg-[var(--color-border)] disabled:cursor-not-allowed text-[#1B1B1B] rounded-md transition-colors font-medium"
+          className="px-6 py-2 theme-button-accent hover:brightness-95 disabled:bg-[var(--color-border)] disabled:cursor-not-allowed rounded-md transition-colors font-medium"
         >
           {status === "loading" ? "Translating..." : "Translate"}
         </button>
@@ -85,19 +85,19 @@ export default function TranslateClient() {
       )}
 
       {status === "success" && translatedText && (
-        <div className="p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-md">
-          <h2 className="text-lg font-semibold text-green-800 dark:text-green-200 mb-2">
+        <div className="p-4 theme-feedback-correct rounded-md">
+          <h2 className="text-lg font-semibold text-[var(--color-primary)] mb-2">
             Translation
           </h2>
-          <p className="text-green-700 dark:text-green-300 whitespace-pre-wrap">
+          <p className="text-[var(--color-text)] whitespace-pre-wrap">
             {translatedText}
           </p>
         </div>
       )}
 
       {status === "failed" && (
-        <div className="p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-md">
-          <p className="text-red-700 dark:text-red-300">
+        <div className="p-4 theme-feedback-incorrect rounded-md">
+          <p className="text-[var(--color-danger)]">
             Failed to get translation. Please try again.
           </p>
         </div>

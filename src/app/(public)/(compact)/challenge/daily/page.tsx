@@ -174,11 +174,11 @@ export default async function DailyChallengePage({ searchParams }: DailyChalleng
           <DailyChallengeHeader date={targetDate} />
 
           {/* No Challenge Content */}
-          <div className="rounded-lg p-8 text-center">
+          <div className="theme-card rounded-lg p-8 text-center">
             {/* Animated Icon */}
             <div className="mb-8 relative text-center">
               <div className="w-32 h-32 mx-auto bg-[var(--color-primary)] rounded-full flex items-center justify-center shadow-2xl animate-pulse">
-                <svg className="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="w-16 h-16 text-[var(--color-hero-text)]" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
                 </svg>
               </div>
@@ -227,7 +227,7 @@ export default async function DailyChallengePage({ searchParams }: DailyChalleng
 
 
           {/* Countdown or motivational message */}
-          <div className="bg-[var(--color-primary)] text-white rounded-lg p-4 mb-6">
+          <div className="bg-[var(--color-primary)] text-[var(--color-hero-text)] rounded-lg p-4 mb-6">
             <p className="font-medium inline-flex items-center gap-2">
               <InlineIcon className="h-5 w-5 text-[var(--color-accent)]" name="tip" />
               <span><strong>Pro Tip:</strong> While you wait, explore the dictionary to discover new Shona words!</span>
@@ -238,7 +238,7 @@ export default async function DailyChallengePage({ searchParams }: DailyChalleng
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/"
-              className="px-6 py-3 bg-[var(--color-accent)] hover:brightness-95 text-[#1B1B1B] rounded-lg font-medium transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+              className="px-6 py-3 theme-button-accent hover:brightness-95 rounded-lg font-medium transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
             >
               <span className="inline-flex items-center gap-2">
                 <InlineIcon className="h-5 w-5" name="search" />
@@ -248,7 +248,7 @@ export default async function DailyChallengePage({ searchParams }: DailyChalleng
             <Link
               scroll={false}
               href="/random"
-              className="px-6 py-3 bg-[var(--color-accent)] hover:brightness-95 text-[#1B1B1B] rounded-lg font-medium transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+              className="px-6 py-3 theme-button-accent hover:brightness-95 rounded-lg font-medium transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
             >
               <span className="inline-flex items-center gap-2">
                 <InlineIcon className="h-5 w-5" name="dice" />
@@ -258,8 +258,8 @@ export default async function DailyChallengePage({ searchParams }: DailyChalleng
           </div>
 
           {/* Fun fact or teaser */}
-          <div className="mt-8 p-4 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
-            <p className="text-sm text-yellow-800 dark:text-yellow-200">
+          <div className="mt-8 p-4 bg-[var(--color-surface-raised)] border border-[var(--color-accent)] rounded-lg">
+            <p className="text-sm text-[var(--color-muted)]">
               <strong>Did you know?</strong> Shona is spoken by over 10 million people! 
               <span className="inline-flex items-center gap-2">
                 The challenge will help you join this amazing community of speakers.

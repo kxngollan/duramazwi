@@ -154,9 +154,9 @@ export default function DictionaryEntryClean({
               />
               {/* Development Edit Button */}
               {process.env.NODE_ENV === 'development' && (
-                <Link
-                  href={`/admin/entries/${encodeURIComponent(entry.word)}/edit`}
-                  className="inline-flex items-center space-x-1 px-3 py-1 bg-[var(--color-accent)] hover:brightness-95 text-[#1B1B1B] rounded-md transition-colors text-sm font-medium"
+	                <Link
+	                  href={`/admin/entries/${encodeURIComponent(entry.word)}/edit`}
+	                  className="inline-flex items-center space-x-1 px-3 py-1 theme-button-accent hover:brightness-95 rounded-md transition-colors text-sm font-medium"
                   title="Edit this entry (Development only)"
                   aria-label={`Edit dictionary entry for "${entry.word}" (Development only)`}
                 >

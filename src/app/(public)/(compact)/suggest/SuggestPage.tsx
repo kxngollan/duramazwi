@@ -17,7 +17,7 @@ export default function SuggestPage() {
        {message.text && (
         <div
           className={`mb-4 rounded p-3 ${
-            message.type === "success" ? "bg-[var(--color-surface)] text-[var(--color-primary)]" : "bg-[var(--color-danger)] text-white"
+            message.type === "success" ? "theme-feedback-correct text-[var(--color-primary)]" : "theme-feedback-incorrect text-[var(--color-danger)]"
           }`}
         >
           {message.text}
@@ -136,7 +136,7 @@ function SuggestionForm({ onSubmit }: any) {
         title={isFormValid ? "Submit your word suggestion" : "Please fill in all required fields"}
         className={`px-6 py-2 rounded font-medium transition-colors ${
           isFormValid
-            ? "bg-[var(--color-accent)] hover:brightness-95 text-[#1B1B1B]"
+            ? "theme-button-accent hover:brightness-95"
             : "bg-[var(--color-border)] text-[var(--color-muted)] cursor-not-allowed"
         }`}
       >

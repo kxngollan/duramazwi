@@ -53,7 +53,7 @@ export default function SoundControls({
       <div className={`relative ${className}`}>
         <button
           onClick={toggleMute}
-          className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+          className="p-2 rounded-lg text-[var(--color-muted)] hover:bg-[var(--color-surface)] hover:text-[var(--color-primary)] transition-colors"
           title={settings.enabled ? "Mute sounds" : "Unmute sounds"}
         >
           <VolumeIcon />
@@ -65,7 +65,7 @@ export default function SoundControls({
   return (
     <div className={`flex items-center space-x-3 ${className}`}>
       {showLabel && (
-        <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+        <span className="text-sm font-medium text-[var(--color-muted)]">
           Sound:
         </span>
       )}
@@ -73,11 +73,11 @@ export default function SoundControls({
       {/* Mute/Unmute Button */}
       <button
         onClick={toggleMute}
-        className="flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+        className="flex items-center space-x-2 px-3 py-2 rounded-lg text-[var(--color-muted)] hover:bg-[var(--color-surface)] hover:text-[var(--color-primary)] transition-colors"
         title={settings.enabled ? "Mute sounds" : "Unmute sounds"}
       >
         <VolumeIcon />
-        <span className="text-sm text-gray-600 dark:text-gray-400">
+        <span className="text-sm">
           {settings.enabled ? `${getVolumePercentage()}%` : "Muted"}
         </span>
       </button>
@@ -87,11 +87,11 @@ export default function SoundControls({
         <div className="relative">
           <button
             onClick={() => setShowVolumeSlider(!showVolumeSlider)}
-            className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+            className="p-2 rounded-lg text-[var(--color-muted)] hover:bg-[var(--color-surface)] hover:text-[var(--color-primary)] transition-colors"
             title="Adjust volume"
           >
             <svg
-              className="w-4 h-4 text-gray-600 dark:text-gray-400"
+              className="w-4 h-4"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -106,13 +106,13 @@ export default function SoundControls({
           </button>
 
           {showVolumeSlider && (
-            <div className="absolute top-full left-0 mt-2 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-600 z-10 min-w-[200px]">
+            <div className="absolute top-full left-0 mt-2 p-4 theme-panel rounded-lg shadow-[var(--shadow-card)] z-10 min-w-[200px]">
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  <span className="text-sm font-medium text-[var(--color-text)]">
                     Volume
                   </span>
-                  <span className="text-sm text-gray-500 dark:text-gray-400">
+                  <span className="text-sm text-[var(--color-muted)]">
                     {getVolumePercentage()}%
                   </span>
                 </div>
@@ -124,20 +124,20 @@ export default function SoundControls({
                   step="0.1"
                   value={settings.volume}
                   onChange={handleVolumeChange}
-                  className="w-full h-2 bg-gray-200 dark:bg-gray-600 rounded-lg appearance-none cursor-pointer slider"
+                  className="w-full h-2 bg-[var(--color-surface)] rounded-lg appearance-none cursor-pointer slider"
                 />
 
                 <div className="flex items-center justify-between">
                   <button
                     onClick={testSound}
-                    className="px-3 py-1 text-xs bg-blue-500 hover:bg-blue-600 text-white rounded transition-colors"
+                    className="px-3 py-1 text-xs theme-button-accent hover:brightness-95 rounded transition-colors"
                   >
                     Test Sound
                   </button>
 
                   <button
                     onClick={() => setShowVolumeSlider(false)}
-                    className="px-3 py-1 text-xs bg-gray-500 hover:bg-gray-600 text-white rounded transition-colors"
+                    className="px-3 py-1 text-xs theme-button-primary hover:brightness-95 rounded transition-colors"
                   >
                     Close
                   </button>
@@ -154,7 +154,7 @@ export default function SoundControls({
           height: 16px;
           width: 16px;
           border-radius: 50%;
-          background: #3b82f6;
+          background: var(--color-accent);
           cursor: pointer;
         }
 
@@ -162,7 +162,7 @@ export default function SoundControls({
           height: 16px;
           width: 16px;
           border-radius: 50%;
-          background: #3b82f6;
+          background: var(--color-accent);
           cursor: pointer;
           border: none;
         }
