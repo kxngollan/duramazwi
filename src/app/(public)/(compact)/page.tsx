@@ -169,7 +169,7 @@ export default async function HomePage({
                     <p className="mt-1 line-clamp-2 text-[var(--color-muted)]">
                       {randomHeroWord.definition}
                     </p>
-                    <p className="mt-4 inline-flex rounded-full bg-[var(--color-accent)] px-3 py-1 text-sm font-semibold text-[#1B1B1B]">
+                    <p className="mt-4 inline-flex rounded-full text-[var(--color-accent)] px-3 py-1 text-sm font-semibold ">
                       Refreshes every 2 hours
                     </p>
                   </Link>
