@@ -96,6 +96,48 @@ a {
   }
 }
 
+[data-theme="light"] {
+  color-scheme: light;
+
+  --color-primary: #1f5c3a;
+  --color-accent: #f2b705;
+  --color-danger: #b8322a;
+
+  --color-background: #fff7e6;
+  --color-surface: #f6e8c8;
+  --color-surface-raised: #ffffff;
+
+  --color-text: #1b1b1b;
+  --color-muted: #6b4f35;
+  --color-placeholder: #8c7357;
+  --color-border: #d9c59c;
+  --color-hero-text: #fff7e6;
+
+  --shadow-soft: 0 10px 25px rgba(27, 27, 27, 0.12);
+  --shadow-card: 0 8px 18px rgba(27, 27, 27, 0.1);
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --color-primary: #2e8b57;
+  --color-accent: #f2b705;
+  --color-danger: #d94a3a;
+
+  --color-background: #0f1115;
+  --color-surface: #101418;
+  --color-surface-raised: #102a22;
+
+  --color-text: #f8f3e8;
+  --color-muted: #b7a88d;
+  --color-placeholder: #9c8f78;
+  --color-border: #2a313a;
+  --color-hero-text: #f8f3e8;
+
+  --shadow-soft: 0 14px 35px rgba(0, 0, 0, 0.45);
+  --shadow-card: 0 10px 24px rgba(0, 0, 0, 0.35);
+}
+
 /** TAILWIND CSS CLASS**/
 @layer base {
   /** BACKGROUND */

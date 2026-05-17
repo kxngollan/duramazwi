@@ -5,6 +5,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { Inter } from "next/font/google";
 import { useTheme } from "@/app/hook/use-theme.hook";
+import type { ThemePreference } from "@/app/hook/use-theme.hook";
 import SvgIcon from "@/component/icons/svg-icon";
 import type { SvgIconButtonProps } from "@/component/icons/svg-icon";
 
@@ -32,7 +33,7 @@ const AppTitle = "Shona Dictionary";
  */
 export default function Appbar() {
   const pathname = usePathname();
-  const { toggleTheme } = useTheme();
+  const { cycleTheme, isHydrated, resolvedTheme, themePreference } = useTheme();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isStuck, setIsStuck] = useState(false);
   const [showSearchIcon, setShowSearchIcon] = useState(false);
@@ -206,18 +207,12 @@ export default function Appbar() {
               </button>
             )}
             
-            {/* Theme Toggle */}
-            {/* <button
-              onClick={toggleTheme}
-              className="p-2 rounded-md text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors ml-2"
-              aria-label="Toggle theme"
-            >
-              <SvgIcon
-                className="h-5 w-5"
-                variant="default"
-                icon="LightDark"
-              />
-            </button> */}
+            <ThemeToggleButton
+              isHydrated={isHydrated}
+              onClick={cycleTheme}
+              resolvedTheme={resolvedTheme}
+              themePreference={themePreference}
+            />
           </div>
         </div>
 
@@ -276,6 +271,14 @@ export default function Appbar() {
                   />
                 </button>
               )}
+
+              <ThemeToggleButton
+                compact
+                isHydrated={isHydrated}
+                onClick={cycleTheme}
+                resolvedTheme={resolvedTheme}
+                themePreference={themePreference}
+              />
 
               <button
                 onClick={toggleMobileMenu}
@@ -336,5 +339,53 @@ export default function Appbar() {
       </nav>
     </div>
     </>
+  );
+}
+
+function ThemeToggleButton({
+  compact = false,
+  isHydrated,
+  onClick,
+  resolvedTheme,
+  themePreference,
+}: {
+  compact?: boolean;
+  isHydrated: boolean;
+  onClick: () => void;
+  resolvedTheme: "light" | "dark";
+  themePreference: ThemePreference;
+}) {
+  const activePreference = isHydrated ? themePreference : "device";
+  const labels: Record<ThemePreference, string> = {
+    device: "Device",
+    light: "Light",
+    dark: "Dark",
+  };
+  const nextPreference: Record<ThemePreference, ThemePreference> = {
+    device: "light",
+    light: "dark",
+    dark: "device",
+  };
+  const label = labels[activePreference];
+  const nextLabel = labels[nextPreference[activePreference]];
+  const title = `Theme: ${label}${activePreference === "device" ? ` (${resolvedTheme})` : ""}. Switch to ${nextLabel}.`;
+
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`inline-flex items-center justify-center gap-2 rounded-md border border-[var(--color-border)] bg-[var(--color-surface-raised)] text-sm font-medium text-[var(--color-muted)] shadow-sm transition-colors hover:bg-[var(--color-surface)] hover:text-[var(--color-primary)] ${
+        compact ? "h-10 w-10" : "px-3 py-2"
+      }`}
+      aria-label={title}
+      title={title}
+    >
+      <SvgIcon
+        className="h-4 w-4"
+        variant={resolvedTheme}
+        icon="LightDark"
+      />
+      {!compact && <span>{label}</span>}
+    </button>
   );
 }

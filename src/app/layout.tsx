@@ -23,6 +23,20 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} bg-default min-h-screen text-base`}>
+        <Script id="theme-init" strategy="beforeInteractive">
+          {`
+            (function() {
+              try {
+                var theme = localStorage.getItem('theme');
+                if (theme === 'light' || theme === 'dark') {
+                  document.documentElement.dataset.theme = theme;
+                } else {
+                  document.documentElement.dataset.theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                }
+              } catch (error) {}
+            })();
+          `}
+        </Script>
         <SoundSettingsProvider>
           <TimezoneProvider />
           {children}
