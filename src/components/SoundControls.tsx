@@ -1,9 +1,14 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { useSoundSettings } from '@/contexts/SoundSettingsContext';
-import { useSoundEffects } from '@/hooks/useSoundEffects';
-import { IoVolumeHighOutline, IoVolumeLowOutline, IoVolumeMediumOutline, IoVolumeMuteOutline } from 'react-icons/io5';
+import { useState } from "react";
+import { useSoundSettings } from "@/contexts/SoundSettingsContext";
+import { useSoundEffects } from "@/hooks/useSoundEffects";
+import {
+  IoVolumeHighOutline,
+  IoVolumeLowOutline,
+  IoVolumeMediumOutline,
+  IoVolumeMuteOutline,
+} from "react-icons/io5";
 
 interface SoundControlsProps {
   className?: string;
@@ -11,10 +16,10 @@ interface SoundControlsProps {
   compact?: boolean;
 }
 
-export default function SoundControls({ 
-  className = '', 
-  showLabel = true, 
-  compact = false 
+export default function SoundControls({
+  className = "",
+  showLabel = true,
+  compact = false,
 }: SoundControlsProps) {
   const { settings, toggleMute, setVolume } = useSoundSettings();
   const { playSound } = useSoundEffects();
@@ -26,13 +31,16 @@ export default function SoundControls({
   };
 
   const testSound = () => {
-    playSound('correct');
+    playSound("correct");
   };
 
   const VolumeIcon = () => {
-    if (!settings.enabled || settings.volume === 0) return <IoVolumeMuteOutline className="h-5 w-5" aria-hidden="true" />;
-    if (settings.volume < 0.3) return <IoVolumeLowOutline className="h-5 w-5" aria-hidden="true" />;
-    if (settings.volume < 0.7) return <IoVolumeMediumOutline className="h-5 w-5" aria-hidden="true" />;
+    if (!settings.enabled || settings.volume === 0)
+      return <IoVolumeMuteOutline className="h-5 w-5" aria-hidden="true" />;
+    if (settings.volume < 0.3)
+      return <IoVolumeLowOutline className="h-5 w-5" aria-hidden="true" />;
+    if (settings.volume < 0.7)
+      return <IoVolumeMediumOutline className="h-5 w-5" aria-hidden="true" />;
     return <IoVolumeHighOutline className="h-5 w-5" aria-hidden="true" />;
   };
 
@@ -46,7 +54,7 @@ export default function SoundControls({
         <button
           onClick={toggleMute}
           className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-          title={settings.enabled ? 'Mute sounds' : 'Unmute sounds'}
+          title={settings.enabled ? "Mute sounds" : "Unmute sounds"}
         >
           <VolumeIcon />
         </button>
@@ -61,16 +69,16 @@ export default function SoundControls({
           Sound:
         </span>
       )}
-      
+
       {/* Mute/Unmute Button */}
       <button
         onClick={toggleMute}
         className="flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-        title={settings.enabled ? 'Mute sounds' : 'Unmute sounds'}
+        title={settings.enabled ? "Mute sounds" : "Unmute sounds"}
       >
         <VolumeIcon />
         <span className="text-sm text-gray-600 dark:text-gray-400">
-          {settings.enabled ? `${getVolumePercentage()}%` : 'Muted'}
+          {settings.enabled ? `${getVolumePercentage()}%` : "Muted"}
         </span>
       </button>
 
@@ -82,8 +90,18 @@ export default function SoundControls({
             className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
             title="Adjust volume"
           >
-            <svg className="w-4 h-4 text-gray-600 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4" />
+            <svg
+              className="w-4 h-4 text-gray-600 dark:text-gray-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4"
+              />
             </svg>
           </button>
 
@@ -98,7 +116,7 @@ export default function SoundControls({
                     {getVolumePercentage()}%
                   </span>
                 </div>
-                
+
                 <input
                   type="range"
                   min="0"
@@ -108,7 +126,7 @@ export default function SoundControls({
                   onChange={handleVolumeChange}
                   className="w-full h-2 bg-gray-200 dark:bg-gray-600 rounded-lg appearance-none cursor-pointer slider"
                 />
-                
+
                 <div className="flex items-center justify-between">
                   <button
                     onClick={testSound}
@@ -116,7 +134,7 @@ export default function SoundControls({
                   >
                     Test Sound
                   </button>
-                  
+
                   <button
                     onClick={() => setShowVolumeSlider(false)}
                     className="px-3 py-1 text-xs bg-gray-500 hover:bg-gray-600 text-white rounded transition-colors"
@@ -139,7 +157,7 @@ export default function SoundControls({
           background: #3b82f6;
           cursor: pointer;
         }
-        
+
         .slider::-moz-range-thumb {
           height: 16px;
           width: 16px;
