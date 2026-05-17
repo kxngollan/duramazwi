@@ -47,7 +47,7 @@ export const useSoundEffects = (options: SoundEffectsOptions = {}) => {
       });
       
       audio.addEventListener('error', (e) => {
-        console.warn(`🎵 Failed to load sound: ${soundType}`, e);
+        console.warn(` Failed to load sound: ${soundType}`, e);
         errorSounds.push(soundType);
         isPlayingRef.current.delete(soundType);
         

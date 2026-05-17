@@ -14,7 +14,7 @@ class AudioDataService {
     // Only log in development
     if (process.env.NODE_ENV === 'development') {
       const recordCount = Object.keys(this.audioIndex.records || {}).length;
-      console.log(`🎵 Loaded ${recordCount} audio records`);
+      console.log(` Loaded ${recordCount} audio records`);
     }
   }
 

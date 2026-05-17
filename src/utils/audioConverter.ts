@@ -44,7 +44,7 @@ export async function convertToMp3(
     const mp3Filename = `${filenameWithoutExt}.mp3`;
     const mp3Path = path.join(outputDir, mp3Filename);
 
-    console.log(`🔄 Converting ${inputFilename} to MP3...`);
+    console.log(` Converting ${inputFilename} to MP3...`);
 
     // Convert to MP3 with high quality settings
     // -codec:a libmp3lame: Use LAME MP3 encoder
@@ -54,7 +54,7 @@ export async function convertToMp3(
     
     await execAsync(ffmpegCommand);
 
-    console.log(`✅ Converted to MP3: ${mp3Filename}`);
+    console.log(` Converted to MP3: ${mp3Filename}`);
 
     // Extract duration using ffprobe
     let duration: number | undefined;
@@ -63,9 +63,9 @@ export async function convertToMp3(
         `ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "${mp3Path}"`
       );
       duration = parseFloat(stdout.trim());
-      console.log(`⏱️  Duration: ${duration.toFixed(2)}s`);
+      console.log(`⏱  Duration: ${duration.toFixed(2)}s`);
     } catch (error) {
-      console.warn('⚠️  Could not extract duration:', error);
+      console.warn('  Could not extract duration:', error);
     }
 
     // Construct URL
@@ -78,7 +78,7 @@ export async function convertToMp3(
     };
 
   } catch (error) {
-    console.error('❌ MP3 conversion failed:', error);
+    console.error(' MP3 conversion failed:', error);
     throw new Error(`Failed to convert audio to MP3: ${error instanceof Error ? error.message : 'Unknown error'}`);
   }
 }
@@ -106,7 +106,7 @@ export async function getAudioDuration(filePath: string): Promise<number | undef
     );
     return parseFloat(stdout.trim());
   } catch (error) {
-    console.warn('⚠️  Could not get audio duration:', error);
+    console.warn('  Could not get audio duration:', error);
     return undefined;
   }
 }

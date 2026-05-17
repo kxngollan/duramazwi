@@ -42,10 +42,10 @@ try {
 // Process the data (should already be in new schema format)
 const allMyData = Array.isArray(allMyDataRaw) ? allMyDataRaw : [allMyDataRaw];
 
-console.log(`📊 Loaded ${allMyData.length} entries from ${importFilePath}`);
+console.log(` Loaded ${allMyData.length} entries from ${importFilePath}`);
 
 // Check for duplicates in the input data based on "word"
-console.log("🔍 Checking for duplicates in input data...");
+console.log(" Checking for duplicates in input data...");
 const wordCounts = new Map();
 const duplicates = [];
 
@@ -62,27 +62,27 @@ for (const entry of allMyData) {
 }
 
 if (duplicates.length > 0) {
-  console.log(`⚠️  Found ${duplicates.length} duplicate words in input data:`);
+  console.log(`  Found ${duplicates.length} duplicate words in input data:`);
   duplicates.slice(0, 10).forEach(word => {
     console.log(`  - "${word}" (appears ${wordCounts.get(word)} times)`);
   });
   if (duplicates.length > 10) {
     console.log(`  ... and ${duplicates.length - 10} more duplicates`);
   }
-  console.log("❌ Please resolve duplicates before proceeding");
+  console.log(" Please resolve duplicates before proceeding");
   process.exit(1);
 } else {
-  console.log("✅ No duplicates found in input data");
+  console.log(" No duplicates found in input data");
 }
 
 if (dryRun) {
-  console.log("🔍 DRY RUN MODE - No changes will be made to the database");
+  console.log(" DRY RUN MODE - No changes will be made to the database");
 }
 
 // Validate data format
 const sampleEntry = allMyData[0];
 if (sampleEntry && !sampleEntry.meanings) {
-  console.error("❌ Data appears to be in old format. Please use migrated data with new schema.");
+  console.error(" Data appears to be in old format. Please use migrated data with new schema.");
   process.exit(1);
 }
 
@@ -111,13 +111,13 @@ const collectionName = "words_new_schema"; // Updated to use new schema collecti
 
     if (dryRun) {
       // Dry run: fetch all existing documents and compare efficiently
-      console.log("🔍 Fetching existing documents for comparison...");
+      console.log(" Fetching existing documents for comparison...");
       
       const existingDocs = await collection.find({}).toArray();
       const existingMap = new Map(existingDocs.map(doc => [doc.word, doc]));
       
-      console.log(`📊 Found ${existingDocs.length} existing documents in database`);
-      console.log("🔍 Analyzing differences...");
+      console.log(` Found ${existingDocs.length} existing documents in database`);
+      console.log(" Analyzing differences...");
       
       let wouldInsert = 0;
       let wouldUpdate = 0;
@@ -180,10 +180,10 @@ const collectionName = "words_new_schema"; // Updated to use new schema collecti
         processDelta(delta);
         
         if (changes.length > 0) {
-          return `  🔄 ${word} (${id}):\n${changes.join('\n')}`;
+          return `   ${word} (${id}):\n${changes.join('\n')}`;
         }
         
-        return `  🔄 ${word} (${id}): [structural changes]`;
+        return `   ${word} (${id}): [structural changes]`;
       };
       
       for (const newDoc of allMyData) {
@@ -192,7 +192,7 @@ const collectionName = "words_new_schema"; // Updated to use new schema collecti
         if (!existing) {
           wouldInsert++;
           if (sampleChanges.length < 10) {
-            sampleChanges.push(`➕ NEW: ${newDoc.word}`);
+            sampleChanges.push(` NEW: ${newDoc.word}`);
           }
         } else {
           const existingNormalized = normalizeDoc(existing);
@@ -203,7 +203,7 @@ const collectionName = "words_new_schema"; // Updated to use new schema collecti
           if (delta) {
             wouldUpdate++;
             if (sampleChanges.length < 10) {
-              sampleChanges.push(`🔄 UPDATE: ${newDoc.word}`);
+              sampleChanges.push(` UPDATE: ${newDoc.word}`);
               
               // Show detailed diff for first few changes
               if (detailedChanges.length < 5) {
@@ -219,14 +219,14 @@ const collectionName = "words_new_schema"; // Updated to use new schema collecti
         }
       }
       
-      console.log("\n🔍 DRY RUN RESULTS:");
-      console.log(`➕ Would insert: ${wouldInsert} new documents`);
-      console.log(`🔄 Would update: ${wouldUpdate} existing documents`);
-      console.log(`⚪ Would remain unchanged: ${wouldRemainUnchanged} documents`);
-      console.log(`📊 Total analyzed: ${allMyData.length} documents`);
+      console.log("\n DRY RUN RESULTS:");
+      console.log(` Would insert: ${wouldInsert} new documents`);
+      console.log(` Would update: ${wouldUpdate} existing documents`);
+      console.log(` Would remain unchanged: ${wouldRemainUnchanged} documents`);
+      console.log(` Total analyzed: ${allMyData.length} documents`);
       
       if (sampleChanges.length > 0) {
-        console.log("\n📋 Sample changes:");
+        console.log("\n Sample changes:");
         sampleChanges.forEach(change => console.log(`  ${change}`));
         if (wouldInsert + wouldUpdate > sampleChanges.length) {
           console.log(`  ... and ${wouldInsert + wouldUpdate - sampleChanges.length} more changes`);
@@ -234,15 +234,15 @@ const collectionName = "words_new_schema"; // Updated to use new schema collecti
       }
       
       if (detailedChanges.length > 0) {
-        console.log("\n🔍 Detailed changes (first 3):");
+        console.log("\n Detailed changes (first 3):");
         detailedChanges.forEach(change => console.log(change));
       }
       
-      console.log("\n💡 To apply these changes, run without --dry-run flag");
+      console.log("\n To apply these changes, run without --dry-run flag");
       
     } else {
       // Actual upsert: let MongoDB detect actual changes
-      console.log("🔄 Upserting data with change detection...");
+      console.log(" Upserting data with change detection...");
       
       let insertedCount = 0;
       let updatedCount = 0;
@@ -271,24 +271,24 @@ const collectionName = "words_new_schema"; // Updated to use new schema collecti
           updatedCount += result.modifiedCount || 0;
           matchedCount += result.matchedCount || 0;
           
-          console.log(`📈 Progress: ${Math.min(i + BATCH_SIZE, allMyData.length)}/${allMyData.length} (${Math.round(Math.min(i + BATCH_SIZE, allMyData.length)/allMyData.length*100)}%)`);
+          console.log(` Progress: ${Math.min(i + BATCH_SIZE, allMyData.length)}/${allMyData.length} (${Math.round(Math.min(i + BATCH_SIZE, allMyData.length)/allMyData.length*100)}%)`);
           
         } catch (error) {
-          console.error(`❌ Error processing batch ${i}-${i + BATCH_SIZE}:`, error.message);
+          console.error(` Error processing batch ${i}-${i + BATCH_SIZE}:`, error.message);
           errorCount += batch.length;
         }
       }
 
       const unchangedCount = matchedCount - updatedCount;
       
-      console.log("\n🎉 Seeding completed!");
-      console.log(`✅ Inserted: ${insertedCount} new documents`);
-      console.log(`🔄 Updated: ${updatedCount} existing documents`);
-      console.log(`⚪ Unchanged: ${unchangedCount} documents (no changes detected)`);
+      console.log("\n Seeding completed!");
+      console.log(` Inserted: ${insertedCount} new documents`);
+      console.log(` Updated: ${updatedCount} existing documents`);
+      console.log(` Unchanged: ${unchangedCount} documents (no changes detected)`);
       if (errorCount > 0) {
-        console.log(`❌ Errors: ${errorCount} documents failed`);
+        console.log(` Errors: ${errorCount} documents failed`);
       }
-      console.log(`📊 Total processed: ${allMyData.length} documents`);
+      console.log(` Total processed: ${allMyData.length} documents`);
     }
   } catch (err) {
     console.error("Error occurred while inserting data:", err);

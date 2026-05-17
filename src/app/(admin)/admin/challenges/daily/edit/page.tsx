@@ -431,8 +431,8 @@ function DailyChallengeEditor() {
               disabled={isReadonly}
               className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:text-white disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <option value="draft">📝 Draft (Not visible to users)</option>
-              <option value="published">✅ Published (Visible to users)</option>
+              <option value="draft">Draft (Not visible to users)</option>
+              <option value="published">Published (Visible to users)</option>
             </select>
             <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
               {dailyChallenge?.status === 'published' 

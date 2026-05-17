@@ -4,6 +4,7 @@ import { useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import dataService from '@/services/dataService';
+import InlineIcon from '@/components/InlineIcon';
 
 interface LyricLine {
   text: string;
@@ -67,7 +68,8 @@ export default function LyricsDisplay({ lyrics }: LyricsDisplayProps) {
           >
             <div className="flex flex-col gap-2">
               <p className="text-xl font-semibold text-[var(--color-text)]">
-                🎶 {line.links ? (
+                <InlineIcon className="mr-2 inline-block h-5 w-5 text-[var(--color-accent)]" name="music" />
+                {line.links ? (
                   <>
                     {line.text.split(' ').map((word, wordIndex) => {
                       const link = line.links?.find(l => word.toLowerCase().includes(l.word.toLowerCase()));

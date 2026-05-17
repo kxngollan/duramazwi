@@ -11,6 +11,7 @@ import dataService from "@/services/dataService";
 import { Meaning } from "@/components/dictionary-entry-clean";
 import { createMetadata } from "@/utils/metadata";
 import SocialLinks from "@/components/SocialLinks";
+import InlineIcon from "@/components/InlineIcon";
 
 export const dynamic = "force-dynamic"; // Need dynamic for search params
 
@@ -309,7 +310,10 @@ function WelcomeContent() {
 
             {/* Decorative elements */}
             <div className="hidden md:block">
-              <div className="text-8xl opacity-20 transform rotate-12">⚡</div>
+              <InlineIcon
+                className="h-20 w-20 opacity-20 transform rotate-12 text-[var(--color-hero-text)]"
+                name="flash"
+              />
             </div>
           </div>
         </div>

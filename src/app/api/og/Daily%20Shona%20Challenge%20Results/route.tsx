@@ -15,10 +15,10 @@ export async function GET(request: NextRequest) {
 
     const accuracyNum = parseInt(accuracy);
     const getMessage = () => {
-      if (accuracyNum === 100) return "My Shona is basically perfect! 🎉";
-      if (accuracyNum >= 80) return "My Shona isn't too bad! 🌟";
-      if (accuracyNum >= 60) return "My Shona is coming along! 👍";
-      return "I (maybe) need to work on my Shona! 😅";
+      if (accuracyNum === 100) return "My Shona is basically perfect! ";
+      if (accuracyNum >= 80) return "My Shona isn't too bad! ";
+      if (accuracyNum >= 60) return "My Shona is coming along! ";
+      return "I (maybe) need to work on my Shona! ";
     };
 
     const imageResponse = new ImageResponse(
@@ -48,7 +48,7 @@ export async function GET(request: NextRequest) {
               </div>
               
               <div tw="flex text-5xl mb-3 text-white">
-                ✅ Completed my
+                Completed my
               </div>
               <div tw="flex text-7xl font-bold text-blue-400 mb-6">
                 Daily Shona Challenge!

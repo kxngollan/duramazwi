@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { getStreakInfo, StreakInfo } from '@/utils/challengeStorage';
+import InlineIcon from '@/components/InlineIcon';
 
 interface StreakDisplayProps {
   className?: string;
@@ -28,7 +29,7 @@ export default function StreakDisplay({ className = '', showDetails = false }: S
     <div className={`text-center ${className}`}>
       {/* Current Streak */}
       <div className="flex items-center justify-center space-x-2 mb-2">
-        <span className="text-2xl">🔥</span>
+        <InlineIcon className="h-6 w-6 text-orange-600 dark:text-orange-400" name="flame" />
         <div>
           <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">
             {streakInfo.currentStreak}
@@ -64,13 +65,13 @@ export default function StreakDisplay({ className = '', showDetails = false }: S
       {/* Streak Status */}
       {streakInfo.isOnStreak && streakInfo.currentStreak > 0 && (
         <div className="mt-2 text-sm text-orange-600 dark:text-orange-400 font-medium">
-          {streakInfo.currentStreak === 1 
-            ? "Great start! Keep it up tomorrow!" 
-            : streakInfo.currentStreak < 7 
-            ? "You're on fire! 🚀" 
-            : streakInfo.currentStreak < 30 
-            ? "Amazing dedication! 🌟" 
-            : "Legendary streak! 👑"
+          {streakInfo.currentStreak === 1
+            ? "Great start! Keep it up tomorrow!"
+            : streakInfo.currentStreak < 7
+            ? "You're on fire!"
+            : streakInfo.currentStreak < 30
+            ? "Amazing dedication!"
+            : "Legendary streak!"
           }
         </div>
       )}

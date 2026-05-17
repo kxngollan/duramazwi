@@ -1,5 +1,6 @@
 'use client';
 
+import InlineIcon from '@/components/InlineIcon';
 import { AdminDictionaryEntry } from '@/services/adminDataService';
 
 interface EntryMetadataProps {
@@ -40,7 +41,7 @@ export default function EntryMetadata({
         {/* Created At */}
         <div className="bg-gray-50 dark:bg-gray-900/50 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
           <div className="flex items-center space-x-2 mb-2">
-            <span className="text-lg">📅</span>
+            <InlineIcon className="h-5 w-5 text-gray-500 dark:text-gray-400" name="calendar" />
             <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
               Created
             </label>
@@ -53,7 +54,7 @@ export default function EntryMetadata({
         {/* Last Updated */}
         <div className="bg-gray-50 dark:bg-gray-900/50 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
           <div className="flex items-center space-x-2 mb-2">
-            <span className="text-lg">🕐</span>
+            <InlineIcon className="h-5 w-5 text-gray-500 dark:text-gray-400" name="time" />
             <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
               Last Edited
             </label>
@@ -66,7 +67,7 @@ export default function EntryMetadata({
         {/* Last Reviewed */}
         <div className="bg-gray-50 dark:bg-gray-900/50 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
           <div className="flex items-center space-x-2 mb-2">
-            <span className="text-lg">✅</span>
+            <InlineIcon className="h-5 w-5 text-gray-500 dark:text-gray-400" name="check" />
             <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
               Last Reviewed
             </label>
@@ -79,7 +80,7 @@ export default function EntryMetadata({
         {/* Review Status */}
         <div className="bg-gray-50 dark:bg-gray-900/50 rounded-lg p-4 border border-gray-200 dark:border-gray-700">
           <div className="flex items-center space-x-2 mb-2">
-            <span className="text-lg">⚠️</span>
+            <InlineIcon className="h-5 w-5 text-gray-500 dark:text-gray-400" name="alert" />
             <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
               Review Status
             </label>
@@ -129,7 +130,7 @@ export default function EntryMetadata({
             className="inline-flex items-center justify-center space-x-2 px-4 py-2 bg-green-600 hover:bg-green-700 disabled:bg-gray-400 text-white rounded-lg transition-colors text-sm font-medium disabled:cursor-not-allowed w-full sm:w-auto"
             title="Mark this entry as reviewed"
           >
-            <span>✅</span>
+            <InlineIcon className="h-4 w-4" name="check" />
             <span>Mark as Reviewed</span>
           </button>
         </div>

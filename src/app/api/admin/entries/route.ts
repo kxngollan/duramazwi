@@ -28,7 +28,7 @@ export async function GET(request: NextRequest) {
       limit: result.limit
     });
   } catch (error) {
-    console.error('❌ Error in GET /api/admin/entries:', error);
+    console.error(' Error in GET /api/admin/entries:', error);
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
@@ -64,7 +64,7 @@ export async function POST(request: NextRequest) {
       message: result.message
     }, { status: 201 });
   } catch (error) {
-    console.error('❌ Error in POST /api/admin/entries:', error);
+    console.error(' Error in POST /api/admin/entries:', error);
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

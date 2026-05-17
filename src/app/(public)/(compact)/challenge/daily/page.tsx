@@ -14,6 +14,7 @@ import { headers } from 'next/headers';
 import { DailyChallenge, Challenge } from '@/types/challenge';
 import { shuffleArray } from '@/utils/shuffle';
 import { createMetadata } from '@/utils/metadata';
+import InlineIcon from '@/components/InlineIcon';
 
 // Force dynamic rendering since we use searchParams
 export const dynamic = 'force-dynamic';
@@ -96,12 +97,12 @@ async function getTodaysChallenge(dateOverride?: string, timezone?: string, isPr
       challenges.map(doc => [doc._id.toString(), doc])
     );
     
-    const orderedChallenges = dailyChallenge.challengeIds
+    const orderedChallenges: any[] = dailyChallenge.challengeIds
       .map((id: string) => challengeMap.get(id))
       .filter((doc: any) => doc !== undefined);
     
     // Map and shuffle options/distractors for each challenge
-    const shuffledChallenges: Challenge[] = orderedChallenges.map(dbChallenge => ({
+    const shuffledChallenges: Challenge[] = orderedChallenges.map((dbChallenge: any) => ({
       id: dbChallenge._id.toString(),
       type: dbChallenge.type,
       question: dbChallenge.question,
@@ -188,7 +189,10 @@ export default async function DailyChallengePage({ searchParams }: DailyChalleng
             </div>
 
             <h2 className="text-4xl font-bold text-[var(--color-primary)] mb-4 text-center">
-              A fun challenge is on its way! ✨
+              <span className="inline-flex items-center justify-center gap-2">
+                A fun challenge is on its way!
+                <InlineIcon className="h-8 w-8 text-[var(--color-accent)]" name="sparkle" />
+              </span>
             </h2>
           
             <p className="text-xl text-[var(--color-text)] mb-6 leading-relaxed text-center">
@@ -207,15 +211,15 @@ export default async function DailyChallengePage({ searchParams }: DailyChalleng
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
               <div className="flex items-center space-x-2">
-                <span className="text-[var(--color-primary)]">🧠</span>
+                <InlineIcon className="h-5 w-5 text-[var(--color-primary)]" name="brain" />
                 <span className="text-[var(--color-muted)]">Brain-teasing questions</span>
               </div>
               <div className="flex items-center space-x-2">
-                <span className="text-[var(--color-accent)]">🎵</span>
+                <InlineIcon className="h-5 w-5 text-[var(--color-accent)]" name="music" />
                 <span className="text-[var(--color-muted)]">Audio challenges</span>
               </div>
               <div className="flex items-center space-x-2">
-                <span className="text-[var(--color-primary)]">🔤</span>
+                <InlineIcon className="h-5 w-5 text-[var(--color-primary)]" name="text" />
                 <span className="text-[var(--color-muted)]">Word building</span>
               </div>
             </div>
@@ -224,8 +228,9 @@ export default async function DailyChallengePage({ searchParams }: DailyChalleng
 
           {/* Countdown or motivational message */}
           <div className="bg-[var(--color-primary)] text-white rounded-lg p-4 mb-6">
-            <p className="font-medium">
-              💡 <strong>Pro Tip:</strong> While you wait, explore the dictionary to discover new Shona words!
+            <p className="font-medium inline-flex items-center gap-2">
+              <InlineIcon className="h-5 w-5 text-[var(--color-accent)]" name="tip" />
+              <span><strong>Pro Tip:</strong> While you wait, explore the dictionary to discover new Shona words!</span>
             </p>
           </div>
 
@@ -235,14 +240,20 @@ export default async function DailyChallengePage({ searchParams }: DailyChalleng
               href="/"
               className="px-6 py-3 bg-[var(--color-accent)] hover:brightness-95 text-[#1B1B1B] rounded-lg font-medium transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
             >
-              🔍 Explore Dictionary
+              <span className="inline-flex items-center gap-2">
+                <InlineIcon className="h-5 w-5" name="search" />
+                Explore Dictionary
+              </span>
             </Link>
             <Link
               scroll={false}
               href="/random"
               className="px-6 py-3 bg-[var(--color-accent)] hover:brightness-95 text-[#1B1B1B] rounded-lg font-medium transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
             >
-              🎲 Random Word
+              <span className="inline-flex items-center gap-2">
+                <InlineIcon className="h-5 w-5" name="dice" />
+                Random Word
+              </span>
             </Link>
           </div>
 
@@ -250,13 +261,19 @@ export default async function DailyChallengePage({ searchParams }: DailyChalleng
           <div className="mt-8 p-4 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg">
             <p className="text-sm text-yellow-800 dark:text-yellow-200">
               <strong>Did you know?</strong> Shona is spoken by over 10 million people! 
-              The challenge will help you join this amazing community of speakers. 🌍
+              <span className="inline-flex items-center gap-2">
+                The challenge will help you join this amazing community of speakers.
+                <InlineIcon className="h-4 w-4" name="globe" />
+              </span>
             </p>
           </div>
 
           {/* Subtle call to action */}
           <p className="text-sm text-[var(--color-muted)] mt-6">
-            Check back soon for your daily dose of Shona learning! 🚀
+            <span className="inline-flex items-center justify-center gap-2">
+              Check back soon for your daily dose of Shona learning!
+              <InlineIcon className="h-4 w-4" name="rocket" />
+            </span>
           </p>
           </div>
         </div>
@@ -284,7 +301,10 @@ export default async function DailyChallengePage({ searchParams }: DailyChalleng
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clipRule="evenodd" />
               </svg>
               <span className="text-sm font-medium">
-                👁️ Preview Mode - Progress will not be saved (Development only)
+                <span className="inline-flex items-center gap-2">
+                  <InlineIcon className="h-4 w-4" name="eye" />
+                  Preview Mode - Progress will not be saved (Development only)
+                </span>
               </span>
             </div>
           </div>

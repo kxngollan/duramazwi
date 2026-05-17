@@ -397,11 +397,11 @@ async function createWeeklyChallenges() {
         updatedAt: new Date()
       });
       
-      console.log(`✅ Created ${challenges.length} challenges for ${date}`);
+      console.log(` Created ${challenges.length} challenges for ${date}`);
       console.log(`   Total points: ${challengesWithTimestamps.reduce((sum, c) => sum + c.points, 0)}`);
     }
     
-    console.log('\n🎉 Weekly challenges created successfully!');
+    console.log('\n Weekly challenges created successfully!');
     
   } catch (error) {
     console.error('Error creating weekly challenges:', error);

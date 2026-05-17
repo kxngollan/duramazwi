@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useSoundSettings } from '@/contexts/SoundSettingsContext';
 import { useSoundEffects } from '@/hooks/useSoundEffects';
+import { IoVolumeHighOutline, IoVolumeLowOutline, IoVolumeMediumOutline, IoVolumeMuteOutline } from 'react-icons/io5';
 
 interface SoundControlsProps {
   className?: string;
@@ -28,12 +29,11 @@ export default function SoundControls({
     playSound('correct');
   };
 
-  const getVolumeIcon = () => {
-    if (!settings.enabled) return '🔇';
-    if (settings.volume === 0) return '🔇';
-    if (settings.volume < 0.3) return '🔈';
-    if (settings.volume < 0.7) return '🔉';
-    return '🔊';
+  const VolumeIcon = () => {
+    if (!settings.enabled || settings.volume === 0) return <IoVolumeMuteOutline className="h-5 w-5" aria-hidden="true" />;
+    if (settings.volume < 0.3) return <IoVolumeLowOutline className="h-5 w-5" aria-hidden="true" />;
+    if (settings.volume < 0.7) return <IoVolumeMediumOutline className="h-5 w-5" aria-hidden="true" />;
+    return <IoVolumeHighOutline className="h-5 w-5" aria-hidden="true" />;
   };
 
   const getVolumePercentage = () => {
@@ -48,7 +48,7 @@ export default function SoundControls({
           className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
           title={settings.enabled ? 'Mute sounds' : 'Unmute sounds'}
         >
-          <span className="text-lg">{getVolumeIcon()}</span>
+          <VolumeIcon />
         </button>
       </div>
     );
@@ -68,7 +68,7 @@ export default function SoundControls({
         className="flex items-center space-x-2 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
         title={settings.enabled ? 'Mute sounds' : 'Unmute sounds'}
       >
-        <span className="text-lg">{getVolumeIcon()}</span>
+        <VolumeIcon />
         <span className="text-sm text-gray-600 dark:text-gray-400">
           {settings.enabled ? `${getVolumePercentage()}%` : 'Muted'}
         </span>

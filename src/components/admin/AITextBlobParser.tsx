@@ -107,7 +107,7 @@ export default function AITextBlobParser({ onChallengeGenerated, onCancel }: AIT
     <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg p-6">
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-lg font-medium text-gray-900 dark:text-white">
-          🤖 AI Challenge Generator
+          AI Challenge Generator
         </h3>
         <button
           onClick={onCancel}

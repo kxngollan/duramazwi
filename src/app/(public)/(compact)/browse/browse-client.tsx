@@ -5,6 +5,7 @@ import { Suspense, useEffect } from "react";
 import Link from "next/link";
 import dataService from "@/services/dataService";
 import BrowseEntries from "@/component/browse-entries.component";
+import InlineIcon from "@/components/InlineIcon";
 
 const ENTRIES_PER_PAGE = 10;
 
@@ -152,7 +153,7 @@ function BrowseContent() {
         <BrowseEntries currentWords={currentWords} />
       ) : (
         <div className="flex flex-col my-16 text-center">
-          <div className="text-6xl mb-4">📚</div>
+          <InlineIcon className="mx-auto mb-4 h-16 w-16 text-[var(--color-primary)]" name="book" />
           <h3 className="text-xl font-semibold text-[var(--color-text)] mb-2">
             {letter 
               ? `No entries starting with "${letter.toUpperCase()}"` 

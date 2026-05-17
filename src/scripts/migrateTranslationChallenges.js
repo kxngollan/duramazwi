@@ -12,7 +12,7 @@ const DB_NAME = 'chishona';
 
 async function migrateTranslationChallenges() {
   if (!MONGODB_URI) {
-    console.error('❌ MONGODB_URI not found in environment variables');
+    console.error(' MONGODB_URI not found in environment variables');
     process.exit(1);
   }
 
@@ -20,7 +20,7 @@ async function migrateTranslationChallenges() {
 
   try {
     await client.connect();
-    console.log('✅ Connected to MongoDB');
+    console.log(' Connected to MongoDB');
 
     const db = client.db(DB_NAME);
     const collection = db.collection('challenges');
@@ -32,10 +32,10 @@ async function migrateTranslationChallenges() {
       distractors: { $exists: false }
     }).toArray();
 
-    console.log(`\n📊 Found ${challenges.length} translation challenges to migrate`);
+    console.log(`\n Found ${challenges.length} translation challenges to migrate`);
 
     if (challenges.length === 0) {
-      console.log('✅ No challenges need migration');
+      console.log(' No challenges need migration');
       return;
     }
 
@@ -52,18 +52,18 @@ async function migrateTranslationChallenges() {
 
       if (result.modifiedCount > 0) {
         migrated++;
-        console.log(`✅ Migrated challenge: ${challenge.id || challenge._id} - "${challenge.question}"`);
+        console.log(` Migrated challenge: ${challenge.id || challenge._id} - "${challenge.question}"`);
       }
     }
 
-    console.log(`\n🎉 Migration complete! Migrated ${migrated} challenges`);
+    console.log(`\n Migration complete! Migrated ${migrated} challenges`);
 
   } catch (error) {
-    console.error('❌ Migration failed:', error);
+    console.error(' Migration failed:', error);
     process.exit(1);
   } finally {
     await client.close();
-    console.log('\n👋 Disconnected from MongoDB');
+    console.log('\n Disconnected from MongoDB');
   }
 }
 

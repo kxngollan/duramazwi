@@ -4,6 +4,7 @@ import { useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import dataService from '@/services/dataService';
+import InlineIcon from '@/components/InlineIcon';
 
 export interface LyricLink {
   word: string;
@@ -185,7 +186,8 @@ export default function LyricsDisplay({ blocks }: LyricsDisplayProps) {
                     {isEnglishFirst ? (
                       <>
                         <p className="text-xl font-semibold text-gray-900 dark:text-white">
-                          🎶 {pair.english}
+                          <InlineIcon className="mr-2 inline-block h-5 w-5 text-[var(--color-accent)]" name="music" />
+                          {pair.english}
                         </p>
                         <p className="text-lg text-gray-600 dark:text-gray-400 italic">
                           "{renderLyricLine(pair.shona, pair.links, `${blockIndex}-${pairIndex}`)}
@@ -199,7 +201,8 @@ export default function LyricsDisplay({ blocks }: LyricsDisplayProps) {
                     ) : (
                       <>
                         <p className="text-xl font-semibold text-gray-900 dark:text-white">
-                          🎶 {renderLyricLine(pair.shona, pair.links, `${blockIndex}-${pairIndex}`)}
+                          <InlineIcon className="mr-2 inline-block h-5 w-5 text-[var(--color-accent)]" name="music" />
+                          {renderLyricLine(pair.shona, pair.links, `${blockIndex}-${pairIndex}`)}
                           {pair.note && (
                             <span className="ml-2 text-sm font-normal text-blue-600 dark:text-blue-400">
                               [{pair.note}]

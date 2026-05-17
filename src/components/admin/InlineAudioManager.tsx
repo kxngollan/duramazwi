@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import SvgIcon from '@/component/icons/svg-icon';
+import InlineIcon from '@/components/InlineIcon';
 import CompactAudioRecorder from './CompactAudioRecorder';
 import AudioPlayer from './AudioPlayer';
 import AudioSelector from '../AudioSelector';
@@ -125,9 +126,10 @@ export default function InlineAudioManager({
         )}
 
         {error && (
-          <span className="text-xs text-red-600 dark:text-red-400" title={error}>
-            ⚠️
-          </span>
+          <InlineIcon
+            className="h-4 w-4 text-red-600 dark:text-red-400"
+            name="alert"
+          />
         )}
       </div>
     );

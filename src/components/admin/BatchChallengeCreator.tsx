@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
+import InlineIcon from '@/components/InlineIcon';
 import { Challenge } from '@/types/challenge';
 
 interface BatchChallengeCreatorProps {
@@ -187,8 +188,9 @@ export default function BatchChallengeCreator({ isOpen, onClose, onChallengesCre
       >
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-7xl w-full my-8">
           <div className="flex justify-between items-center p-6 border-b border-gray-200 dark:border-gray-700">
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
-              🤖 AI Batch Challenge Creator
+            <h2 className="flex items-center gap-2 text-xl font-semibold text-gray-900 dark:text-white">
+              <InlineIcon className="h-5 w-5" name="ai" />
+              AI Batch Challenge Creator
             </h2>
             <button
               onClick={handleClose}
@@ -301,7 +303,8 @@ export default function BatchChallengeCreator({ isOpen, onClose, onChallengesCre
                     {isGenerating && (
                       <div className="animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full"></div>
                     )}
-                    <span>{isGenerating ? 'Generating...' : '🤖 Generate Challenges'}</span>
+                    {!isGenerating && <InlineIcon className="h-4 w-4" name="ai" />}
+                    <span>{isGenerating ? 'Generating...' : 'Generate Challenges'}</span>
                   </button>
                 </div>
               </div>
@@ -321,7 +324,7 @@ export default function BatchChallengeCreator({ isOpen, onClose, onChallengesCre
                       )}
                       className="text-sm px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700"
                     >
-                      ✓ Approve All
+                      Approve All
                     </button>
                     <button
                       onClick={() => setGeneratedChallenges(challenges => 
@@ -329,7 +332,7 @@ export default function BatchChallengeCreator({ isOpen, onClose, onChallengesCre
                       )}
                       className="text-sm px-3 py-1 bg-gray-600 text-white rounded hover:bg-gray-700"
                     >
-                      ✗ Reject All
+                      Reject All
                     </button>
                     <button
                       onClick={() => setGeneratedChallenges([])}
@@ -428,10 +431,11 @@ export default function BatchChallengeCreator({ isOpen, onClose, onChallengesCre
                     {isCreating && (
                       <div className="animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full"></div>
                     )}
+                    {!isCreating && <InlineIcon className="h-4 w-4" name="check" />}
                     <span>
                       {isCreating 
                         ? 'Creating...' 
-                        : `✅ Create ${generatedChallenges.filter(c => c.approved).length} Challenges`
+                        : `Create ${generatedChallenges.filter(c => c.approved).length} Challenges`
                       }
                     </span>
                   </button>

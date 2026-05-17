@@ -17,6 +17,7 @@ import { useImagePreload } from '@/hooks/useImagePreload';
 import SocialLinks from '@/components/SocialLinks';
 import ShareChallenge from '@/components/ShareChallenge';
 import DailyChallengeHeader from './DailyChallengeHeader';
+import InlineIcon from '@/components/InlineIcon';
 
 interface DailyChallengeContainerProps {
   challenge: DailyChallenge;
@@ -55,7 +56,7 @@ export default function DailyChallengeContainer({ challenge, isPreview = false }
       setSoundEffectsReady(true);
     },
     onPreloadError: (errors) => {
-      console.warn('🎵 Some sound effects failed to load:', errors);
+      console.warn('Some sound effects failed to load:', errors);
       setSoundEffectsReady(true); // Still allow the challenge to proceed
     }
   });
@@ -153,7 +154,7 @@ export default function DailyChallengeContainer({ challenge, isPreview = false }
       });
 
       audio.addEventListener('error', (e) => {
-        console.warn(`🎵 Failed to preload audio: ${audioUrl}`, e);
+        console.warn(`Failed to preload audio: ${audioUrl}`, e);
         setAudioPreloadStatus(prev => ({
           ...prev,
           [audioUrl]: 'error'
@@ -324,7 +325,7 @@ export default function DailyChallengeContainer({ challenge, isPreview = false }
                   src={heroImagePreload}
                   alt="Daily Shona Challenge"
                   className="h-60 w-auto"
-                  fallbackIcon="🎯"
+                  fallbackIcon={<InlineIcon className="h-10 w-10" name="trophy" />}
                 />
               </div>
             </div>
@@ -334,7 +335,7 @@ export default function DailyChallengeContainer({ challenge, isPreview = false }
             </h2>
             
             <p className="text-gray-600 dark:text-gray-400 mb-6">
-              Test your Shona skills with today's mix of questions. Each challenge helps you improve your vocabulary, pronunciation, and comprehension. 🎯
+              Test your Shona skills with today's mix of questions. Each challenge helps you improve your vocabulary, pronunciation, and comprehension.
             </p>
 
             {/* Challenge Stats */}
@@ -383,8 +384,9 @@ export default function DailyChallengeContainer({ challenge, isPreview = false }
 
           {/* Tips */}
           <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4">
-            <p className="text-blue-700 dark:text-blue-300 text-sm">
-              💡 <strong>Tip:</strong> Take your time and think carefully about each answer. You can only complete this challenge once per day!
+            <p className="text-blue-700 dark:text-blue-300 text-sm inline-flex items-start gap-2">
+              <InlineIcon className="h-4 w-4 shrink-0" name="tip" />
+              <span><strong>Tip:</strong> Take your time and think carefully about each answer. You can only complete this challenge once per day!</span>
             </p>
           </div>
         </div>

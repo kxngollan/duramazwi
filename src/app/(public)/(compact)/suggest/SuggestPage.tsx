@@ -34,12 +34,12 @@ export default function SuggestPage() {
             });
 
             if (response.ok) {
-              setMessage({ text: "🎉 Thank you! Your suggestion was submitted successfully. Our team will review it, and we’ll inform you of the outcome via email.", type: "success" });
+              setMessage({ text: "Thank you! Your suggestion was submitted successfully. Our team will review it, and we’ll inform you of the outcome via email.", type: "success" });
               resetForm(); // Clear the form after success
             } else {
               const errorData = await response.json();
               setMessage({
-                text: `We encountered an error 😭... ${errorData.message || "An unknown error occurred."}`,
+                text: `We encountered an error. ${errorData.message || "An unknown error occurred."}`,
                 type: "error",
               });
             }

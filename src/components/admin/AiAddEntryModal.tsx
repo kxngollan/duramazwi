@@ -77,7 +77,7 @@ export default function AiAddEntryModal({ isOpen, onClose, onEntryGenerated }: A
         {/* Header */}
         <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
-            🤖 AI-Powered Add Entry
+            AI-Powered Add Entry
           </h2>
           <button
             onClick={handleClose}
@@ -132,7 +132,7 @@ export default function AiAddEntryModal({ isOpen, onClose, onEntryGenerated }: A
                   {isProcessing && (
                     <div className="animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full"></div>
                   )}
-                  <span>{isProcessing ? 'Processing...' : '🤖 Parse with AI'}</span>
+                  <span>{isProcessing ? 'Processing...' : 'Parse with AI'}</span>
                 </button>
               </div>
             </form>
@@ -141,7 +141,7 @@ export default function AiAddEntryModal({ isOpen, onClose, onEntryGenerated }: A
             <div className="space-y-6">
               <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4">
                 <h3 className="text-lg font-semibold text-green-800 dark:text-green-200 mb-2">
-                  ✅ Entry Generated Successfully!
+                  Entry Generated Successfully!
                 </h3>
                 <p className="text-green-700 dark:text-green-300">
                   Review the generated entry below and click "Use This Entry" to add it to the dictionary.
@@ -201,7 +201,7 @@ export default function AiAddEntryModal({ isOpen, onClose, onEntryGenerated }: A
                   onClick={handleUseEntry}
                   className="px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors"
                 >
-                  ✅ Use This Entry
+                  Use This Entry
                 </button>
               </div>
             </div>

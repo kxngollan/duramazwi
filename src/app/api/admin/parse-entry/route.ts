@@ -106,7 +106,7 @@ Important notes:
     });
 
   } catch (error) {
-    console.error('❌ Error parsing entry:', error);
+    console.error(' Error parsing entry:', error);
     
     if (error instanceof z.ZodError) {
       return NextResponse.json(

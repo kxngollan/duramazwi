@@ -149,7 +149,7 @@ export default async function DetailsPage({
   
   // Development logging only
   if (process.env.NODE_ENV === 'development' && audioRecords.length === 0) {
-    console.log(`🎵 No audio found for: ${id}`);
+    console.log(`No audio found for: ${id}`);
   }
 
   return (

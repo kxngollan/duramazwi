@@ -86,7 +86,7 @@ The word "${word}" should be used naturally within each example sentence.`;
     });
 
   } catch (error) {
-    console.error('❌ Error generating examples:', error);
+    console.error(' Error generating examples:', error);
     
     if (error instanceof z.ZodError) {
       return NextResponse.json(

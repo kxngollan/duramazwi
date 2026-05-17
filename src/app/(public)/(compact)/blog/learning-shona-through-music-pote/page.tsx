@@ -3,6 +3,7 @@ import SearchBar from '@/component/search-bar.component';
 import LyricsDisplay, { LyricBlock } from '@/components/blog/LyricsDisplay';
 import StickyVideo from '@/components/blog/StickyVideo';
 import { Metadata } from 'next';
+import InlineIcon from '@/components/InlineIcon';
 
 export const dynamic = 'force-dynamic';
 
@@ -207,7 +208,10 @@ export default function PoteBlogPost() {
         {/* Learning Tips */}
         <div className="bg-[var(--color-surface)] rounded-xl p-8 mb-12">
           <h2 className="text-2xl font-bold text-[var(--color-text)] mb-4">
-            💡 Learning Tips
+            <span className="inline-flex items-center gap-2">
+              <InlineIcon className="h-6 w-6 text-[var(--color-accent)]" name="tip" />
+              Learning Tips
+            </span>
           </h2>
           <ul className="space-y-3 text-[var(--color-text)]">
             <li className="flex items-start gap-3">

@@ -41,9 +41,9 @@ async function prompt(question) {
 
 function backupExistingData(outputPath) {
   const backupPath = path.join(__dirname, "./data-backup-" + Date.now() + ".json");
-  console.log("📦 Backing up existing data.json...");
+  console.log(" Backing up existing data.json...");
   fs.copyFileSync(outputPath, backupPath);
-  console.log(`✅ Backup created: ${backupPath}`);
+  console.log(` Backup created: ${backupPath}`);
   return backupPath;
 }
 

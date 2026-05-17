@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { FormExample } from './EditFormHelpers';
 import SvgIcon from '@/component/icons/svg-icon';
+import InlineIcon from '@/components/InlineIcon';
 import InlineAudioManager from './InlineAudioManager';
 
 interface ExampleEditorProps {
@@ -80,7 +81,7 @@ export default function ExampleEditor({ examples, onChange, word, definition, pa
               className="inline-flex items-center justify-center space-x-1 px-3 py-1 text-sm bg-purple-100 hover:bg-purple-200 text-purple-700 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               title="Generate AI examples"
             >
-              <span className="text-sm">✨</span>
+              <InlineIcon className="h-4 w-4" name="ai" />
               <span>{isGenerating ? 'Generating...' : 'AI Examples'}</span>
             </button>
           )}

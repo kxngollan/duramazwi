@@ -1,6 +1,7 @@
 'use client';
 
 import { useImagePreload, type ImagePreloadResult } from '@/hooks/useImagePreload';
+import InlineIcon from '@/components/InlineIcon';
 
 interface ImageWithPlaceholderProps {
   alt: string;
@@ -17,7 +18,7 @@ export default function ImageWithPlaceholder({
   alt,
   className = '',
   placeholderClassName = '',
-  fallbackIcon = '🎯',
+  fallbackIcon = <InlineIcon className="h-10 w-10" name="trophy" />,
   src,
   aspectRatio
 }: ImageWithPlaceholderProps) {

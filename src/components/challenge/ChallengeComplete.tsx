@@ -6,6 +6,7 @@ import { ChallengeSession } from '@/types/challenge';
 import { useSoundEffects } from '@/hooks/useSoundEffects';
 import StreakDisplay from './StreakDisplay';
 import EmailNotificationSignup from './EmailNotificationSignup';
+import InlineIcon from '@/components/InlineIcon';
 
 interface ChallengeCompleteProps {
   session: ChallengeSession;
@@ -51,7 +52,7 @@ export default function ChallengeComplete({ session, onRestart, playCompletionSo
         await navigator.share({
           files: [file],
           title: 'My Daily Shona Challenge Result',
-          text: `I scored ${session.totalScore} points with ${accuracy}% accuracy! 🎉`,
+          text: `I scored ${session.totalScore} points with ${accuracy}% accuracy!`,
         });
       } else {
         // Fallback: open image in new tab
@@ -85,10 +86,10 @@ export default function ChallengeComplete({ session, onRestart, playCompletionSo
   }, [accuracy, playSound, playCompletionSound]);
 
   const getPerformanceMessage = () => {
-    if (accuracy === 100) return "Perfect! 🎉";
-    if (accuracy >= 80) return "Excellent work! 🌟";
-    if (accuracy >= 60) return "Good job! 👍";
-    return "Keep practicing! 💪";
+    if (accuracy === 100) return "Perfect!";
+    if (accuracy >= 80) return "Excellent work!";
+    if (accuracy >= 60) return "Good job!";
+    return "Keep practicing!";
   };
 
   const getPerformanceColor = () => {
@@ -102,7 +103,7 @@ export default function ChallengeComplete({ session, onRestart, playCompletionSo
       {/* Header */}
       <div className="mb-8">
         <div className="w-32 h-32 bg-gradient-to-br from-yellow-400 to-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
-          <span className="text-6xl">🏆</span>
+          <InlineIcon className="h-16 w-16 text-[#1B1B1B]" name="trophy" />
         </div>
         <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
           Challenge Complete!
@@ -184,7 +185,10 @@ export default function ChallengeComplete({ session, onRestart, playCompletionSo
       {/* Social Share CTA */}
       <div className="mb-8 p-6 bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 rounded-lg border border-purple-200 dark:border-purple-800">
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
-          🎉 Share Your Achievement!
+          <span className="inline-flex items-center gap-2">
+            <InlineIcon className="h-5 w-5 text-[var(--color-accent)]" name="sparkle" />
+            Share Your Achievement!
+          </span>
         </h3>
         <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
           Challenge your friends to beat your score of {session.totalScore} points!
@@ -298,7 +302,10 @@ export default function ChallengeComplete({ session, onRestart, playCompletionSo
       {/* Motivational Message */}
       <div className="mt-8 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
         <p className="text-blue-700 dark:text-blue-300 text-sm">
-          🎯 Come back tomorrow for a new daily challenge and continue improving your Shona!
+          <span className="inline-flex items-center gap-2">
+            <InlineIcon className="h-4 w-4" name="trophy" />
+            Come back tomorrow for a new daily challenge and continue improving your Shona!
+          </span>
         </p>
       </div>
     </div>
