@@ -139,8 +139,8 @@ export default async function HomePage({
                     </span>
                     <span>English ↔ ChiShona</span>
                   </div>
-                  <h1 className="text-4xl font-black tracking-normal md:text-6xl">
-                    Duramazwi reChiShona
+                  <h1 className="text-4xl font-black tracking-normal md:text-6xl capitalize">
+                    Shona dictionary
                   </h1>
                   <p className="mt-3 max-w-xl text-lg leading-relaxed text-[var(--color-hero-text)]/90">
                     Explore the meanings of Shona words or find Shona
