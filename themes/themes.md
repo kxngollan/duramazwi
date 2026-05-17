@@ -299,6 +299,7 @@ Use CSS variables with Tailwind arbitrary values:
 - Avoid using red as a main navigation colour; keep it for tags and emphasis.
 - In dark mode, avoid pure black for every surface. Use layered dark colours so cards remain visible.
 - Use cream text in dark mode instead of pure white to reduce glare.
+- Avoid using emojis, use SVGs instead,
 
 ---
 
