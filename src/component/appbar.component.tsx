@@ -369,6 +369,8 @@ function ThemeToggleButton({
   const label = labels[activePreference];
   const nextLabel = labels[nextPreference[activePreference]];
   const title = `Theme: ${label}${activePreference === "device" ? ` (${resolvedTheme})` : ""}. Switch to ${nextLabel}.`;
+  const icon = activePreference === "device" ? "Device" : "LightDark";
+  const iconVariant = activePreference === "device" ? "default" : resolvedTheme;
 
   return (
     <button
@@ -382,8 +384,8 @@ function ThemeToggleButton({
     >
       <SvgIcon
         className="h-4 w-4"
-        variant={resolvedTheme}
-        icon="LightDark"
+        variant={iconVariant}
+        icon={icon}
       />
       {!compact && <span>{label}</span>}
     </button>
