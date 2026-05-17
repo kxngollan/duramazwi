@@ -26,13 +26,13 @@
   --color-border: #d9c59c;
   --color-hero-text: #fff7e6;
 
+  --color-focus: #000;
   --shadow-soft: 0 10px 25px rgba(27, 27, 27, 0.12);
   --shadow-card: 0 8px 18px rgba(27, 27, 27, 0.1);
 }
 
 [data-theme="dark"] {
   color-scheme: dark;
-
   --color-primary: #2e8b57;
   --color-accent: #f2b705;
   --color-danger: #d94a3a;
@@ -47,6 +47,7 @@
   --color-border: #2a313a;
   --color-hero-text: #f8f3e8;
 
+  --color-focus: #fff;
   --shadow-soft: 0 14px 35px rgba(0, 0, 0, 0.45);
   --shadow-card: 0 10px 24px rgba(0, 0, 0, 0.35);
 }
@@ -55,6 +56,12 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  :focus {
+    outline-color: var(--color-focus);
+  }
+}
+
+* {
 }
 
 html,
