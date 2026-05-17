@@ -21,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} bg-default min-h-screen text-base`}>
         <Script id="theme-init" strategy="beforeInteractive">
           {`
