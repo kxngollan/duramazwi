@@ -6,13 +6,19 @@ import Link from "next/link";
 import { Inter } from "next/font/google";
 import { useTheme } from "@/app/hook/use-theme.hook";
 import SvgIcon from "@/component/icons/svg-icon";
+import type { SvgIconButtonProps } from "@/component/icons/svg-icon";
 
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
 });
 
-const navItems = [
+const navItems: Array<{
+  href: string;
+  label: string;
+  title: string;
+  icon: SvgIconButtonProps["icon"];
+}> = [
   { href: "/browse", label: "Browse", title: "Browse all dictionary entries", icon: "Book" },
   { href: "/random", label: "Random Word", title: "Get a random Shona word", icon: "Play" },
   { href: "/challenge/daily", label: "Daily Shona Challenge", title: "Test your Shona skills with daily challenges", icon: "Trophy" },
@@ -122,7 +128,7 @@ export default function Appbar() {
       
       <div 
         ref={headerRef}
-        className={`${inter.className} mb-2 ${isStuck ? 'fixed top-0 left-0 right-0 z-50' : ''} ${(isStuck || isMobileMenuOpen) ? 'border-b border-gray-200 dark:border-gray-700' : ''} bg-default transition-all duration-300`}
+        className={`${inter.className} mb-2 ${isStuck ? 'fixed top-0 left-0 right-0 z-50' : ''} ${(isStuck || isMobileMenuOpen) ? 'border-b border-[var(--color-border)]' : ''} bg-default transition-all duration-300`}
       >
       <nav className={`${isStuck ? 'py-2' : 'py-4'} transition-all duration-300`} aria-label="Main navigation">
         <div className="max-w-4xl mx-auto px-4">
@@ -137,11 +143,11 @@ export default function Appbar() {
             onClick={() => setIsMobileMenuOpen(false)}
           >
             <SvgIcon
-              className="h-8 w-8 text-blue-600 dark:text-blue-500"
-              variant="blue"
+              className="h-8 w-8 text-[var(--color-primary)]"
+              variant="default"
               icon="Book"
             />
-            <span className="text-xl font-bold text-gray-900 dark:text-white">
+            <span className="text-xl font-bold text-[var(--color-primary)]">
               {AppTitle}
             </span>
           </Link>
@@ -162,11 +168,11 @@ export default function Appbar() {
                   className={`px-4 py-2 text-sm font-medium transition-colors ${
                     isActive
                       ? isChallenge
-                        ? "text-purple-600 dark:text-purple-400 border-b-2 border-purple-600 dark:border-purple-400"
-                        : "text-blue-600 dark:text-blue-400 border-b-2 border-blue-600 dark:border-blue-400"
+                        ? "text-[var(--color-accent)] border-b-2 border-[var(--color-accent)]"
+                        : "text-[var(--color-primary)] border-b-2 border-[var(--color-primary)]"
                       : isChallenge
-                        ? "text-purple-700 dark:text-purple-300 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md"
-                        : "text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md"
+                        ? "text-[var(--color-primary)] hover:text-[var(--color-accent)] hover:bg-[var(--color-surface)] rounded-md"
+                        : "text-[var(--color-muted)] hover:text-[var(--color-primary)] hover:bg-[var(--color-surface)] rounded-md"
                   }`}
                 >
                   {item.label}
@@ -188,7 +194,7 @@ export default function Appbar() {
                     }, 500);
                   }
                 }}
-                className="px-4 py-2 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors select-none"
+                className="px-4 py-2 text-sm font-medium text-[var(--color-muted)] hover:text-[var(--color-primary)] hover:bg-[var(--color-surface)] rounded-md transition-colors select-none"
                 aria-label="Scroll to search"
                 title="Go to search bar"
               >
@@ -225,11 +231,11 @@ export default function Appbar() {
               onClick={() => setIsMobileMenuOpen(false)}
             >
               <SvgIcon
-                className="h-8 w-8 text-blue-600 dark:text-blue-500"
-                variant="blue"
+                className="h-8 w-8 text-[var(--color-primary)]"
+                variant="default"
                 icon="Book"
               />
-              <span className="text-xl font-bold text-gray-900 dark:text-white">
+              <span className="text-xl font-bold text-[var(--color-primary)]">
                 {AppTitle}
               </span>
             </Link>
@@ -259,7 +265,7 @@ export default function Appbar() {
                       searchElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     }
                   }}
-                  className="p-2 rounded-md text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors select-none"
+                  className="p-2 rounded-md text-[var(--color-muted)] hover:text-[var(--color-primary)] hover:bg-[var(--color-surface)] transition-colors select-none"
                   aria-label="Scroll to search"
                   title="Go to search bar"
                 >
@@ -273,7 +279,7 @@ export default function Appbar() {
 
               <button
                 onClick={toggleMobileMenu}
-                className="p-2 rounded-md text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors select-none"
+                className="p-2 rounded-md text-[var(--color-muted)] hover:text-[var(--color-primary)] hover:bg-[var(--color-surface)] transition-colors select-none"
                 aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
                 aria-expanded={isMobileMenuOpen}
                 aria-controls="mobile-menu"
@@ -306,11 +312,11 @@ export default function Appbar() {
                     className={`flex items-center space-x-3 px-4 py-3 text-sm font-medium transition-colors ${
                       isActive
                         ? isChallenge
-                          ? "text-purple-600 dark:text-purple-400 border-l-4 border-purple-600 dark:border-purple-400 bg-purple-50 dark:bg-purple-900/20"
-                          : "text-blue-600 dark:text-blue-400 border-l-4 border-blue-600 dark:border-blue-400 bg-blue-50 dark:bg-blue-900/20"
+                          ? "text-[var(--color-accent)] border-l-4 border-[var(--color-accent)] bg-[var(--color-surface)]"
+                          : "text-[var(--color-primary)] border-l-4 border-[var(--color-primary)] bg-[var(--color-surface)]"
                         : isChallenge
-                          ? "text-purple-700 dark:text-purple-300 hover:text-purple-600 dark:hover:text-purple-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md"
-                          : "text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md"
+                          ? "text-[var(--color-primary)] hover:text-[var(--color-accent)] hover:bg-[var(--color-surface)] rounded-md"
+                          : "text-[var(--color-muted)] hover:text-[var(--color-primary)] hover:bg-[var(--color-surface)] rounded-md"
                     }`}
                   >
                     <SvgIcon

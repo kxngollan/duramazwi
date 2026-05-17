@@ -176,22 +176,22 @@ export default async function DailyChallengePage({ searchParams }: DailyChalleng
           <div className="rounded-lg p-8 text-center">
             {/* Animated Icon */}
             <div className="mb-8 relative text-center">
-              <div className="w-32 h-32 mx-auto bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center shadow-2xl animate-pulse">
+              <div className="w-32 h-32 mx-auto bg-[var(--color-primary)] rounded-full flex items-center justify-center shadow-2xl animate-pulse">
                 <svg className="w-16 h-16 text-white" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
                 </svg>
               </div>
               {/* Floating sparkles */}
-              <div className="absolute -top-2 -right-2 w-6 h-6 bg-yellow-400 rounded-full animate-bounce delay-100"></div>
-              <div className="absolute -bottom-2 -left-2 w-4 h-4 bg-pink-400 rounded-full animate-bounce delay-300"></div>
-              <div className="absolute top-4 -left-4 w-3 h-3 bg-green-400 rounded-full animate-bounce delay-500"></div>
+              <div className="absolute -top-2 -right-2 w-6 h-6 bg-[var(--color-accent)] rounded-full animate-bounce delay-100"></div>
+              <div className="absolute -bottom-2 -left-2 w-4 h-4 bg-[var(--color-danger)] rounded-full animate-bounce delay-300"></div>
+              <div className="absolute top-4 -left-4 w-3 h-3 bg-[var(--color-primary)] rounded-full animate-bounce delay-500"></div>
             </div>
 
-            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent text-center">
+            <h2 className="text-4xl font-bold text-[var(--color-primary)] mb-4 text-center">
               A fun challenge is on its way! ✨
             </h2>
           
-            <p className="text-xl text-gray-700 dark:text-gray-300 mb-6 leading-relaxed text-center">
+            <p className="text-xl text-[var(--color-text)] mb-6 leading-relaxed text-center">
               We're preparing an exciting new daily challenge just for you!
             </p>
 
@@ -201,29 +201,29 @@ export default async function DailyChallengePage({ searchParams }: DailyChalleng
             <CollapsibleEmailSignup />
           </div>
 
-          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-xl mb-8 border border-gray-200 dark:border-gray-700">
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+          <div className="bg-[var(--color-surface-raised)] rounded-xl p-6 shadow-xl mb-8 border border-[var(--color-border)]">
+            <h2 className="text-lg font-semibold text-[var(--color-text)] mb-3">
               What to Expect:
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
               <div className="flex items-center space-x-2">
-                <span className="text-blue-500">🧠</span>
-                <span className="text-gray-600 dark:text-gray-400">Brain-teasing questions</span>
+                <span className="text-[var(--color-primary)]">🧠</span>
+                <span className="text-[var(--color-muted)]">Brain-teasing questions</span>
               </div>
               <div className="flex items-center space-x-2">
-                <span className="text-purple-500">🎵</span>
-                <span className="text-gray-600 dark:text-gray-400">Audio challenges</span>
+                <span className="text-[var(--color-accent)]">🎵</span>
+                <span className="text-[var(--color-muted)]">Audio challenges</span>
               </div>
               <div className="flex items-center space-x-2">
-                <span className="text-green-500">🔤</span>
-                <span className="text-gray-600 dark:text-gray-400">Word building</span>
+                <span className="text-[var(--color-primary)]">🔤</span>
+                <span className="text-[var(--color-muted)]">Word building</span>
               </div>
             </div>
           </div>
 
 
           {/* Countdown or motivational message */}
-          <div className="bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg p-4 mb-6">
+          <div className="bg-[var(--color-primary)] text-white rounded-lg p-4 mb-6">
             <p className="font-medium">
               💡 <strong>Pro Tip:</strong> While you wait, explore the dictionary to discover new Shona words!
             </p>
@@ -233,14 +233,14 @@ export default async function DailyChallengePage({ searchParams }: DailyChalleng
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/"
-              className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+              className="px-6 py-3 bg-[var(--color-accent)] hover:brightness-95 text-[#1B1B1B] rounded-lg font-medium transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
             >
               🔍 Explore Dictionary
             </Link>
             <Link
               scroll={false}
               href="/random"
-              className="px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-medium transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+              className="px-6 py-3 bg-[var(--color-accent)] hover:brightness-95 text-[#1B1B1B] rounded-lg font-medium transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
             >
               🎲 Random Word
             </Link>
@@ -255,7 +255,7 @@ export default async function DailyChallengePage({ searchParams }: DailyChalleng
           </div>
 
           {/* Subtle call to action */}
-          <p className="text-sm text-gray-500 dark:text-gray-400 mt-6">
+          <p className="text-sm text-[var(--color-muted)] mt-6">
             Check back soon for your daily dose of Shona learning! 🚀
           </p>
           </div>
@@ -277,9 +277,9 @@ export default async function DailyChallengePage({ searchParams }: DailyChalleng
       </header>
 
       {isPreview && (
-        <div className="bg-purple-50 dark:bg-purple-900/20 border-b border-purple-200 dark:border-purple-800 mb-6">
+        <div className="bg-[var(--color-surface)] border-b border-[var(--color-border)] mb-6">
           <div className="container mx-auto px-4 py-3 max-w-2xl">
-            <div className="flex items-center justify-center space-x-2 text-purple-800 dark:text-purple-200">
+            <div className="flex items-center justify-center space-x-2 text-[var(--color-primary)]">
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clipRule="evenodd" />
               </svg>

@@ -87,7 +87,7 @@ export default async function HomePage({ searchParams }: { searchParams: { q?: s
             ? 'hidden max-h-0 overflow-hidden'
             : 'opacity-100 max-h-20 mb-4'
           }`}>
-          <h1 className="text-5xl font-bold text-blue-600 dark:text-blue-500 transition-all duration-500">
+          <h1 className="text-5xl font-bold text-[var(--color-primary)] transition-all duration-500">
             Shona Dictionary
           </h1>
         </div>
@@ -97,10 +97,10 @@ export default async function HomePage({ searchParams }: { searchParams: { q?: s
             ? 'hidden max-h-0 overflow-hidden'
             : 'opacity-100 max-h-96'
           }`}>
-          <p className="text-xl text-gray-600 dark:text-gray-400 mb-2 transition-all duration-300">
+          <p className="text-xl text-[var(--color-muted)] mb-2 transition-all duration-300">
             Duramazwi
           </p>
-          <p className="text-xl text-gray-600 dark:text-gray-400 mb-4 max-w-2xl mx-auto leading-relaxed transition-all duration-300">
+          <p className="text-xl text-[var(--color-muted)] mb-4 max-w-2xl mx-auto leading-relaxed transition-all duration-300">
             Explore the meanings of Shona words or find Shona equivalents for English words.
             Your comprehensive guide to the Shona language.
           </p>
@@ -122,34 +122,34 @@ export default async function HomePage({ searchParams }: { searchParams: { q?: s
           <div className="flex flex-row flex-wrap justify-center items-center gap-1 sm:gap-2 text-base">
             <Link
               href="/browse"
-              className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors duration-200 px-2 py-1"
+              className="text-[var(--color-primary)] hover:text-[var(--color-accent)] transition-colors duration-200 px-2 py-1"
               title="Browse all dictionary entries"
               aria-label="Browse all dictionary entries"
             >
               Browse all entries
             </Link>
-            <span className="text-gray-400 text-sm">•</span>
+            <span className="text-[var(--color-border)] text-sm">•</span>
             <Link
               href="/random"
-              className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors duration-200 px-2 py-1"
+              className="text-[var(--color-primary)] hover:text-[var(--color-accent)] transition-colors duration-200 px-2 py-1"
               title="Get a random Shona word"
               aria-label="Get a random Shona word"
             >
               Random word
             </Link>
-            <span className="text-gray-400 text-sm">•</span>
+            <span className="text-[var(--color-border)] text-sm">•</span>
             <Link
               href="/suggest"
-              className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors duration-200 px-2 py-1"
+              className="text-[var(--color-primary)] hover:text-[var(--color-accent)] transition-colors duration-200 px-2 py-1"
               title="Suggest a new word for the dictionary"
               aria-label="Suggest a new word for the dictionary"
             >
               Suggest a word
             </Link>
-            <span className="text-gray-400 text-sm">•</span>
+            <span className="text-[var(--color-border)] text-sm">•</span>
             <Link
               href="/challenge/daily"
-              className="text-purple-600 dark:text-purple-400 hover:text-purple-800 dark:hover:text-purple-300 transition-colors duration-200 px-2 py-1"
+              className="text-[var(--color-primary)] hover:text-[var(--color-accent)] transition-colors duration-200 px-2 py-1"
               title="Take the daily challenge"
               aria-label="Take the daily challenge"
             >
@@ -161,14 +161,14 @@ export default async function HomePage({ searchParams }: { searchParams: { q?: s
 
       {/* Separator for search results */}
       {searchQuery && (
-        <hr className="h-px my-4 bg-gray-200 border-0 dark:bg-gray-700" />
+        <hr className="h-px my-4 bg-[var(--color-border)] border-0" />
       )}
 
       {/* Search Results or Welcome Content */}
       {searchQuery ? (
         <Suspense fallback={
           <div className="flex items-center justify-center py-12" role="status" aria-label="Loading search results">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[var(--color-primary)]"></div>
             <span className="sr-only">Loading search results...</span>
           </div>
         }>
@@ -186,7 +186,7 @@ function WelcomeContent() {
     <div className="max-w-4xl mx-auto">
       {/* Daily Challenge Card - Prominent and Inviting */}
       <Link href="/challenge/daily" className="block mb-8 group">
-        <div className="relative overflow-hidden bg-gradient-to-br from-purple-600 via-purple-500 to-pink-500 dark:from-purple-700 dark:via-purple-600 dark:to-pink-600 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02]">
+        <div className="relative overflow-hidden bg-[var(--color-primary)] rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02]">
           {/* Animated background pattern */}
           <div className="absolute inset-0 opacity-10">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(255,255,255,0.3),transparent)]"></div>
@@ -200,7 +200,7 @@ function WelcomeContent() {
                   <h2 className="text-3xl font-bold text-white mb-1">
                     Daily Shona Challenge
                   </h2>
-                  <p className="text-purple-100 text-lg">
+                  <p className="text-[var(--color-hero-text)]/90 text-lg">
                     Test your Shona knowledge today!
                   </p>
                 </div>
@@ -208,7 +208,7 @@ function WelcomeContent() {
               <p className="text-white/90 text-lg mb-4 max-w-xl">
                 Take on fun challenges to improve your vocabulary. New challenges every day!
               </p>
-              <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-4 py-2 rounded-lg text-white font-semibold group-hover:bg-white/30 transition-colors border-white/30 group-hover:border-white/40">
+              <div className="inline-flex items-center gap-2 bg-[var(--color-accent)] px-4 py-2 rounded-lg text-[#1B1B1B] font-semibold group-hover:brightness-95 transition-colors border border-[var(--color-accent)]">
                 <span>Start Challenge</span>
                 <svg className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
@@ -226,11 +226,11 @@ function WelcomeContent() {
         </div>
       </Link>
 
-      <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+      <h2 className="text-2xl font-bold text-[var(--color-primary)] mb-6">
         Explore the Shona Dictionary
       </h2>
 
-      <div className="space-y-6 text-lg text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">
+      <div className="space-y-6 text-lg text-[var(--color-muted)] mb-8 leading-relaxed">
         <p>
           Welcome to our growing repository of words from the rich and vibrant
           Shona lexicon. This project is a community-driven effort to document and
@@ -241,7 +241,7 @@ function WelcomeContent() {
           <div className="flex justify-center  mb-2">
             <SocialLinks variant="compact" />
           </div>
-          <h3 className="text-sm font-medium text-gray-600 dark:text-gray-400 underline">
+          <h3 className="text-sm font-medium text-[var(--color-muted)] underline">
             Follow us for daily Shona content
           </h3>
         </div>
@@ -250,7 +250,7 @@ function WelcomeContent() {
           making it a valuable resource for speakers and learners alike.
         </p>
         <p>
-          <Link href="/suggest" className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 underline font-medium" title="Contribute to the dictionary" aria-label="Contribute to the dictionary">
+          <Link href="/suggest" className="text-[var(--color-primary)] hover:text-[var(--color-accent)] underline font-medium" title="Contribute to the dictionary" aria-label="Contribute to the dictionary">
             Your suggestions
           </Link>{" "}
           play a vital role in shaping this project. Contribute today and be part of the journey!
@@ -258,11 +258,11 @@ function WelcomeContent() {
       </div>
 
       {/* Featured Words Preview */}
-      <div className="bg-blue-50 dark:bg-gray-800 border border-blue-100 dark:border-gray-700 rounded-lg p-6">
-        <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+      <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg p-6 shadow-[var(--shadow-card)]">
+        <h3 className="text-xl font-semibold text-[var(--color-primary)] mb-4">
           Featured Words
         </h3>
-        <p className="text-lg text-gray-600 dark:text-gray-400 mb-4">
+        <p className="text-lg text-[var(--color-muted)] mb-4">
           Discover some words from our dictionary:
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
@@ -271,7 +271,7 @@ function WelcomeContent() {
             <Link
               key={word}
               href={`/word/${encodeURIComponent(word)}`}
-              className="text-lg text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium transition-colors"
+              className="text-lg text-[var(--color-primary)] hover:text-[var(--color-accent)] font-medium transition-colors"
               title={`View definition of "${word}"`}
               aria-label={`View definition of "${word}"`}
             >
@@ -282,7 +282,7 @@ function WelcomeContent() {
         <div className="mt-6 text-center">
           <Link
             href="/browse"
-            className="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition-colors"
+            className="inline-flex items-center px-4 py-2 bg-[var(--color-accent)] hover:brightness-95 text-[#1B1B1B] rounded-md transition-colors"
             title="Browse all dictionary entries"
             aria-label="Browse all dictionary entries"
           >
