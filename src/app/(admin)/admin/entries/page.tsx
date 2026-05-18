@@ -4,7 +4,6 @@ import { useState, useEffect, Suspense, useCallback } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import SvgIcon from "@/component/icons/svg-icon";
-import InlineIcon from "@/components/InlineIcon";
 import { useAdminEntries } from "@/hooks/useAdminEntries";
 import { AdminDictionaryEntry } from "@/services/adminDataService";
 import EntryEditModal from "@/components/admin/EntryEditModal";
@@ -215,7 +214,7 @@ function ManageEntriesContent() {
             onClick={() => setShowAiModal(true)}
             className="inline-flex items-center space-x-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-md transition-colors"
           >
-            <InlineIcon className="h-4 w-4" name="ai" />
+            <span>🤖</span>
             <span>AI Add Entry</span>
           </button>
         </div>

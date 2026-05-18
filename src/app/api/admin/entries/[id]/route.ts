@@ -23,7 +23,7 @@ export async function GET(
       message: result.message
     });
   } catch (error) {
-    console.error(' Error in GET /api/admin/entries/[id]:', error);
+    console.error('❌ Error in GET /api/admin/entries/[id]:', error);
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
@@ -55,7 +55,7 @@ export async function PUT(
       message: result.message
     });
   } catch (error) {
-    console.error(' Error in PUT /api/admin/entries/[id]:', error);
+    console.error('❌ Error in PUT /api/admin/entries/[id]:', error);
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }
@@ -85,7 +85,7 @@ export async function DELETE(
       message: result.message
     });
   } catch (error) {
-    console.error(' Error in DELETE /api/admin/entries/[id]:', error);
+    console.error('❌ Error in DELETE /api/admin/entries/[id]:', error);
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

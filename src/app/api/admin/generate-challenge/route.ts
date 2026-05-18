@@ -73,7 +73,7 @@ export async function POST(request: NextRequest) {
         );
     }
   } catch (error) {
-    console.error(' Error in challenge generation:', error);
+    console.error('❌ Error in challenge generation:', error);
     
     if (error instanceof z.ZodError) {
       return NextResponse.json(

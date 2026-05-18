@@ -104,14 +104,14 @@ ${JSON.stringify(entries, null, 2)}`
 
     // Validate we got the expected number of entries
     if (transformedEntries.length !== entries.length) {
-      console.warn(`  Expected ${entries.length} entries, got ${transformedEntries.length}`);
+      console.warn(`⚠️  Expected ${entries.length} entries, got ${transformedEntries.length}`);
     }
 
-    console.log(` Successfully transformed ${transformedEntries.length} entries`);
+    console.log(`✅ Successfully transformed ${transformedEntries.length} entries`);
     return transformedEntries;
 
   } catch (error) {
-    console.error(` OpenAI transformation failed (attempt ${retryCount + 1}):`, error.message);
+    console.error(`❌ OpenAI transformation failed (attempt ${retryCount + 1}):`, error.message);
     
     if (retryCount < MAX_RETRIES) {
       console.log(`Retrying in 5 seconds...`);
@@ -127,7 +127,7 @@ async function migrateDatabase() {
   const client = new MongoClient(uri);
   
   try {
-    console.log(" Connecting to MongoDB...");
+    console.log("🔌 Connecting to MongoDB...");
     await client.connect();
     
     const db = client.db(dbName);
@@ -137,17 +137,17 @@ async function migrateDatabase() {
     // Check if target collection exists and ask for confirmation
     const collections = await db.listCollections({ name: newCollectionName }).toArray();
     if (collections.length > 0) {
-      console.log(`  Collection '${newCollectionName}' already exists.`);
+      console.log(`⚠️  Collection '${newCollectionName}' already exists.`);
       console.log("This script will drop it and create a new one.");
       
       // Drop existing collection
       await targetCollection.drop();
-      console.log("  Dropped existing collection");
+      console.log("🗑️  Dropped existing collection");
     }
     
     // Get total count
     const totalCount = await sourceCollection.countDocuments();
-    console.log(` Found ${totalCount} entries to migrate`);
+    console.log(`📊 Found ${totalCount} entries to migrate`);
     
     if (totalCount === 0) {
       console.log("No entries to migrate. Exiting.");
@@ -178,10 +178,10 @@ async function migrateDatabase() {
           }
           
           processedCount += batch.length;
-          console.log(` Progress: ${processedCount}/${totalCount} (${Math.round(processedCount/totalCount*100)}%)`);
+          console.log(`📈 Progress: ${processedCount}/${totalCount} (${Math.round(processedCount/totalCount*100)}%)`);
           
         } catch (error) {
-          console.error(` Failed to process batch:`, error.message);
+          console.error(`❌ Failed to process batch:`, error.message);
           errors.push({
             batch: batch.map(e => e.word || e._id),
             error: error.message
@@ -209,7 +209,7 @@ async function migrateDatabase() {
         processedCount += batch.length;
         
       } catch (error) {
-        console.error(` Failed to process final batch:`, error.message);
+        console.error(`❌ Failed to process final batch:`, error.message);
         errors.push({
           batch: batch.map(e => e.word || e._id),
           error: error.message
@@ -219,13 +219,13 @@ async function migrateDatabase() {
     }
     
     // Final report
-    console.log("\n Migration completed!");
-    console.log(` Successfully migrated: ${successCount} entries`);
-    console.log(` Failed: ${errorCount} entries`);
-    console.log(` Total processed: ${processedCount} entries`);
+    console.log("\n🎉 Migration completed!");
+    console.log(`✅ Successfully migrated: ${successCount} entries`);
+    console.log(`❌ Failed: ${errorCount} entries`);
+    console.log(`📊 Total processed: ${processedCount} entries`);
     
     if (errors.length > 0) {
-      console.log("\n Errors encountered:");
+      console.log("\n❌ Errors encountered:");
       errors.forEach((error, index) => {
         console.log(`${index + 1}. Batch [${error.batch.join(', ')}]: ${error.error}`);
       });
@@ -233,35 +233,35 @@ async function migrateDatabase() {
       // Save errors to file
       const errorLogPath = path.join(__dirname, 'migration-errors.json');
       fs.writeFileSync(errorLogPath, JSON.stringify(errors, null, 2));
-      console.log(` Error details saved to: ${errorLogPath}`);
+      console.log(`📄 Error details saved to: ${errorLogPath}`);
     }
     
     // Verify final count
     const finalCount = await targetCollection.countDocuments();
-    console.log(` Final count in new collection: ${finalCount}`);
+    console.log(`🔍 Final count in new collection: ${finalCount}`);
     
   } catch (error) {
-    console.error(" Migration failed:", error);
+    console.error("💥 Migration failed:", error);
     process.exit(1);
   } finally {
     await client.close();
-    console.log(" MongoDB connection closed");
+    console.log("🔌 MongoDB connection closed");
   }
 }
 
 // Command line interface
 async function main() {
-  console.log(" Starting Shona Dictionary Schema Migration");
+  console.log("🚀 Starting Shona Dictionary Schema Migration");
   console.log("=".repeat(50));
   
   // Check required environment variables
   if (!uri) {
-    console.error(" MONGODB_URI not found in environment variables");
+    console.error("❌ MONGODB_URI not found in environment variables");
     process.exit(1);
   }
   
   if (!process.env.OPENAI_API_KEY) {
-    console.error(" OPENAI_API_KEY not found in environment variables");
+    console.error("❌ OPENAI_API_KEY not found in environment variables");
     process.exit(1);
   }
   
@@ -269,7 +269,7 @@ async function main() {
   const isDryRun = process.argv.includes('--dry-run');
   
   if (isDryRun) {
-    console.log(" DRY RUN MODE - Testing with first 5 entries only");
+    console.log("🧪 DRY RUN MODE - Testing with first 5 entries only");
     
     const client = new MongoClient(uri);
     try {
@@ -278,14 +278,14 @@ async function main() {
       const collection = db.collection(collectionName);
       
       const testEntries = await collection.find({}).limit(5).toArray();
-      console.log(" Test entries:", testEntries.map(e => e.word || e._id));
+      console.log("📋 Test entries:", testEntries.map(e => e.word || e._id));
       
       const transformed = await transformWithOpenAI(testEntries);
-      console.log(" Transformation successful!");
-      console.log(" Sample result:", JSON.stringify(transformed, null, 2));
+      console.log("✅ Transformation successful!");
+      console.log("📄 Sample result:", JSON.stringify(transformed, null, 2));
       
     } catch (error) {
-      console.error(" Dry run failed:", error);
+      console.error("❌ Dry run failed:", error);
     } finally {
       await client.close();
     }
@@ -294,7 +294,7 @@ async function main() {
   }
   
   // Confirmation prompt
-  console.log("  This will create a new collection with migrated data.");
+  console.log("⚠️  This will create a new collection with migrated data.");
   console.log(`Source: ${collectionName}`);
   console.log(`Target: ${newCollectionName}`);
   console.log("\nPress Ctrl+C to cancel, or Enter to continue...");
@@ -310,7 +310,7 @@ async function main() {
 
 // Handle graceful shutdown
 process.on('SIGINT', () => {
-  console.log('\n Migration cancelled by user');
+  console.log('\n👋 Migration cancelled by user');
   process.exit(0);
 });
 

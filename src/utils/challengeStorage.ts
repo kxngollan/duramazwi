@@ -155,7 +155,7 @@ const updateChallengeHistory = (stats: ChallengeCompletionStats): void => {
     localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
     
     if (process.env.NODE_ENV === 'development') {
-      console.log(` Streak updated: ${currentStreak} current, ${history.longestStreak} longest`);
+      console.log(`🔥 Streak updated: ${currentStreak} current, ${history.longestStreak} longest`);
     }
   } catch (error) {
     console.error('Failed to update challenge history:', error);
@@ -220,7 +220,7 @@ export const clearAllHistory = (): void => {
   try {
     localStorage.removeItem(HISTORY_KEY);
     if (process.env.NODE_ENV === 'development') {
-      console.log(' Cleared all challenge history');
+      console.log('🗑️ Cleared all challenge history');
     }
   } catch (error) {
     console.error('Failed to clear history:', error);
@@ -267,7 +267,7 @@ const migrateOldStorage = (): void => {
         saveChallengeCompletion(newStats);
         
         if (process.env.NODE_ENV === 'development') {
-          console.log(' Migrated old challenge completion');
+          console.log('✅ Migrated old challenge completion');
         }
       }
       
@@ -333,7 +333,7 @@ const migrateOldStorage = (): void => {
           localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
           
           if (process.env.NODE_ENV === 'development') {
-            console.log(' Migrated challenge history to new format');
+            console.log('✅ Migrated challenge history to new format');
           }
         }
       }

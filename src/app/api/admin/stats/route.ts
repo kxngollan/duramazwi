@@ -19,7 +19,7 @@ export async function GET(request: NextRequest) {
       message: result.message
     });
   } catch (error) {
-    console.error(' Error in GET /api/admin/stats:', error);
+    console.error('❌ Error in GET /api/admin/stats:', error);
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

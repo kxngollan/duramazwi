@@ -121,8 +121,8 @@ export default function EnhancedAiAddEntryModal({ isOpen, onClose, onSubmit }: E
         onClose={handleFormClose}
         onSubmit={handleFormSubmit}
         entry={mockEntry}
-        title="Review & Edit AI-Generated Entry"
-        submitButtonText="Add Entry"
+        title="✏️ Review & Edit AI-Generated Entry"
+        submitButtonText="✅ Add Entry"
       />
     );
   }
@@ -149,8 +149,8 @@ export default function EnhancedAiAddEntryModal({ isOpen, onClose, onSubmit }: E
         {/* Header */}
         <div className="flex justify-between items-center p-6 border-b border-gray-200 dark:border-gray-700">
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white">
-            {currentStep === 'input' && 'AI-Powered Add Entry'}
-            {currentStep === 'success' && 'Entry Added Successfully'}
+            {currentStep === 'input' && '🤖 AI-Powered Add Entry'}
+            {currentStep === 'success' && '✅ Entry Added Successfully'}
           </h2>
           <button
             onClick={handleClose}
@@ -205,7 +205,7 @@ export default function EnhancedAiAddEntryModal({ isOpen, onClose, onSubmit }: E
                   {isProcessing && (
                     <div className="animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full"></div>
                   )}
-                  <span>{isProcessing ? 'Processing...' : 'Generate Entry'}</span>
+                  <span>{isProcessing ? 'Processing...' : '🤖 Generate Entry'}</span>
                 </button>
               </div>
             </form>
@@ -215,7 +215,7 @@ export default function EnhancedAiAddEntryModal({ isOpen, onClose, onSubmit }: E
           {currentStep === 'success' && (
             <div className="text-center space-y-4">
               <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-6">
-                <div className="text-6xl mb-4"></div>
+                <div className="text-6xl mb-4">🎉</div>
                 <h3 className="text-lg font-semibold text-green-800 dark:text-green-200 mb-2">
                   Entry Added Successfully!
                 </h3>

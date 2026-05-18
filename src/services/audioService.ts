@@ -16,7 +16,7 @@ export interface AudioService {
 export function createAudioService(): AudioService {
   const mode = process.env.AUDIO_MODE || 'local';
   
-  console.log(` Audio mode: ${mode}`);
+  console.log(`🎵 Audio mode: ${mode}`);
   
   switch (mode) {
     case 'production':
@@ -61,7 +61,7 @@ class LocalAudioService implements AudioService {
     const buffer = Buffer.from(bytes);
     await writeFile(filePath, buffer);
     
-    console.log(` Saved original: ${filename}`);
+    console.log(`💾 Saved original: ${filename}`);
     
     // Try to convert to MP3 for better compatibility
     let mp3Url: string | undefined;
@@ -73,9 +73,9 @@ class LocalAudioService implements AudioService {
       mp3Url = result.mp3Url;
       duration = result.duration;
       mp3Filename = path.basename(result.mp3Path);
-      console.log(` MP3 conversion successful: ${mp3Filename}`);
+      console.log(`✅ MP3 conversion successful: ${mp3Filename}`);
     } catch (error) {
-      console.warn(` MP3 conversion failed, using original file:`, error);
+      console.warn(`⚠️ MP3 conversion failed, using original file:`, error);
       // Continue without MP3 - original file will be used
     }
     
@@ -116,7 +116,7 @@ class LocalAudioService implements AudioService {
       
       // Remove from index
       await this.removeFromIndex(audioId);
-      console.log(` Deleted locally: ${record.filename}`);
+      console.log(`🗑️ Deleted locally: ${record.filename}`);
     }
   }
   
@@ -296,7 +296,7 @@ class ProductionAudioService implements AudioService {
       addRandomSuffix: false,
     });
     
-    console.log(` Uploaded original to Vercel Blob: ${blobPath}`);
+    console.log(`📤 Uploaded original to Vercel Blob: ${blobPath}`);
     
     // Convert to MP3 for better browser compatibility
     let mp3Url: string | undefined;
@@ -331,13 +331,13 @@ class ProductionAudioService implements AudioService {
       mp3Url = mp3Blob.url;
       duration = result.duration;
       
-      console.log(` MP3 uploaded to Vercel Blob: ${mp3BlobPath}`);
+      console.log(`✅ MP3 uploaded to Vercel Blob: ${mp3BlobPath}`);
       
       // Clean up temp files
       await unlink(tempPath);
       await unlink(result.mp3Path);
     } catch (error) {
-      console.error(` MP3 conversion failed:`, error);
+      console.error(`❌ MP3 conversion failed:`, error);
       // Continue without MP3 - original WebM will be used
     }
     
@@ -376,7 +376,7 @@ class ProductionAudioService implements AudioService {
     if (record?.blobUrl) {
       // Delete from Vercel Blob
       await del(record.blobUrl);
-      console.log(` Deleted from Vercel Blob: ${record.blobUrl}`);
+      console.log(`🗑️ Deleted from Vercel Blob: ${record.blobUrl}`);
     }
     
     // Remove from MongoDB
@@ -408,7 +408,7 @@ class ProductionAudioService implements AudioService {
       const { existsSync } = await import('fs');
       const path = await import('path');
       
-      console.log(' Updating static audio index...');
+      console.log('🔄 Updating static audio index...');
       
       // Get all records from database
       const db = await this.getDatabase();
@@ -457,10 +457,10 @@ class ProductionAudioService implements AudioService {
       const indexPath = path.join(dataDir, 'audio-index.json');
       await writeFile(indexPath, JSON.stringify(index, null, 2));
       
-      console.log(` Updated static index with ${allRecords.length} records`);
+      console.log(`✅ Updated static index with ${allRecords.length} records`);
       
     } catch (error) {
-      console.error(' Failed to update static index:', error);
+      console.error('❌ Failed to update static index:', error);
       // Don't throw - we don't want to break the upload if index update fails
     }
   }

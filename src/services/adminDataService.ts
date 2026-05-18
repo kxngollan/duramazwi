@@ -57,9 +57,9 @@ class AdminDataService {
       }));
       
       this.isLoaded = true;
-      console.log(` Loaded ${this.data.length} entries for admin operations`);
+      console.log(`📚 Loaded ${this.data.length} entries for admin operations`);
     } catch (error) {
-      console.error(' Error loading data:', error);
+      console.error('❌ Error loading data:', error);
       throw new Error('Failed to load dictionary data');
     }
   }
@@ -83,9 +83,9 @@ class AdminDataService {
       }));
       
       await writeFile(this.dataPath, JSON.stringify(dataToSave, null, 2), 'utf-8');
-      console.log(` Saved ${this.data.length} entries to data.json with metadata`);
+      console.log(`💾 Saved ${this.data.length} entries to data.json with metadata`);
     } catch (error) {
-      console.error(' Error saving data:', error);
+      console.error('❌ Error saving data:', error);
       throw new Error('Failed to save dictionary data');
     }
   }
@@ -115,10 +115,10 @@ class AdminDataService {
         { upsert: true }
       );
       
-      console.log(`  Synced entry "${entry.word}" to MongoDB`);
+      console.log(`🗄️  Synced entry "${entry.word}" to MongoDB`);
     } catch (error) {
       // Log error but don't throw - we don't want to fail the save if DB sync fails
-      console.error(`  Warning: Failed to sync entry "${entry.word}" to MongoDB:`, error);
+      console.error(`⚠️  Warning: Failed to sync entry "${entry.word}" to MongoDB:`, error);
     }
   }
 
@@ -133,10 +133,10 @@ class AdminDataService {
       // Delete the entry from MongoDB
       await collection.deleteOne({ word });
       
-      console.log(`  Deleted entry "${word}" from MongoDB`);
+      console.log(`🗑️  Deleted entry "${word}" from MongoDB`);
     } catch (error) {
       // Log error but don't throw - we don't want to fail the delete if DB sync fails
-      console.error(`  Warning: Failed to delete entry "${word}" from MongoDB:`, error);
+      console.error(`⚠️  Warning: Failed to delete entry "${word}" from MongoDB:`, error);
     }
   }
 
@@ -217,7 +217,7 @@ class AdminDataService {
     try {
       await this.loadData();
       
-      console.log(' Looking for entry with ID/word:', id);
+      console.log('🔍 Looking for entry with ID/word:', id);
       
       // First try to find by _id (for backward compatibility)
       let entry = this.data.find(item => item._id === id);
@@ -226,11 +226,11 @@ class AdminDataService {
       if (!entry) {
         const decodedWord = decodeURIComponent(id);
         entry = this.data.find(item => item.word.toLowerCase() === decodedWord.toLowerCase());
-        console.log(' Searching by word:', decodedWord);
+        console.log('🔍 Searching by word:', decodedWord);
       }
       
       if (!entry) {
-        console.log(' Entry not found. Available words:', this.data.map(item => item.word).slice(0, 10));
+        console.log('❌ Entry not found. Available words:', this.data.map(item => item.word).slice(0, 10));
         return {
           success: false,
           message: 'Entry not found',

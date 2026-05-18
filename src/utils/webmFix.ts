@@ -14,7 +14,7 @@ import { fixWebmDuration } from '@fix-webm-duration/fix';
  */
 export async function fixWebmBlob(blob: Blob, recordingDuration: number): Promise<Blob> {
   try {
-    console.log(` Fixing WebM duration: ${recordingDuration}s`);
+    console.log(`🔧 Fixing WebM duration: ${recordingDuration}s`);
     
     // Convert duration to milliseconds
     const durationMs = recordingDuration * 1000;
@@ -22,11 +22,11 @@ export async function fixWebmBlob(blob: Blob, recordingDuration: number): Promis
     // Fix the WebM duration
     const fixedBlob = await fixWebmDuration(blob, durationMs);
     
-    console.log(` WebM duration fixed: ${recordingDuration}s`);
+    console.log(`✅ WebM duration fixed: ${recordingDuration}s`);
     return fixedBlob;
     
   } catch (error) {
-    console.warn(' Failed to fix WebM duration, using original blob:', error);
+    console.warn('⚠️ Failed to fix WebM duration, using original blob:', error);
     return blob; // Return original blob if fix fails
   }
 }

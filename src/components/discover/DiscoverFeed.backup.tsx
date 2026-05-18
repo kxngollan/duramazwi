@@ -63,7 +63,7 @@ export default function DiscoverFeed() {
         });
         
         if (entries[0].isIntersecting && currentIndex < allWords.length) {
-          console.log('Loading more words! Adding 10 more from index:', currentIndex);
+          console.log('🔄 Loading more words! Adding 10 more from index:', currentIndex);
           // Load next batch of 10 words
           setWords(prev => [...prev, ...allWords.slice(currentIndex, currentIndex + 10)]);
           setCurrentIndex(prev => prev + 10);

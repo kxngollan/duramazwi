@@ -41,7 +41,7 @@ export class AudioDatabase {
     await this.collection.createIndex({ entryId: 1, level: 1 });
     await this.collection.createIndex({ entryId: 1, levelId: 1 });
     
-    console.log(' Connected to audio database with indexes');
+    console.log('📊 Connected to audio database with indexes');
   }
 
   async addRecord(audioRecord: AudioRecord): Promise<void> {
@@ -63,7 +63,7 @@ export class AudioDatabase {
       { upsert: true }
     );
 
-    console.log(` Saved audio record to database: ${audioRecord.id}`);
+    console.log(`💾 Saved audio record to database: ${audioRecord.id}`);
   }
 
   async removeRecord(audioId: string): Promise<void> {
@@ -72,7 +72,7 @@ export class AudioDatabase {
     const result = await this.collection!.deleteOne({ _id: audioId });
     
     if (result.deletedCount > 0) {
-      console.log(`  Removed audio record from database: ${audioId}`);
+      console.log(`🗑️  Removed audio record from database: ${audioId}`);
     }
   }
 
@@ -165,7 +165,7 @@ export class AudioDatabase {
   async exportToFile(filePath: string): Promise<void> {
     await this.connect();
 
-    console.log(' Exporting audio index to file...');
+    console.log('📤 Exporting audio index to file...');
     
     const allRecords = await this.getAllRecords();
     
@@ -210,7 +210,7 @@ export class AudioDatabase {
     
     fs.writeFileSync(filePath, JSON.stringify(index, null, 2));
     
-    console.log(` Exported ${allRecords.length} audio records to ${filePath}`);
+    console.log(`✅ Exported ${allRecords.length} audio records to ${filePath}`);
   }
 
   async close(): Promise<void> {

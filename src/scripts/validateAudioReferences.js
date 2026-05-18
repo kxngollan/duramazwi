@@ -10,17 +10,17 @@
 require('dotenv').config();
 
 async function validateAudioReferences() {
-  console.log(' Validating audio references...');
+  console.log('🔍 Validating audio references...');
   
   const mode = process.env.AUDIO_MODE || 'local';
-  console.log(` Current AUDIO_MODE: ${mode}`);
+  console.log(`📋 Current AUDIO_MODE: ${mode}`);
   
   const issues = [];
   
   try {
     // Check challenges in database (if production mode)
     if (mode === 'production') {
-      console.log(' Checking challenges in database...');
+      console.log('🔍 Checking challenges in database...');
       
       const { getDatabase } = await import('../lib/mongodb.ts');
       const db = await getDatabase();
@@ -60,7 +60,7 @@ async function validateAudioReferences() {
     }
     
     // Check static audio index
-    console.log(' Checking static audio index...');
+    console.log('🔍 Checking static audio index...');
     const { readFile, existsSync } = require('fs').promises;
     const path = require('path');
     
@@ -93,11 +93,11 @@ async function validateAudioReferences() {
     
     // Report results
     if (issues.length === 0) {
-      console.log(' All audio references are valid for current mode!');
+      console.log('✅ All audio references are valid for current mode!');
       return true;
     }
     
-    console.log(` Found ${issues.length} audio reference issues:`);
+    console.log(`❌ Found ${issues.length} audio reference issues:`);
     console.log('');
     
     issues.forEach((issue, index) => {
@@ -108,7 +108,7 @@ async function validateAudioReferences() {
       console.log('');
     });
     
-    console.log(' Recommendations:');
+    console.log('💡 Recommendations:');
     if (mode === 'production') {
       console.log('   - Upload local audio files to production storage');
       console.log('   - Update challenge records to use blob URLs');
@@ -121,7 +121,7 @@ async function validateAudioReferences() {
     return false;
     
   } catch (error) {
-    console.error(' Validation failed:', error);
+    console.error('❌ Validation failed:', error);
     return false;
   }
 }
@@ -131,15 +131,15 @@ if (require.main === module) {
   validateAudioReferences()
     .then(isValid => {
       if (isValid) {
-        console.log('\n Audio validation passed!');
+        console.log('\n🎉 Audio validation passed!');
         process.exit(0);
       } else {
-        console.log('\n Audio validation failed!');
+        console.log('\n💥 Audio validation failed!');
         process.exit(1);
       }
     })
     .catch(error => {
-      console.error(' Validation error:', error);
+      console.error('💥 Validation error:', error);
       process.exit(1);
     });
 }

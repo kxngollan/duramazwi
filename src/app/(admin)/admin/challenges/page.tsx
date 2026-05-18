@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import InlineIcon from '@/components/InlineIcon';
 import { Challenge } from '@/types/challenge';
 
 export default function ChallengesAdminPage() {
@@ -273,13 +272,12 @@ export default function ChallengesAdminPage() {
                         </div>
                       ) : challengeUsage.has(challenge.id) && challengeUsage.get(challenge.id)?.length === 0 ? (
                         <div className="text-xs text-green-600 dark:text-green-400">
-                          Not used in any daily challenges yet
+                          ✓ Not used in any daily challenges yet
                         </div>
                       ) : challengeUsage.has(challenge.id) && challengeUsage.get(challenge.id)!.length > 0 ? (
                         <div className="text-xs">
                           <div className="text-orange-600 dark:text-orange-400 font-medium mb-1">
-                            <InlineIcon className="mr-1 inline-block h-3.5 w-3.5 align-[-2px]" name="alert" />
-                            Used in {challengeUsage.get(challenge.id)?.length} daily challenge{challengeUsage.get(challenge.id)!.length > 1 ? 's' : ''}:
+                            ⚠️ Used in {challengeUsage.get(challenge.id)?.length} daily challenge{challengeUsage.get(challenge.id)!.length > 1 ? 's' : ''}:
                           </div>
                           <div className="flex flex-wrap gap-1">
                             {challengeUsage.get(challenge.id)?.map((date) => (

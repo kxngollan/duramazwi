@@ -57,7 +57,7 @@ export function useAdminEntries(options: UseAdminEntriesOptions = {}): UseAdminE
         ...(category && { category })
       });
 
-      // Add a fake delay to make loading states more visible
+      // Add a fake delay to make loading states more visible 😄
       await new Promise(resolve => setTimeout(resolve, 500));
 
       const response = await fetch(`/api/admin/entries?${params}`);
@@ -74,7 +74,7 @@ export function useAdminEntries(options: UseAdminEntriesOptions = {}): UseAdminE
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Unknown error';
       setError(errorMessage);
-      console.error(' Error fetching entries:', err);
+      console.error('❌ Error fetching entries:', err);
     } finally {
       setLoading(false);
     }
@@ -92,7 +92,7 @@ export function useAdminEntries(options: UseAdminEntriesOptions = {}): UseAdminE
 
       setStats(result.data);
     } catch (err) {
-      console.error(' Error fetching stats:', err);
+      console.error('❌ Error fetching stats:', err);
     }
   };
 
@@ -219,13 +219,13 @@ export function useAdminEntries(options: UseAdminEntriesOptions = {}): UseAdminE
       const result = await response.json();
 
       if (!response.ok) {
-        console.error(' Error fetching entry:', result.error);
+        console.error('❌ Error fetching entry:', result.error);
         return null;
       }
 
       return result.data;
     } catch (err) {
-      console.error(' Error fetching entry:', err);
+      console.error('❌ Error fetching entry:', err);
       return null;
     }
   };
