@@ -190,7 +190,7 @@ export default async function HomePage({
               <div className="flex flex-row flex-wrap justify-center items-center gap-1 sm:gap-2 text-base">
                 <Link
                   href="/browse"
-                  className="text-[var(--color-primary)] hover:text-[var(--color-accent)] transition-colors duration-200 px-2 py-1"
+                  className="text-[var(--color-primary)] hover:text-[var(--color-accent)] hover:bg-[var(--color-primary)] transition-colors duration-200 px-2 py-1 rounded-md"
                   title="Browse all dictionary entries"
                   aria-label="Browse all dictionary entries"
                 >
@@ -199,7 +199,7 @@ export default async function HomePage({
                 <span className="text-[var(--color-border)] text-sm">•</span>
                 <Link
                   href="/random"
-                  className="text-[var(--color-primary)] hover:text-[var(--color-accent)] transition-colors duration-200 px-2 py-1"
+                  className="text-[var(--color-primary)] hover:text-[var(--color-accent)] hover:bg-[var(--color-primary)] transition-colors duration-200 px-2 py-1 rounded-md"
                   title="Get a random Shona word"
                   aria-label="Get a random Shona word"
                 >
@@ -208,7 +208,7 @@ export default async function HomePage({
                 <span className="text-[var(--color-border)] text-sm">•</span>
                 <Link
                   href="/suggest"
-                  className="text-[var(--color-primary)] hover:text-[var(--color-accent)] transition-colors duration-200 px-2 py-1"
+                  className="text-[var(--color-primary)] hover:text-[var(--color-accent)] hover:bg-[var(--color-primary)] transition-colors duration-200 px-2 py-1 rounded-md"
                   title="Suggest a new word for the dictionary"
                   aria-label="Suggest a new word for the dictionary"
                 >
@@ -217,7 +217,7 @@ export default async function HomePage({
                 <span className="text-[var(--color-border)] text-sm">•</span>
                 <Link
                   href="/challenge/daily"
-                  className="text-[var(--color-primary)] hover:text-[var(--color-accent)] transition-colors duration-200 px-2 py-1"
+                  className="text-[var(--color-primary)] hover:text-[var(--color-accent)] hover:bg-[var(--color-primary)] transition-colors duration-200 px-2 py-1 rounded-md"
                   title="Take the daily challenge"
                   aria-label="Take the daily challenge"
                 >
@@ -379,7 +379,7 @@ function WelcomeContent() {
             <Link
               key={word}
               href={`/word/${encodeURIComponent(word)}`}
-              className="text-lg text-[var(--color-primary)] hover:text-[var(--color-accent)] font-medium transition-colors"
+              className="text-lg text-[var(--color-primary)] hover:underline hover:text-[var(--color-accent)] font-medium transition-colors"
               title={`View definition of "${word}"`}
               aria-label={`View definition of "${word}"`}
             >
@@ -390,7 +390,7 @@ function WelcomeContent() {
         <div className="mt-6 text-center">
           <Link
             href="/browse"
-            className="inline-flex items-center px-4 py-2 theme-button-accent hover:brightness-95 rounded-md transition-colors"
+            className="inline-flex items-center px-4 py-2 theme-button-accent hover:brightness-95 rounded-md transition-colors hover:text-[var(--color-accent)] hover:bg-[var(--color-primary)]"
             title="Browse all dictionary entries"
             aria-label="Browse all dictionary entries"
           >

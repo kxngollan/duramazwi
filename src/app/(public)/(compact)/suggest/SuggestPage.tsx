@@ -3,28 +3,35 @@
 import { useState } from "react";
 
 export default function SuggestPage() {
-  const [message, setMessage] = useState<{ text: string; type: "success" | "error" | "" }>({ text: "", type: "" });
+  const [message, setMessage] = useState<{
+    text: string;
+    type: "success" | "error" | "";
+  }>({ text: "", type: "" });
 
   return (
     <>
-    <h1 className="text-3xl font-bold text-[var(--color-text)] mb-2">Make a suggestion</h1>
+      <h1 className="text-3xl font-bold text-[var(--color-text)] mb-2">
+        Make a suggestion
+      </h1>
       <p className="text-base text-[var(--color-muted)] mb-4">
         We rely on community contributions to ensure our dictionary is accurate
         and comprehensive. Share your suggestions for new words, corrections, or
         additional details below.
       </p>
 
-       {message.text && (
+      {message.text && (
         <div
           className={`mb-4 rounded p-3 ${
-            message.type === "success" ? "theme-feedback-correct text-[var(--color-primary)]" : "theme-feedback-incorrect text-[var(--color-danger)]"
+            message.type === "success"
+              ? "theme-feedback-correct text-[var(--color-primary)]"
+              : "theme-feedback-incorrect text-[var(--color-danger)]"
           }`}
         >
           {message.text}
         </div>
       )}
       <SuggestionForm
-        onSubmit={async (suggestion: string, resetForm:any) => {
+        onSubmit={async (suggestion: string, resetForm: any) => {
           setMessage({ text: "Submitting your suggestion...", type: "" });
           try {
             const response = await fetch("/api/suggestions", {
@@ -34,7 +41,10 @@ export default function SuggestPage() {
             });
 
             if (response.ok) {
-              setMessage({ text: "Thank you! Your suggestion was submitted successfully. Our team will review it, and we’ll inform you of the outcome via email.", type: "success" });
+              setMessage({
+                text: "Thank you! Your suggestion was submitted successfully. Our team will review it, and we’ll inform you of the outcome via email.",
+                type: "success",
+              });
               resetForm(); // Clear the form after success
             } else {
               const errorData = await response.json();
@@ -82,8 +92,9 @@ function SuggestionForm({ onSubmit }: any) {
 
   // Basic validation - require at least word and definition
   const isFormValid = word.trim() && definition.trim();
-  
-  const suggestedWordClassList = "theme-input w-full p-2 rounded peer bg-surface outline-none placeholder:text-sm theme-text-sub1"
+
+  const suggestedWordClassList =
+    "theme-input w-full p-2 rounded peer bg-surface outline-none placeholder:text-sm theme-text-sub1";
   return (
     <form onSubmit={handleSubmit} className="mb-4 rounded ">
       <div className="mb-4">
@@ -112,7 +123,9 @@ function SuggestionForm({ onSubmit }: any) {
         />
       </div>
       <div className="mb-4">
-        <label className="block font-medium mb-2 text-[var(--color-text)]">Example/s</label>
+        <label className="block font-medium mb-2 text-[var(--color-text)]">
+          Example/s
+        </label>
         <textarea
           value={example}
           placeholder="Provide an example sentence using the word, if applicable."
@@ -121,7 +134,9 @@ function SuggestionForm({ onSubmit }: any) {
         />
       </div>
       <div className="mb-4">
-        <label className="block font-medium mb-2 text-[var(--color-text)]">Your Email</label>
+        <label className="block font-medium mb-2 text-[var(--color-text)]">
+          Your Email
+        </label>
         <input
           type="email"
           value={email}
@@ -133,10 +148,14 @@ function SuggestionForm({ onSubmit }: any) {
       <button
         type="submit"
         disabled={!isFormValid}
-        title={isFormValid ? "Submit your word suggestion" : "Please fill in all required fields"}
+        title={
+          isFormValid
+            ? "Submit your word suggestion"
+            : "Please fill in all required fields"
+        }
         className={`px-6 py-2 rounded font-medium transition-colors ${
           isFormValid
-            ? "theme-button-accent hover:brightness-95"
+            ? "theme-button-accent hover:brightness-95  hover:text-[var(--color-accent)] hover:bg-[var(--color-primary)]"
             : "bg-[var(--color-border)] text-[var(--color-muted)] cursor-not-allowed"
         }`}
       >
