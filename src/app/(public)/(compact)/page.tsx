@@ -261,7 +261,10 @@ function WelcomeContent() {
   return (
     <div className="max-w-4xl mx-auto">
       {/* Daily Challenge Card - Prominent and Inviting */}
-      <Link href="/challenge/daily" className="block mb-8 group">
+      <Link
+        href="/challenge/daily"
+        className="block mb-8 group hover:underline hover:text-[--color-accent] text-white"
+      >
         <div className="relative overflow-hidden bg-[var(--color-primary)] rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02]">
           {/* Animated background pattern */}
           <div className="absolute inset-0 opacity-10">
@@ -278,15 +281,13 @@ function WelcomeContent() {
                   <SvgIcon className="h-8 w-8" icon="Trophy" />
                 </span>
                 <div>
-                  <h2 className="text-3xl font-bold text-[var(--color-hero-text)] mb-1">
+                  <h2 className="text-3xl font-bold  mb-1">
                     Daily Shona Challenge
                   </h2>
-                  <p className="text-white text-lg">
-                    Test your Shona knowledge today!
-                  </p>
+                  <p className=" text-lg">Test your Shona knowledge today!</p>
                 </div>
               </div>
-              <p className="text-white text-lg mb-4 max-w-xl">
+              <p className="text-lg mb-4 max-w-xl">
                 Take on fun challenges to improve your vocabulary. New
                 challenges every day!
               </p>
