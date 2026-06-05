@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useCallback } from "react";
+import { useState, useCallback, ReactNode } from "react";
 import { Challenge, ChallengeSession, ChallengeResult } from "@/types/challenge";
 import { familyChallenges } from "@/components/challenge/family-challenges";
 import { shuffleArray } from "@/utils/shuffle";
@@ -12,36 +12,60 @@ import ChallengeComplete from "@/components/challenge/ChallengeComplete";
 
 type Mode = "easy" | "medium" | "hard" | "mixed";
 
+const IconStar = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-7 h-7">
+    <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clipRule="evenodd" />
+  </svg>
+);
+
+const IconFire = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-7 h-7">
+    <path fillRule="evenodd" d="M12.963 2.286a.75.75 0 0 0-1.071-.136 9.742 9.742 0 0 0-3.539 6.176 7.547 7.547 0 0 1-1.705-1.715.75.75 0 0 0-1.152-.082A9 9 0 1 0 15.68 4.534a7.46 7.46 0 0 1-2.717-2.248ZM15.75 14.25a3.75 3.75 0 1 1-7.313-1.172c.628.465 1.35.81 2.133 1a5.99 5.99 0 0 1 1.925-3.546 3.75 3.75 0 0 1 3.255 3.718Z" clipRule="evenodd" />
+  </svg>
+);
+
+const IconBolt = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-7 h-7">
+    <path fillRule="evenodd" d="M14.615 1.595a.75.75 0 0 1 .359.852L12.982 9.75h7.268a.75.75 0 0 1 .548 1.262l-10.5 11.25a.75.75 0 0 1-1.272-.71l1.992-7.302H3.75a.75.75 0 0 1-.548-1.262l10.5-11.25a.75.75 0 0 1 .913-.143Z" clipRule="evenodd" />
+  </svg>
+);
+
+const IconSquares = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-7 h-7">
+    <path d="M11.25 4.533A9.707 9.707 0 0 0 6 3a9.735 9.735 0 0 0-3.25.555.75.75 0 0 0-.5.707v14.25a.75.75 0 0 0 1 .707A8.237 8.237 0 0 1 6 18.75c1.995 0 3.823.707 5.25 1.886V4.533ZM12.75 20.636A8.214 8.214 0 0 1 18 18.75c.966 0 1.89.166 2.75.47a.75.75 0 0 0 1-.708V4.262a.75.75 0 0 0-.5-.707A9.735 9.735 0 0 0 18 3a9.707 9.707 0 0 0-5.25 1.533v16.103Z" />
+  </svg>
+);
+
 const MODE_CONFIG: Record<
   Mode,
-  { label: string; description: string; difficulty?: string; count: number; icon: string }
+  { label: string; description: string; difficulty?: string; count: number; icon: ReactNode }
 > = {
   easy: {
     label: "Easy",
     description: "40 beginner challenges. Vocabulary and basic recognition.",
     difficulty: "beginner",
     count: 40,
-    icon: "🌱",
+    icon: <IconStar />,
   },
   medium: {
     label: "Medium",
     description: "30 intermediate challenges. Context and grammar.",
     difficulty: "intermediate",
     count: 30,
-    icon: "🔥",
+    icon: <IconFire />,
   },
   hard: {
     label: "Hard",
     description: "20 advanced challenges. Cultural nuance and full sentences.",
     difficulty: "advanced",
     count: 20,
-    icon: "⚡",
+    icon: <IconBolt />,
   },
   mixed: {
     label: "Mixed",
     description: "10 random challenges across all difficulties.",
     count: 10,
-    icon: "🎯",
+    icon: <IconSquares />,
   },
 };
 
@@ -120,7 +144,7 @@ function SelectionScreen({ onStart }: { onStart: (mode: Mode) => void }) {
                     : "border-[var(--color-border)] bg-[var(--color-surface-raised)] hover:shadow-md",
                 ].join(" ")}
               >
-                <span className="text-3xl">{cfg.icon}</span>
+                <div className="text-[var(--color-primary)] shrink-0">{cfg.icon}</div>
                 <div className="flex-1">
                   <p className="font-bold text-[var(--color-text)]">
                     {cfg.label}

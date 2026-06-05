@@ -209,10 +209,10 @@ export default function TotemsPage() {
         {/* Nav */}
         <div className="flex items-center justify-between pt-4 border-t border-[var(--color-border)]">
           <Link
-            href="/courses/family/in-laws"
+            href="/courses/family/roora"
             className="text-sm text-[var(--color-muted)] hover:text-[var(--color-primary)] hover:underline"
           >
-            ← In-Laws & Marriage
+            ← Roora
           </Link>
           <Link
             href="/courses/family"

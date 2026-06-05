@@ -245,10 +245,10 @@ export default function InLawsPage() {
             ← Extended Family
           </Link>
           <Link
-            href="/courses/family/totems"
+            href="/courses/family/roora"
             className="text-sm font-semibold text-[var(--color-primary)] hover:underline"
           >
-            Next: Mutupo — Clan & Totem →
+            Next: Roora →
           </Link>
         </div>
       </div>
