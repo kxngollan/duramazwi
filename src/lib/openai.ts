@@ -2,7 +2,7 @@ import OpenAI from "openai";
 import { z } from "zod";
 import { zodTextFormat } from "openai/helpers/zod";
 
-//not needed atm s
+//not needed atm s sd
 
 // Initialize OpenAI client
 const openai = new OpenAI({
