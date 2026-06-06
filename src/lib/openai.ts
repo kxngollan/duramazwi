@@ -1,6 +1,8 @@
-import OpenAI from 'openai';
-import { z } from 'zod';
-import { zodTextFormat } from 'openai/helpers/zod';
+import OpenAI from "openai";
+import { z } from "zod";
+import { zodTextFormat } from "openai/helpers/zod";
+
+//not needed atm
 
 // Initialize OpenAI client
 const openai = new OpenAI({
@@ -17,10 +19,10 @@ export async function generateStructuredResponse<T>(
   schema: z.ZodSchema<T>,
   systemPrompt: string,
   userPrompt: string,
-  schemaName: string = 'response'
+  schemaName: string = "response"
 ): Promise<T> {
   if (!isOpenAIConfigured()) {
-    throw new Error('OpenAI API key not configured');
+    throw new Error("OpenAI API key not configured");
   }
 
   const response = await openai.responses.parse({
@@ -28,12 +30,12 @@ export async function generateStructuredResponse<T>(
     input: [
       {
         role: "system",
-        content: systemPrompt
+        content: systemPrompt,
       },
       {
         role: "user",
-        content: userPrompt
-      }
+        content: userPrompt,
+      },
     ],
     text: {
       format: zodTextFormat(schema, schemaName),
@@ -41,10 +43,10 @@ export async function generateStructuredResponse<T>(
   });
 
   const result = response.output_parsed;
-  
+
   if (!result) {
     console.error("Raw response:", response);
-    throw new Error('No parsed data received from OpenAI');
+    throw new Error("No parsed data received from OpenAI");
   }
 
   return result;
@@ -57,7 +59,7 @@ export async function generateText(
   maxTokens: number = 1000
 ): Promise<string> {
   if (!isOpenAIConfigured()) {
-    throw new Error('OpenAI API key not configured');
+    throw new Error("OpenAI API key not configured");
   }
 
   const response = await openai.chat.completions.create({
@@ -65,21 +67,21 @@ export async function generateText(
     messages: [
       {
         role: "system",
-        content: systemPrompt
+        content: systemPrompt,
       },
       {
         role: "user",
-        content: userPrompt
-      }
+        content: userPrompt,
+      },
     ],
     max_tokens: maxTokens,
     temperature: 0.7,
   });
 
   const content = response.choices[0]?.message?.content;
-  
+
   if (!content) {
-    throw new Error('No content received from OpenAI');
+    throw new Error("No content received from OpenAI");
   }
 
   return content.trim();
