@@ -4,127 +4,384 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Shona Language Courses | Duramazwi",
   description:
-    "Learn Shona through structured courses — family, greetings, numbers, and more. Free, cultural, and built for real understanding.",
+    "A full structured path to Shona fluency — from basic greetings to advanced proverbs, culture, and regional variations.",
 };
 
-const IconHome = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    className="w-7 h-7"
-  >
-    <path d="M11.47 3.841a.75.75 0 0 1 1.06 0l8.69 8.69a.75.75 0 1 0 1.06-1.061l-8.689-8.69a2.25 2.25 0 0 0-3.182 0l-8.69 8.69a.75.75 0 1 0 1.061 1.06l8.69-8.689Z" />
-    <path d="m12 5.432 8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 0 1-.75-.75v-4.5a.75.75 0 0 0-.75-.75h-3a.75.75 0 0 0-.75.75V21a.75.75 0 0 1-.75.75H5.625a1.875 1.875 0 0 1-1.875-1.875v-6.198a2.29 2.29 0 0 0 .091-.086L12 5.432Z" />
-  </svg>
-);
+type CourseStatus = "available" | "coming-soon";
 
-const IconChat = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    className="w-7 h-7"
-  >
-    <path
-      fillRule="evenodd"
-      d="M4.848 2.771A49.144 49.144 0 0 1 12 2.25c2.43 0 4.817.178 7.152.52 1.978.292 3.348 2.024 3.348 3.97v6.02c0 1.946-1.37 3.678-3.348 3.97a48.901 48.901 0 0 1-3.476.383.39.39 0 0 0-.297.17l-2.755 4.133a.75.75 0 0 1-1.248 0l-2.755-4.133a.39.39 0 0 0-.297-.17 48.9 48.9 0 0 1-3.476-.384c-1.978-.29-3.348-2.024-3.348-3.97V6.741c0-1.946 1.37-3.68 3.348-3.97Z"
-      clipRule="evenodd"
-    />
-  </svg>
-);
+type Course = {
+  slug: string;
+  title: string;
+  shona: string;
+  description: string;
+  modules: number;
+  challenges: number;
+  status: CourseStatus;
+};
 
-const IconHashtag = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    className="w-7 h-7"
-  >
-    <path
-      fillRule="evenodd"
-      d="M11.097 1.515a.75.75 0 0 1 .589.882L10.666 7.5h4.47l1.079-5.397a.75.75 0 1 1 1.47.294L16.665 7.5h3.585a.75.75 0 0 1 0 1.5h-3.885l-1.2 6h3.585a.75.75 0 0 1 0 1.5h-3.885l-1.08 5.397a.75.75 0 1 1-1.47-.294l1.02-5.103h-4.47l-1.08 5.397a.75.75 0 1 1-1.47-.294l1.02-5.103H3.75a.75.75 0 0 1 0-1.5h3.885l1.2-6H5.25a.75.75 0 0 1 0-1.5h3.885l1.08-5.397a.75.75 0 0 1 .882-.588ZM10.365 9l-1.2 6h4.47l1.2-6h-4.47Z"
-      clipRule="evenodd"
-    />
-  </svg>
-);
+type Tier = {
+  label: string;
+  courses: Course[];
+};
 
-const IconCake = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    className="w-7 h-7"
-  >
-    <path d="M15 1.784l-.796.796a1.125 1.125 0 1 0 1.591 0L15 1.784ZM12 1.784l-.796.796a1.125 1.125 0 1 0 1.591 0L12 1.784ZM9 1.784l-.796.796a1.125 1.125 0 1 0 1.591 0L9 1.784ZM9.75 7.547c.498-.021.998-.035 1.5-.042V6.75a.75.75 0 0 1 1.5 0v.755c.502.007 1.002.021 1.5.042V6.75a.75.75 0 0 1 1.5 0v.88l.307.022c1.55.117 2.693 1.427 2.693 2.946v1.018a62.182 62.182 0 0 0-13.5 0v-1.018c0-1.519 1.143-2.829 2.693-2.946l.307-.022v-.88a.75.75 0 0 1 1.5 0v.797ZM12 12.75c-2.472 0-4.9.184-7.274.54-1.454.217-2.476 1.482-2.476 2.916v.384a4.104 4.104 0 0 1 2.585.364 2.605 2.605 0 0 0 2.33 0 4.104 4.104 0 0 1 3.67 0 2.605 2.605 0 0 0 2.33 0 4.104 4.104 0 0 1 3.67 0 2.605 2.605 0 0 0 2.33 0 4.104 4.104 0 0 1 2.585-.364v-.384c0-1.434-1.022-2.7-2.476-2.917A49.138 49.138 0 0 0 12 12.75ZM21.75 18.131a2.604 2.604 0 0 0-1.915.165 4.104 4.104 0 0 1-3.67 0 2.604 2.604 0 0 0-2.33 0 4.104 4.104 0 0 1-3.67 0 2.604 2.604 0 0 0-2.33 0 4.104 4.104 0 0 1-3.67 0 2.604 2.604 0 0 0-1.915-.165v2.494c0 .414.336.75.75.75h18a.75.75 0 0 0 .75-.75v-2.494Z" />
-  </svg>
-);
-
-const IconClock = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    className="w-7 h-7"
-  >
-    <path
-      fillRule="evenodd"
-      d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 6a.75.75 0 0 0-1.5 0v6c0 .414.336.75.75.75h4.5a.75.75 0 0 0 0-1.5h-3.75V6Z"
-      clipRule="evenodd"
-    />
-  </svg>
-);
-
-const availableCourses = [
+const tiers: Tier[] = [
   {
-    href: "/courses/family",
-    title: "Mhuri — Family",
-    subtitle: "Family in Shona",
-    description:
-      "How family works in Shona culture — immediate family, extended family, in-laws, roora (bride wealth), and the totem system. 5 modules and 90 challenges.",
-    icon: <IconHome />,
-    modules: 5,
-    challenges: 90,
-    tag: "Available now",
+    label: "Beginner Foundation",
+    courses: [
+      {
+        slug: "greetings",
+        title: "Greetings & Introductions",
+        shona: "Kutaura neKukwazisana",
+        description:
+          "Basic greetings, formal vs informal address, greeting elders, introducing yourself, and common polite expressions.",
+        modules: 6,
+        challenges: 40,
+        status: "available",
+      },
+      {
+        slug: "pronunciation",
+        title: "Pronunciation & Reading",
+        shona: "Kutaura Zvakanaka",
+        description:
+          "The Shona alphabet, pronunciation rules, common spelling patterns, and the role of tone in meaning.",
+        modules: 4,
+        challenges: 30,
+        status: "available",
+      },
+      {
+        slug: "numbers",
+        title: "Numbers & Basic Math",
+        shona: "Nhamba",
+        description:
+          "Numbers 1–100, counting objects, money, prices, and basic bargaining vocabulary.",
+        modules: 5,
+        challenges: 40,
+        status: "available",
+      },
+      {
+        slug: "time",
+        title: "Time & Dates",
+        shona: "Nguva",
+        description:
+          "Days of the week, months, seasons, telling time, and talking about past and future events.",
+        modules: 6,
+        challenges: 40,
+        status: "available",
+      },
+    ],
+  },
+  {
+    label: "Daily Life",
+    courses: [
+      {
+        slug: "food",
+        title: "Food & Drink",
+        shona: "Zvokudya neZvokunwa",
+        description:
+          "Traditional foods, ingredients, cooking vocabulary, ordering food, eating customs, and Shona hospitality traditions.",
+        modules: 6,
+        challenges: 40,
+        status: "available",
+      },
+      {
+        slug: "home",
+        title: "Home & Household",
+        shona: "Musha",
+        description:
+          "Rooms of the house, furniture, chores, and daily routines in a Shona household.",
+        modules: 4,
+        challenges: 30,
+        status: "available",
+      },
+      {
+        slug: "shopping",
+        title: "Shopping & Markets",
+        shona: "Kutengesa neTengesha",
+        description:
+          "Market vocabulary, negotiation and prices, common products, and cultural expectations in Zimbabwean markets.",
+        modules: 4,
+        challenges: 30,
+        status: "available",
+      },
+      {
+        slug: "transport",
+        title: "Transportation & Travel",
+        shona: "Rwendo",
+        description:
+          "Directions, public transport, village vs city travel, and asking for help when navigating.",
+        modules: 4,
+        challenges: 30,
+        status: "available",
+      },
+    ],
+  },
+  {
+    label: "Family & Relationships",
+    courses: [
+      {
+        slug: "family",
+        title: "Family",
+        shona: "Mhuri",
+        description:
+          "Immediate family, extended family, in-laws, roora (bride wealth), and the mutupo totem clan system.",
+        modules: 5,
+        challenges: 90,
+        status: "available",
+      },
+      {
+        slug: "community",
+        title: "Relationships & Community",
+        shona: "Ukama neMusha",
+        description:
+          "Friendship, neighbours, respect and social obligations, and community support systems.",
+        modules: 4,
+        challenges: 30,
+        status: "available",
+      },
+      {
+        slug: "parenting",
+        title: "Children & Parenting",
+        shona: "Vana neVabereki",
+        description:
+          "Raising children in Shona culture, respect for elders, family roles, and the language of childhood.",
+        modules: 3,
+        challenges: 20,
+        status: "available",
+      },
+    ],
+  },
+  {
+    label: "Culture & Customs",
+    courses: [
+      {
+        slug: "respect",
+        title: "Respect & Etiquette",
+        shona: "Tsika neKudza",
+        description:
+          "Respecting elders, body language, visiting homes, gift giving, and appropriate greetings in different contexts.",
+        modules: 5,
+        challenges: 30,
+        status: "available",
+      },
+      {
+        slug: "ceremonies",
+        title: "Traditional Ceremonies",
+        shona: "Mabiko eMaShona",
+        description:
+          "Birth ceremonies, weddings, funerals, and memorial ceremonies — the language and customs of life's major events.",
+        modules: 4,
+        challenges: 30,
+        status: "available",
+      },
+      {
+        slug: "religion",
+        title: "Religion & Spirituality",
+        shona: "Chitendero",
+        description:
+          "Traditional Shona beliefs, the role of ancestors (vadzimu), the intersection of Christianity and tradition, and modern religious practice.",
+        modules: 4,
+        challenges: 20,
+        status: "available",
+      },
+      {
+        slug: "leadership",
+        title: "Traditional Leadership",
+        shona: "Ushe",
+        description:
+          "Chiefs (madzishe), headmen, community governance, and how conflict is resolved in traditional Shona society.",
+        modules: 4,
+        challenges: 20,
+        status: "available",
+      },
+    ],
+  },
+  {
+    label: "Language Development",
+    courses: [
+      {
+        slug: "verbs",
+        title: "Common Verbs",
+        shona: "Madzina eMabasa",
+        description:
+          "Everyday actions, verb conjugation patterns, and tenses — the building blocks of Shona sentences.",
+        modules: 3,
+        challenges: 40,
+        status: "available",
+      },
+      {
+        slug: "conversation",
+        title: "Conversation Practice",
+        shona: "Kutaura",
+        description:
+          "Practical dialogues at home, at school, at work, in church, and in the village.",
+        modules: 5,
+        challenges: 40,
+        status: "available",
+      },
+      {
+        slug: "emotions",
+        title: "Emotions & Feelings",
+        shona: "Manzwiro",
+        description:
+          "Expressing happiness, sadness, anger, love, and gratitude — the emotional vocabulary of Shona.",
+        modules: 4,
+        challenges: 30,
+        status: "available",
+      },
+      {
+        slug: "health",
+        title: "Health & Body",
+        shona: "Utano neMuviri",
+        description:
+          "Body parts, common illnesses, visiting a clinic, and the vocabulary of traditional healing.",
+        modules: 4,
+        challenges: 30,
+        status: "available",
+      },
+    ],
+  },
+  {
+    label: "Advanced Cultural Understanding",
+    courses: [
+      {
+        slug: "proverbs",
+        title: "Shona Proverbs",
+        shona: "Tsumo",
+        description:
+          "Classic Shona proverbs (tsumo), their meanings, usage in everyday speech, and the cultural lessons they carry.",
+        modules: 3,
+        challenges: 30,
+        status: "available",
+      },
+      {
+        slug: "idioms",
+        title: "Idioms & Expressions",
+        shona: "Mafaniro eTaura",
+        description:
+          "Common idiomatic sayings, figurative language, and expressions that don't translate literally.",
+        modules: 3,
+        challenges: 30,
+        status: "available",
+      },
+      {
+        slug: "folktales",
+        title: "Folktales & Storytelling",
+        shona: "Ngano",
+        description:
+          "Traditional Shona stories (ngano), the moral lessons they teach, and the art of storytelling.",
+        modules: 3,
+        challenges: 20,
+        status: "available",
+      },
+      {
+        slug: "music",
+        title: "Shona Music & Dance",
+        shona: "Mimhanzi neNhimbe",
+        description:
+          "Traditional instruments (mbira, hosho), songs, dance styles, and the cultural significance of music in Shona life.",
+        modules: 4,
+        challenges: 20,
+        status: "available",
+      },
+      {
+        slug: "history",
+        title: "History of the Shona People",
+        shona: "Nhoroondo",
+        description:
+          "Origins, the great Shona kingdoms, Great Zimbabwe, colonial history, and the modern Shona experience.",
+        modules: 4,
+        challenges: 20,
+        status: "available",
+      },
+      {
+        slug: "regions",
+        title: "Regional Variations",
+        shona: "Marudzi eMaShona",
+        description:
+          "How Shona varies between Zezuru, Karanga, Manyika, Korekore, and Ndau — vocabulary differences and regional pronunciation.",
+        modules: 5,
+        challenges: 20,
+        status: "available",
+      },
+    ],
+  },
+  {
+    label: "Practical Fluency",
+    courses: [
+      {
+        slug: "workplace",
+        title: "Work & School",
+        shona: "Basa neChechi",
+        description:
+          "Vocabulary and conversations for the workplace, the classroom, and professional settings.",
+        modules: 4,
+        challenges: 30,
+        status: "available",
+      },
+      {
+        slug: "social",
+        title: "Social Life & Relationships",
+        shona: "Ukahana",
+        description:
+          "Dating, friendship, church, and village social life — the language of living alongside others.",
+        modules: 4,
+        challenges: 30,
+        status: "available",
+      },
+      {
+        slug: "visiting",
+        title: "Visiting Zimbabwe",
+        shona: "Kuenda kuZimbabwe",
+        description:
+          "Practical language for travelling to Zimbabwe, hosting guests, navigating unfamiliar settings, and making a good impression.",
+        modules: 4,
+        challenges: 20,
+        status: "available",
+      },
+      {
+        slug: "modern",
+        title: "Modern & Digital Shona",
+        shona: "Shona yeNhasi",
+        description:
+          "Phone conversations, social media language, texting in Shona, and how the language adapts to modern contexts.",
+        modules: 3,
+        challenges: 20,
+        status: "available",
+      },
+    ],
   },
 ];
 
-const comingSoon = [
-  {
-    title: "Kutaura — Greetings",
-    subtitle: "Everyday phrases & greetings",
-    description:
-      "How to greet elders, peers, and strangers in Shona. Morning, afternoon, and evening greetings, and how to ask how someone is.",
-    icon: <IconChat />,
-  },
-  {
-    title: "Nhamba — Numbers",
-    subtitle: "Counting in Shona",
-    description:
-      "Numbers 1–100, how to tell the time, how to talk about money, and how numbers change with Shona noun classes.",
-    icon: <IconHashtag />,
-  },
-  {
-    title: "Zvokudya — Food & Drink",
-    subtitle: "The language of eating",
-    description:
-      "Sadza, nyama, zenga, mvura — the vocabulary of Shona food and how meals, cooking, and eating together are talked about.",
-    icon: <IconCake />,
-  },
-  {
-    title: "Nguva — Time & Days",
-    subtitle: "Dates, days, and seasons",
-    description:
-      "Days of the week, months, seasons, and how Shona people talk about past and future time.",
-    icon: <IconClock />,
-  },
+const learningPath = [
+  { step: 1, slug: "greetings", tier: "Beginner Foundation" },
+  { step: 2, slug: "pronunciation", tier: "Beginner Foundation" },
+  { step: 3, slug: "numbers", tier: "Beginner Foundation" },
+  { step: 4, slug: "time", tier: "Beginner Foundation" },
+  { step: 5, slug: "family", tier: "Family & Relationships" },
+  { step: 6, slug: "food", tier: "Daily Life" },
+  { step: 7, slug: "home", tier: "Daily Life" },
+  { step: 8, slug: "shopping", tier: "Daily Life" },
+  { step: 9, slug: "verbs", tier: "Language Development" },
+  { step: 10, slug: "conversation", tier: "Language Development" },
+  { step: 11, slug: "respect", tier: "Culture & Customs" },
+  { step: 12, slug: "ceremonies", tier: "Culture & Customs" },
+  { step: 13, slug: "proverbs", tier: "Advanced Cultural Understanding" },
+  { step: 14, slug: "idioms", tier: "Advanced Cultural Understanding" },
+  { step: 15, slug: "history", tier: "Advanced Cultural Understanding" },
+  { step: 16, slug: "regions", tier: "Advanced Cultural Understanding" },
 ];
+
+const allCourses = tiers.flatMap((t) => t.courses);
+
+function getCourse(slug: string) {
+  return allCourses.find((c) => c.slug === slug)!;
+}
 
 export default function CoursesPage() {
   return (
     <div className="min-h-screen pb-20">
       {/* Hero */}
-      <div className="px-4 pt-6 pb-4 sm:px-6 max-w-4xl mx-auto">
+      <div className="px-4 pt-6 pb-4 sm:px-6 max-w-5xl mx-auto">
         <div className="overflow-hidden rounded-[2rem] border border-[var(--color-border)] bg-[var(--color-surface)] shadow-[var(--shadow-soft)]">
           <div className="relative overflow-hidden bg-[var(--color-primary)] px-6 py-10 text-[var(--color-hero-text)] sm:px-10 sm:py-12">
             <div className="absolute right-0 top-0 h-36 w-36 rounded-bl-full bg-[var(--color-accent)]" />
@@ -137,107 +394,106 @@ export default function CoursesPage() {
                 Shona Courses
               </h1>
               <p className="text-lg leading-relaxed text-[var(--color-hero-text)]/85 max-w-xl">
-                Structured lessons that go beyond vocabulary — culture, context,
-                and the real meaning behind the words.
+                Structured lessons built for real understanding — vocabulary,
+                grammar, culture, and context together.{" "}
+                {allCourses.length} courses from beginner to fluency.
               </p>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 mt-10">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 mt-10">
 
-        {/* Available courses */}
-        <h2 className="text-xl font-bold text-[var(--color-text)] mb-5">
-          Available Now
-        </h2>
-        <div className="grid gap-6 mb-14">
-          {availableCourses.map((course) => (
-            <Link
-              key={course.href}
-              href={course.href}
-              className="group flex flex-col sm:flex-row gap-6 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface-raised)] p-6 transition-all hover:shadow-[var(--shadow-card)] overflow-hidden"
-            >
-              <div className="flex items-start gap-5 flex-1">
-                <div className="w-14 h-14 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)] flex items-center justify-center text-[var(--color-primary)] shrink-0">
-                  {course.icon}
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-center gap-2 mb-1 flex-wrap">
-                    <h3 className="text-xl font-bold text-[var(--color-text)] group-hover:underline">
-                      {course.title}
-                    </h3>
-                    <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-[var(--color-primary)] text-[var(--color-hero-text)]">
-                      {course.tag}
-                    </span>
-                  </div>
-                  <p className="text-sm font-medium italic text-[var(--color-accent)] mb-3">
-                    {course.subtitle}
-                  </p>
-                  <p className="text-sm leading-relaxed text-[var(--color-muted)] mb-4">
-                    {course.description}
-                  </p>
-                  <div className="flex items-center gap-4 text-xs text-[var(--color-muted)]">
-                    <span>
-                      <span className="font-bold text-[var(--color-text)]">
-                        {course.modules}
-                      </span>{" "}
-                      modules
-                    </span>
-                    <span>
-                      <span className="font-bold text-[var(--color-text)]">
-                        {course.challenges}
-                      </span>{" "}
-                      challenges
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div className="flex sm:flex-col items-center sm:items-end justify-between sm:justify-center gap-2 shrink-0">
-                <span className="text-sm font-semibold text-[var(--color-primary)] whitespace-nowrap group-hover:underline">
-                  Start course →
-                </span>
-              </div>
-            </Link>
-          ))}
-        </div>
-
-        {/* Coming soon */}
-        <h2 className="text-xl font-bold text-[var(--color-text)] mb-2">
-          Coming Soon
-        </h2>
-        <p className="text-sm text-[var(--color-muted)] mb-5">
-          More courses are in development. Focus is on depth — every course will
-          include cultural context, not just word lists.
-        </p>
-        <div className="grid gap-4 sm:grid-cols-2 mb-14">
-          {comingSoon.map((course) => (
-            <div
-              key={course.title}
-              className="flex gap-4 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-5 opacity-60"
-            >
-              <div className="w-11 h-11 rounded-xl bg-[var(--color-surface-raised)] border border-[var(--color-border)] flex items-center justify-center text-[var(--color-muted)] shrink-0">
-                {course.icon}
-              </div>
-              <div>
-                <div className="flex items-center gap-2 mb-1 flex-wrap">
-                  <h3 className="text-base font-bold text-[var(--color-text)]">
-                    {course.title}
-                  </h3>
-                  <span className="text-xs font-semibold px-2 py-0.5 rounded-full border border-[var(--color-border)] text-[var(--color-muted)]">
-                    Soon
+        {/* Suggested Learning Path */}
+        <div className="mb-14">
+          <h2 className="text-xl font-bold text-[var(--color-text)] mb-1">
+            Suggested Learning Path
+          </h2>
+          <p className="text-sm text-[var(--color-muted)] mb-6">
+            New to Shona? Follow this order for a solid foundation before exploring other topics.
+          </p>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {learningPath.map(({ step, slug }) => {
+              const course = getCourse(slug);
+              return (
+                <Link
+                  key={slug}
+                  href={`/courses/${slug}`}
+                  className="group flex items-start gap-3 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-raised)] p-4 transition-all hover:shadow-[var(--shadow-card)]"
+                >
+                  <span className="w-7 h-7 rounded-full bg-[var(--color-primary)] text-[var(--color-hero-text)] text-xs font-black flex items-center justify-center shrink-0 mt-0.5">
+                    {step}
                   </span>
-                </div>
-                <p className="text-xs font-medium italic text-[var(--color-muted)] mb-2">
-                  {course.subtitle}
-                </p>
-                <p className="text-xs leading-relaxed text-[var(--color-muted)]">
-                  {course.description}
-                </p>
-              </div>
-            </div>
-          ))}
+                  <div>
+                    <p className="text-sm font-bold text-[var(--color-text)] group-hover:underline leading-snug">
+                      {course.title}
+                    </p>
+                    <p className="text-xs text-[var(--color-muted)] mt-0.5 italic">
+                      {course.shona}
+                    </p>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
         </div>
+
+        {/* All courses by tier */}
+        {tiers.map((tier) => (
+          <div key={tier.label} className="mb-12">
+            <h2 className="text-xl font-bold text-[var(--color-text)] mb-5">
+              {tier.label}
+            </h2>
+            <div className="grid gap-4 sm:grid-cols-2">
+              {tier.courses.map((course) => (
+                <Link
+                  key={course.slug}
+                  href={`/courses/${course.slug}`}
+                  className="group flex gap-4 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface-raised)] p-5 transition-all hover:shadow-[var(--shadow-card)] overflow-hidden"
+                >
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 mb-1 flex-wrap">
+                      <h3 className="text-base font-bold text-[var(--color-text)] group-hover:underline">
+                        {course.title}
+                      </h3>
+                      {course.slug === "family" && (
+                        <span className="text-xs font-semibold px-2 py-0.5 rounded-full bg-[var(--color-primary)] text-[var(--color-hero-text)] shrink-0">
+                          Featured
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-xs font-medium italic text-[var(--color-accent)] mb-2">
+                      {course.shona}
+                    </p>
+                    <p className="text-xs leading-relaxed text-[var(--color-muted)] mb-3">
+                      {course.description}
+                    </p>
+                    <div className="flex items-center gap-3 text-xs text-[var(--color-muted)]">
+                      <span>
+                        <span className="font-bold text-[var(--color-text)]">
+                          {course.modules}
+                        </span>{" "}
+                        modules
+                      </span>
+                      <span>
+                        <span className="font-bold text-[var(--color-text)]">
+                          {course.challenges}
+                        </span>{" "}
+                        challenges
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex items-center shrink-0">
+                    <span className="text-sm font-semibold text-[var(--color-primary)] group-hover:underline whitespace-nowrap">
+                      →
+                    </span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        ))}
 
         {/* Daily challenge CTA */}
         <div className="rounded-2xl border border-[var(--color-accent)] bg-[var(--color-surface)] p-6">
