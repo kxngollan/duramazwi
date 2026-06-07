@@ -27,6 +27,12 @@ const navItems: Array<{
     icon: "Book",
   },
   {
+    href: "/courses",
+    label: "Courses",
+    title: "Browse all Shona courses",
+    icon: "Book",
+  },
+  {
     href: "/random",
     label: "Random Word",
     title: "Get a random Shona word",
@@ -47,6 +53,18 @@ const navItems: Array<{
 ];
 
 const AppTitle = "Shona Dictionary";
+
+function isNavItemActive(pathname: string, href: string) {
+  if (href === "/random") {
+    return pathname === href || pathname.startsWith("/word/");
+  }
+
+  if (href === "/courses") {
+    return pathname === href || pathname.startsWith("/courses/");
+  }
+
+  return pathname === href;
+}
 
 /**
  * Responsive navigation component with hamburger menu
@@ -177,11 +195,9 @@ export default function Appbar() {
               </Link>
 
               {/* Navigation Items - Right side */}
-              <div className="flex items-center space-x-1">
+              <div className="flex items-center space-x-0.5">
                 {navItems.map((item) => {
-                  const isActive =
-                    pathname === item.href ||
-                    (item.href === "/random" && pathname.startsWith("/word/"));
+                  const isActive = isNavItemActive(pathname, item.href);
                   const isChallenge = item.href === "/challenge/daily";
 
                   return (
@@ -190,7 +206,7 @@ export default function Appbar() {
                       href={item.href}
                       title={item.title}
                       aria-label={item.title}
-                      className={`px-4 py-2 text-sm font-medium transition-colors hover:rounded-md ${
+                      className={`px-3 py-2 text-sm font-medium transition-colors hover:rounded-md ${
                         isActive
                           ? isChallenge
                             ? "hover:text-[var(--color-primary)] hover:bg-[var(--color-accent)] border-b-2 border-[var(--color-accent)]"
@@ -352,10 +368,7 @@ export default function Appbar() {
               {isMobileMenuOpen && (
                 <div id="mobile-menu" className="mt-4 pb-4 space-y-2">
                   {navItems.map((item) => {
-                    const isActive =
-                      pathname === item.href ||
-                      (item.href === "/random" &&
-                        pathname.startsWith("/word/"));
+                    const isActive = isNavItemActive(pathname, item.href);
                     const isChallenge = item.href === "/challenge/daily";
 
                     return (
