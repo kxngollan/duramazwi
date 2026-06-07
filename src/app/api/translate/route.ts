@@ -1,10 +1,6 @@
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY, 
-});
-
 const translationPrompt = `You're a Shona/English translator. 
 If I give you English words or phrases, you respond with the Shona translation, and vice versa. 
 Instead of breaking down what has been said, simply translate it to the respective language. 
@@ -20,6 +16,17 @@ export async function POST(req: Request) {
         { status: 400 }
       );
     }
+
+    const apiKey = process.env.OPENAI_API_KEY;
+
+    if (!apiKey) {
+      return NextResponse.json(
+        { error: "Translation service is not configured" },
+        { status: 503 }
+      );
+    }
+
+    const openai = new OpenAI({ apiKey });
 
     const completion = await openai.chat.completions.create({
       model: "gpt-4o-mini",
