@@ -1,5 +1,5 @@
 import Fuse from "fuse.js";
-import allMyDataRaw from "@/data/data.json";
+import allMyDataRaw from "../data/data.json";
 
 // Process and flatten data
 const allMyData = allMyDataRaw.flat();

@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next';
-import data from '@/data/data.json';
+import data from '../data/data.json';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const words: MetadataRoute.Sitemap = data.map((word) => ({
