@@ -1,8 +1,7 @@
+import { Suspense } from "react";
 import { Metadata } from "next/types";
 import SearchBar from "@/component/search-bar.component";
 import TranslateClient from "./translate-client";
-
-export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: "Translate - Duramazwi",
@@ -13,7 +12,9 @@ export default function TranslatePage() {
   return (
     <div>
       <div id="search-bar">
-        <SearchBar />
+        <Suspense fallback={<div className="mb-6" />}>
+          <SearchBar />
+        </Suspense>
       </div>
       <div className="">
         <TranslateClient />

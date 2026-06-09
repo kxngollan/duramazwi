@@ -1,11 +1,10 @@
+import { Suspense } from "react";
 import Link from 'next/link';
 import SearchBar from '@/component/search-bar.component';
 import LyricsDisplay, { LyricBlock } from '@/components/blog/LyricsDisplay';
 import StickyVideo from '@/components/blog/StickyVideo';
 import { Metadata } from 'next';
 import InlineIcon from '@/components/InlineIcon';
-
-export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Learning Shona Through Music: "Pote" | Shona Dictionary',
@@ -124,7 +123,9 @@ export default function PoteBlogPost() {
       {/* Search Bar */}
       <header>
         <div id="search-bar">
-          <SearchBar />
+          <Suspense fallback={<div className="mb-6" />}>
+            <SearchBar />
+          </Suspense>
         </div>
       </header>
 

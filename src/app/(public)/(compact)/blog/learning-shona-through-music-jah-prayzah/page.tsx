@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Link from 'next/link';
 import SearchBar from '@/component/search-bar.component';
 import LyricsDisplay, { LyricBlock } from '@/components/blog/LyricsDisplay';
@@ -40,8 +41,6 @@ import InlineIcon from '@/components/InlineIcon';
  * 
  * Then use: <LyricsDisplay blocks={lyricsBlocks} />
  */
-
-export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: 'Learning Shona Through Music: "Mdhara Vachauya" by Jah Prayzah | Shona Dictionary',
@@ -253,7 +252,9 @@ export default function JahPrayzahBlogPost() {
       {/* Search Bar */}
       <header>
         <div id="search-bar">
-          <SearchBar />
+          <Suspense fallback={<div className="mb-6" />}>
+            <SearchBar />
+          </Suspense>
         </div>
       </header>
 

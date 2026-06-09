@@ -1,8 +1,7 @@
+import { Suspense } from "react";
 import SearchBar from "@/component/search-bar.component";
 import SuggestPage from "./SuggestPage";
 import { createMetadata } from "@/utils/metadata";
-
-export const dynamic = "force-dynamic";
 
 export const metadata = createMetadata({
   title: "Make a suggestion | Shona Dictionary",
@@ -13,7 +12,9 @@ export default function SuggestPageWrapper() {
   return (
     <div className="theme-text">
       <div id="search-bar">
-        <SearchBar />
+        <Suspense fallback={<div className="mb-6" />}>
+          <SearchBar />
+        </Suspense>
       </div>
       <SuggestPage />
     </div>

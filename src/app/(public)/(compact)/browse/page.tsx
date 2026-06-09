@@ -1,10 +1,9 @@
+import { Suspense } from "react";
 import { Metadata } from "next/types";
 import SearchBar from "@/component/search-bar.component";
 import BrowseClient from "./browse-client";
 import { createBreadcrumbs } from "@/utils/breadcrumbs";
 import BreadcrumbStructuredData from "@/components/BreadcrumbStructuredData";
-
-export const dynamic = 'force-dynamic';
 
 export const metadata: Metadata = {
   title: "Browse All Entries - Duramazwi",
@@ -17,7 +16,9 @@ export default function BrowsePage() {
       <BreadcrumbStructuredData breadcrumbs={createBreadcrumbs.browse()} />
       <header>
         <div id="search-bar">
-          <SearchBar />
+          <Suspense fallback={<div className="mb-6" />}>
+            <SearchBar />
+          </Suspense>
         </div>
       </header>
       <BrowseClient />

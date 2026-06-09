@@ -1,7 +1,6 @@
+import { Suspense } from "react";
 import Link from 'next/link';
 import SearchBar from '@/component/search-bar.component';
-
-export const dynamic = 'force-dynamic';
 
 const blogPosts = [
   {
@@ -28,7 +27,9 @@ export default function BlogPage() {
       {/* Search Bar */}
       <header>
         <div id="search-bar">
-          <SearchBar />
+          <Suspense fallback={<div className="mb-6" />}>
+            <SearchBar />
+          </Suspense>
         </div>
       </header>
 

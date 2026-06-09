@@ -1,28 +1,25 @@
 "use client";
 
 import Label from "@/component/atom/label.component";
-import Loading from "@/component/atom/loader.component";
 import dataService from "@/services/dataService";
 import { SearchResultsSkeleton } from "@/component/skeleton-loader.component";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import React from "react";
-import { DictionaryEntryCompact, DictionaryEntry } from "@/components/dictionary-entry-clean";
+import { DictionaryEntry } from "@/components/dictionary-entry-clean";
 
 type Error = {
   message: string;
   resolution: string;
 };
 
-export default function ResultsPage({searchQuery}: {searchQuery: (Promise<string> | string)}) {
+export default function ResultsPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [error, setError] = React.useState<Error | null>(null);
 
   // Get query directly from URL parameters
   const actualQuery = searchParams.get("q") || "";
-  
-  console.log("ResultsPage actualQuery:", actualQuery); // Debug log
 
   React.useEffect(() => {
     globalThis.gtag?.("event", "page_view", {
@@ -141,7 +138,7 @@ function SearchResults({ searchQuery, onError, router }: any) {
           setStatus("success");
         }
       }, 1000);
-    } catch (error) {
+    } catch {
       onError({ message: "An error occurred", resolution: "Try again later" });
       setStatus("failed");
     }

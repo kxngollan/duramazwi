@@ -2,8 +2,6 @@ import { Metadata } from 'next';
 import DiscoverFeed from '@/components/discover/DiscoverFeed';
 import { createMetadata } from '@/utils/metadata';
 
-export const dynamic = 'force-dynamic';
-
 export const metadata: Metadata = createMetadata({
   title: 'Discover Random Shona Words | Shona Dictionary',
   description: 'Explore and learn Shona words through an engaging infinite scroll experience. Discover new vocabulary, meanings, examples, and pronunciation. Perfect for language learners and enthusiasts.',
