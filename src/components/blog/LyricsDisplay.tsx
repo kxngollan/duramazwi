@@ -32,6 +32,12 @@ export interface LyricVerse {
 
 export type LyricBlock = LyricSection | LyricVerse;
 
+const lyricCardClassName =
+  "rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] p-6 text-[var(--color-text)] shadow-[var(--shadow-card)] transition-shadow hover:shadow-md";
+
+const lyricLinkClassName =
+  "touch-manipulation text-[var(--color-primary)] underline-offset-4 transition-colors hover:text-[var(--color-accent)] hover:underline";
+
 // Helper function to get word meanings from database using the URL
 const getWordMeaningFromUrl = (url: string): string => {
   // Extract word from URL (e.g., '/word/dzidza' -> 'dzidza')
@@ -88,7 +94,7 @@ export default function LyricsDisplay({ blocks }: LyricsDisplayProps) {
               <span key={wordIndex} className="group relative inline-block">
                 <Link
                   href={link.url}
-                  className="theme-link hover:underline touch-manipulation"
+                  className={lyricLinkClassName}
                   onClick={(e) => {
                     // On desktop, normal click behavior
                     if (!('ontouchstart' in window)) return;
@@ -180,7 +186,7 @@ export default function LyricsDisplay({ blocks }: LyricsDisplayProps) {
               return (
                 <div
                   key={pairIndex}
-                  className="theme-card rounded-lg p-6 hover:shadow-md transition-shadow"
+                  className={lyricCardClassName}
                 >
                   <div className="flex flex-col gap-2">
                     {isEnglishFirst ? (

@@ -10,6 +10,12 @@ interface SimpleSearchBarProps {
   initialQuery?: string;
 }
 
+const searchFieldClassName =
+  "flex items-center gap-3 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-raised)] px-4 py-3 text-[var(--color-text)] shadow-[var(--shadow-card)] transition-colors focus-within:border-[var(--color-primary)] focus-within:ring-2 focus-within:ring-[color-mix(in_srgb,var(--color-primary)_18%,transparent)]";
+
+const searchInputClassName =
+  "w-full bg-transparent text-[var(--color-text)] outline-none placeholder:text-sm placeholder:text-[var(--color-placeholder)]";
+
 export default function SimpleSearchBar({
   placeholder = "Search Shona meanings or get translations.",
   className = "",
@@ -53,11 +59,11 @@ export default function SimpleSearchBar({
 
   return (
     <form onSubmit={handleSearch} className={`mb-6 ${className}`}>
-      <div className="theme-input flex">
+      <div className={searchFieldClassName}>
         <input
           ref={inputRef}
           type="search"
-          className="peer w-full bg-[var(--color-surface-raised)] outline-none placeholder:text-sm text-[var(--color-text)] placeholder:text-[var(--color-placeholder)]"
+          className={searchInputClassName}
           placeholder={placeholder}
           value={query}
           onChange={(e) => setQuery(e.target.value)}
@@ -68,8 +74,9 @@ export default function SimpleSearchBar({
         <button
           type="submit"
           onClick={handleButtonClick}
-          className="h-6 w-6 text-[var(--color-primary)]"
+          className="flex h-8 w-8 items-center justify-center rounded-full text-[var(--color-primary)] transition-colors hover:bg-[var(--color-surface)] hover:text-[var(--color-accent)]"
           title="Search word"
+          aria-label="Search word"
         >
           <SvgIcon icon="Search" />
         </button>

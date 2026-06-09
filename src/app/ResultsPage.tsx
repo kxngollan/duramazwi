@@ -313,10 +313,10 @@ function SearchResults({ searchQuery, onError, router }: any) {
       ) : (
         /* No results - show the "Tineurombo" message with original styling */
         <div className="flex flex-col my-32 text-center">
-          <span className="text-lg font-bold theme-text-h1">
+          <span className="text-lg font-bold text-[var(--color-text)]">
             Tineurombo, we couldn't find a meaning for "{searchQuery}".
           </span>
-          <span className="theme-text-sub1">
+          <span className="text-sm text-[var(--color-muted)]">
             Try checking the spelling or searching for related words.
           </span>
         </div>

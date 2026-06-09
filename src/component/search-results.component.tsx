@@ -62,7 +62,7 @@ export default function SearchResults({ query }: SearchResultsProps) {
         </div>
         <button
           onClick={() => window.location.reload()}
-          className="theme-link underline"
+          className="text-[var(--color-primary)] underline underline-offset-4 transition-colors hover:text-[var(--color-accent)]"
           title="Reload page to try search again"
         >
           Try again
@@ -92,7 +92,7 @@ export default function SearchResults({ query }: SearchResultsProps) {
         <div className="mt-6">
           <Link
             href="/browse"
-            className="theme-link underline"
+            className="text-[var(--color-primary)] underline underline-offset-4 transition-colors hover:text-[var(--color-accent)]"
             title="Browse all dictionary entries"
             aria-label="Browse all dictionary entries"
           >
@@ -118,13 +118,13 @@ export default function SearchResults({ query }: SearchResultsProps) {
         {results.map((entry, index) => (
           <div
             key={`${entry.word}-${index}`}
-            className="theme-card rounded-lg p-6"
+            className="rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] p-6 text-[var(--color-text)] shadow-[var(--shadow-card)]"
           >
             <DictionaryEntryClean entry={entry} />
             <div className="mt-4 pt-4 border-t border-[var(--color-border)]">
               <Link
                 href={`/word/${encodeURIComponent(entry.word.toLowerCase())}`}
-                className="theme-link text-sm font-medium"
+                className="text-sm font-medium text-[var(--color-primary)] transition-colors hover:text-[var(--color-accent)]"
                 title={`View full definition of "${entry.word}"`}
                 aria-label={`View full definition of "${entry.word}"`}
               >

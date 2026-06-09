@@ -6,6 +6,12 @@ import { useSearch } from "@/context/search-context";
 import { useRouter, useSearchParams, usePathname} from "next/navigation";
 import React from "react";
 
+const searchFieldClassName =
+  "flex items-center gap-3 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-raised)] px-4 py-3 text-[var(--color-text)] shadow-[var(--shadow-card)] transition-colors focus-within:border-[var(--color-primary)] focus-within:ring-2 focus-within:ring-[color-mix(in_srgb,var(--color-primary)_18%,transparent)]";
+
+const searchInputClassName =
+  "w-full bg-transparent text-[var(--color-text)] outline-none placeholder:text-sm placeholder:text-[var(--color-placeholder)]";
+
 /**
  * Search bar
  *
@@ -71,12 +77,12 @@ export default function SearchBar({}:
       <label htmlFor="search-input" className="sr-only">
         Search Shona dictionary
       </label>
-      <div className="theme-input flex ">
+      <div className={searchFieldClassName}>
         <input
           id="search-input"
           ref={inputRef}
           type="search"
-          className="peer w-full bg-[var(--color-surface-raised)] outline-none placeholder:text-sm text-[var(--color-text)] placeholder:text-[var(--color-placeholder)]"
+          className={searchInputClassName}
           placeholder="Search Shona meanings or get translations."
           required={true}
           onChange={(e) => {
@@ -90,7 +96,11 @@ export default function SearchBar({}:
         {
           status === "loading"
             ?
-          <div role="status" aria-label="Searching...">
+          <div
+            role="status"
+            aria-label="Searching..."
+            className="flex h-8 w-8 items-center justify-center text-[var(--color-primary)]"
+          >
             <Loading className="h-6 w-6"/>
             <span className="sr-only">Searching...</span>
           </div>
@@ -98,7 +108,7 @@ export default function SearchBar({}:
           (
             <button
               type="submit"
-              className="h-6 w-6 text-[var(--color-primary)] select-none"
+              className="flex h-8 w-8 select-none items-center justify-center rounded-full text-[var(--color-primary)] transition-colors hover:bg-[var(--color-surface)] hover:text-[var(--color-accent)]"
               title="Search dictionary"
               aria-label="Search dictionary"
               onClick={handleButtonClick}

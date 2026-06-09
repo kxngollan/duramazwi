@@ -206,7 +206,7 @@ export default function Appbar() {
                       href={item.href}
                       title={item.title}
                       aria-label={item.title}
-                      className={`px-3 py-2 text-sm font-medium transition-colors hover:rounded-md ${
+                      className={`inline-flex min-h-10 items-center justify-center whitespace-nowrap px-3 py-2 text-sm font-medium transition-colors hover:rounded-md ${
                         isActive
                           ? isChallenge
                             ? "hover:text-[var(--color-primary)] hover:bg-[var(--color-accent)] border-b-2 border-[var(--color-accent)]"
@@ -222,7 +222,7 @@ export default function Appbar() {
                 })}
 
                 {/* Search Icon - Only show after 50px scroll */}
-                {showSearchIcon && (
+                <div className="flex w-12 justify-center">
                   <button
                     onClick={() => {
                       const searchElement =
@@ -239,9 +239,14 @@ export default function Appbar() {
                         }, 500);
                       }
                     }}
-                    className="px-4 py-2 text-sm font-medium text-[var(--color-muted)] hover:text-[var(--color-primary)] hover:bg-[var(--color-surface)] rounded-md transition-colors select-none"
+                    className={`rounded-md px-4 py-2 text-sm font-medium transition-colors select-none ${
+                      showSearchIcon
+                        ? "pointer-events-auto text-[var(--color-muted)] hover:bg-[var(--color-surface)] hover:text-[var(--color-primary)] opacity-100"
+                        : "pointer-events-none opacity-0"
+                    }`}
                     aria-label="Scroll to search"
                     title="Go to search bar"
+                    tabIndex={showSearchIcon ? 0 : -1}
                   >
                     <SvgIcon
                       className="h-4 w-4"
@@ -249,7 +254,7 @@ export default function Appbar() {
                       icon="Search"
                     />
                   </button>
-                )}
+                </div>
 
                 <ThemeToggleButton
                   isHydrated={isHydrated}

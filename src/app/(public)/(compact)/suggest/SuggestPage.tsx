@@ -2,6 +2,19 @@
 
 import { useState } from "react";
 
+type SuggestionPayload = {
+  word: string;
+  definition: string;
+  example: string;
+  contributorEmail: string;
+};
+
+const fieldClassName =
+  "w-full rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-raised)] px-4 py-3 text-[var(--color-text)] shadow-[var(--shadow-card)] outline-none transition-colors placeholder:text-sm placeholder:text-[var(--color-placeholder)] focus:border-[var(--color-primary)] focus:ring-2 focus:ring-[color-mix(in_srgb,var(--color-primary)_18%,transparent)]";
+
+const fieldLabelClassName =
+  "mb-2 block text-sm font-semibold text-[var(--color-text)]";
+
 export default function SuggestPage() {
   const [message, setMessage] = useState<{
     text: string;
@@ -21,17 +34,22 @@ export default function SuggestPage() {
 
       {message.text && (
         <div
-          className={`mb-4 rounded p-3 ${
+          className={`mb-4 rounded-xl border px-4 py-3 text-sm shadow-[var(--shadow-card)] ${
             message.type === "success"
-              ? "theme-feedback-correct text-[var(--color-primary)]"
-              : "theme-feedback-incorrect text-[var(--color-danger)]"
+              ? "border-[var(--color-primary)] bg-[var(--color-surface-raised)] text-[var(--color-text)]"
+              : message.type === "error"
+                ? "border-[var(--color-danger)] bg-[var(--color-surface-raised)] text-[var(--color-text)]"
+                : "border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-muted)]"
           }`}
         >
           {message.text}
         </div>
       )}
       <SuggestionForm
-        onSubmit={async (suggestion: string, resetForm: any) => {
+        onSubmit={async (
+          suggestion: SuggestionPayload,
+          resetForm: () => void,
+        ) => {
           setMessage({ text: "Submitting your suggestion...", type: "" });
           try {
             const response = await fetch("/api/suggestions", {
@@ -53,7 +71,7 @@ export default function SuggestPage() {
                 type: "error",
               });
             }
-          } catch (error) {
+          } catch {
             setMessage({
               text: "An error occurred while submitting your suggestion. Please try again.",
               type: "error",
@@ -65,7 +83,14 @@ export default function SuggestPage() {
   );
 }
 
-function SuggestionForm({ onSubmit }: any) {
+function SuggestionForm({
+  onSubmit,
+}: {
+  onSubmit: (
+    suggestion: SuggestionPayload,
+    resetForm: () => void,
+  ) => Promise<void>;
+}) {
   const [word, setWord] = useState("");
   const [definition, setDefinition] = useState("");
   const [example, setExample] = useState("");
@@ -92,13 +117,10 @@ function SuggestionForm({ onSubmit }: any) {
 
   // Basic validation - require at least word and definition
   const isFormValid = word.trim() && definition.trim();
-
-  const suggestedWordClassList =
-    "theme-input w-full p-2 rounded peer bg-surface outline-none placeholder:text-sm theme-text-sub1";
   return (
-    <form onSubmit={handleSubmit} className="mb-4 rounded ">
+    <form onSubmit={handleSubmit} className="mb-4 rounded-xl">
       <div className="mb-4">
-        <label className="block font-medium mb-2 text-[var(--color-text)]">
+        <label className={fieldLabelClassName}>
           Word <span className="text-[var(--color-danger)]">*</span>
         </label>
         <input
@@ -106,35 +128,35 @@ function SuggestionForm({ onSubmit }: any) {
           value={word}
           placeholder="E.g. Chikafu"
           onChange={(e) => setWord(e.target.value)}
-          className={suggestedWordClassList}
+          className={fieldClassName}
           required
         />
       </div>
       <div className="mb-4">
-        <label className="block font-medium mb-2 text-[var(--color-text)]">
+        <label className={fieldLabelClassName}>
           Definition/s <span className="text-[var(--color-danger)]">*</span>
         </label>
         <textarea
           value={definition}
           placeholder="Provide the definition of the word, including any relevant details like part of speech (e.g. verb/noun) etc."
           onChange={(e) => setDefinition(e.target.value)}
-          className={suggestedWordClassList}
+          className={`${fieldClassName} min-h-32 resize-y`}
           required
         />
       </div>
       <div className="mb-4">
-        <label className="block font-medium mb-2 text-[var(--color-text)]">
+        <label className={fieldLabelClassName}>
           Example/s
         </label>
         <textarea
           value={example}
           placeholder="Provide an example sentence using the word, if applicable."
           onChange={(e) => setExample(e.target.value)}
-          className={suggestedWordClassList}
+          className={`${fieldClassName} min-h-28 resize-y`}
         />
       </div>
       <div className="mb-4">
-        <label className="block font-medium mb-2 text-[var(--color-text)]">
+        <label className={fieldLabelClassName}>
           Your Email
         </label>
         <input
@@ -142,7 +164,7 @@ function SuggestionForm({ onSubmit }: any) {
           value={email}
           placeholder="Your email address (optional)"
           onChange={(e) => setEmail(e.target.value)}
-          className={suggestedWordClassList}
+          className={fieldClassName}
         />
       </div>
       <button
@@ -153,10 +175,10 @@ function SuggestionForm({ onSubmit }: any) {
             ? "Submit your word suggestion"
             : "Please fill in all required fields"
         }
-        className={`px-6 py-2 rounded font-medium transition-colors ${
+        className={`rounded-xl border px-6 py-3 font-semibold transition-colors ${
           isFormValid
-            ? "theme-button-accent hover:brightness-95  hover:text-[var(--color-accent)] hover:bg-[var(--color-primary)]"
-            : "bg-[var(--color-border)] text-[var(--color-muted)] cursor-not-allowed"
+            ? "border-[var(--color-primary)] bg-[var(--color-accent)] text-[#1b1b1b] hover:brightness-95"
+            : "cursor-not-allowed border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-muted)]"
         }`}
       >
         Send it over!
