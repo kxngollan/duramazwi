@@ -1,4 +1,4 @@
-import { AudioRecord, AudioFilters, AudioMetadata } from "./audioAPIClient";
+import type { AudioFilters, AudioMetadata, AudioRecord } from "@/types/media/audio";
 
 export interface AudioService {
   upload(file: File, metadata: AudioMetadata): Promise<AudioRecord>;

@@ -6,7 +6,7 @@ import { SearchResultsSkeleton } from "@/component/skeleton-loader.component";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import React from "react";
-import { DictionaryEntry } from "@/components/dictionary-entry-clean";
+import type { DictionaryEntry } from "@/types/domain/dictionary";
 
 type Error = {
   message: string;

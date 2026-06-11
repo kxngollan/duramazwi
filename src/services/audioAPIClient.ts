@@ -1,37 +1,6 @@
 // Simple API client for audio operations
 // Server handles all storage decisions based on AUDIO_MODE
-
-export interface AudioMetadata {
-  entryId: string;
-  level: 'word' | 'meaning' | 'example';
-  levelId?: string; // meaningId or exampleId for specific targeting
-  speaker?: string;
-  dialect?: string;
-  quality?: 'low' | 'medium' | 'high';
-  notes?: string;
-}
-
-export interface AudioRecord {
-  id: string;
-  filename: string;
-  originalName: string;
-  mimeType: string;
-  size: number;
-  duration?: number;
-  metadata: AudioMetadata;
-  url: string;
-  blobUrl?: string; // Vercel Blob URL when using blob storage
-  createdAt: Date;
-  updatedAt: Date;
-}
-
-export interface AudioFilters {
-  entryId?: string;
-  level?: 'word' | 'meaning' | 'example';
-  levelId?: string;
-  speaker?: string;
-  dialect?: string;
-}
+import type { AudioFilters, AudioMetadata, AudioRecord } from "@/types/media/audio";
 
 // Simple API client - just makes HTTP requests to admin audio endpoints
 export class AudioAPIClient {
@@ -94,6 +63,8 @@ export class AudioAPIClient {
     return result.data || [];
   }
 }
+
+export type { AudioFilters, AudioMetadata, AudioRecord } from "@/types/media/audio";
 
 // Simple factory - just returns the API client
 // Server handles all storage complexity via AUDIO_MODE

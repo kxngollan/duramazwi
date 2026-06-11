@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { AdminDictionaryEntry, AdminOperationResult } from '@/services/adminDataService';
+import type { AdminDictionaryEntry, AdminOperationResult } from '@/types/domain/admin';
 
 interface UseAdminEntriesOptions {
   page?: number;

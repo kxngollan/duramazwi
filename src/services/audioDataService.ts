@@ -1,4 +1,4 @@
-import { AudioRecord, AudioFilters } from './audioAPIClient';
+import type { AudioFilters, AudioLevel, AudioRecord } from '@/types/media/audio';
 // Static import like dataService - build-time resolution only
 import audioIndexRaw from '@/data/audio-index.json';
 
@@ -22,7 +22,7 @@ class AudioDataService {
     return this.audioIndex.records[audioId] || null;
   }
 
-  getRecordsForEntry(entryId: string, level?: 'word' | 'meaning' | 'example', levelId?: string): AudioRecord[] {
+  getRecordsForEntry(entryId: string, level?: AudioLevel, levelId?: string): AudioRecord[] {
     // Use entry index for efficient lookup
     const audioIds = this.audioIndex.entryIndex[entryId] || [];
     
@@ -46,7 +46,7 @@ class AudioDataService {
     );
   }
 
-  getRecordsByLevel(level: 'word' | 'meaning' | 'example'): AudioRecord[] {
+  getRecordsByLevel(level: AudioLevel): AudioRecord[] {
     // Use level index for efficient lookup
     const audioIds = this.audioIndex.levelIndex[level] || [];
     

@@ -5,21 +5,16 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { Inter } from "next/font/google";
 import { useTheme } from "@/app/hook/use-theme.hook";
-import type { ThemePreference } from "@/app/hook/use-theme.hook";
 import SvgIcon from "@/component/icons/svg-icon";
-import type { SvgIconButtonProps } from "@/component/icons/svg-icon";
+import type { NavigationItem } from "@/types/ui/navigation";
+import type { ResolvedTheme, ThemePreference } from "@/types/ui/theme";
 
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
 });
 
-const navItems: Array<{
-  href: string;
-  label: string;
-  title: string;
-  icon: SvgIconButtonProps["icon"];
-}> = [
+const navItems: NavigationItem[] = [
   {
     href: "/browse",
     label: "Browse",
@@ -422,7 +417,7 @@ function ThemeToggleButton({
   compact?: boolean;
   isHydrated: boolean;
   onClick: () => void;
-  resolvedTheme: "light" | "dark";
+  resolvedTheme: ResolvedTheme;
   themePreference: ThemePreference;
 }) {
   const activePreference = isHydrated ? themePreference : "device";

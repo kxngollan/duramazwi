@@ -2,28 +2,8 @@ import { readFile, writeFile } from 'fs/promises';
 import { existsSync } from 'fs';
 import path from 'path';
 import dataService from './dataService';
-import { DictionaryEntry } from '@/components/dictionary-entry-clean';
 import { getDatabase } from '@/lib/mongodb';
-
-// Types for admin operations
-export interface AdminDictionaryEntry extends DictionaryEntry {
-  _id?: string;
-  createdAt?: string;
-  updatedAt?: string;
-  lastReviewed?: string;
-  needsReview?: boolean;
-  status?: 'published' | 'draft' | 'archived';
-}
-
-export interface AdminOperationResult {
-  success: boolean;
-  message: string;
-  data?: AdminDictionaryEntry | AdminDictionaryEntry[];
-  error?: string;
-  total?: number;
-  page?: number;
-  limit?: number;
-}
+import type { AdminDictionaryEntry, AdminOperationResult } from '@/types/domain/admin';
 
 class AdminDataService {
   private dataPath: string;
@@ -474,3 +454,4 @@ class AdminDataService {
 // Export singleton instance
 const adminDataService = new AdminDataService();
 export default adminDataService;
+export type { AdminDictionaryEntry, AdminOperationResult } from "@/types/domain/admin";

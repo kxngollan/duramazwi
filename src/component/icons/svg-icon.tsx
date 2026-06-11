@@ -7,29 +7,7 @@ import SearchIcon from "./search.icon";
 import ToggleIcon from "./toggle.icon";
 import SpaceInvaderIcon from "./space-invader.icon";
 import TrophyIcon from "./trophy.icon";
-type Icons = "Book" | "Device" | "Toggle" | "Search" | "LightDark" | "Play" | "Plus" | "SpaceInvader" | "Trophy";
-
-export type SvgIconSize =
-  | 1
-  | 2
-  | 3
-  | 4
-  | 5
-  | 6
-  | 7
-  | 8
-  | 9
-  | 10
-  | 11
-  | 12
-  | 13
-  | 14
-  | 15
-  | 16
-  | 17
-  | 18
-  | 19
-  | 20;
+import type { SvgIconButtonProps, SvgIconName, SvgIconSize } from "@/types/ui/icon";
 export class Config<T> {
   public variant: Variant<T>;
   constructor(public value: T) {
@@ -42,15 +20,6 @@ export type SvgIconProps<Config> = {
   className?: string;
   size?: SvgIconSize;
   config?: Config;
-};
-
-export type SvgIconButtonProps = {
-  icon: Icons;
-  className?: string;
-  onClick?: (e: any) => void;
-  size?: SvgIconSize;
-  variant?: any;
-  title?: string;
 };
 
 export const SvgIcon = ({
@@ -75,7 +44,7 @@ export const SvgIcon = ({
 export default SvgIcon;
 
 function getSVGIcon(
-  icon: Icons,
+  icon: SvgIconName,
   size?: SvgIconSize,
   className: string = "",
   variant?: any

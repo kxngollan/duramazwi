@@ -1,30 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
 import StaticAudioPlayer from './StaticAudioPlayer';
-import { AudioRecord } from '@/services/audioAPIClient';
+import type { DictionaryEntry, Definition, Example, Meaning } from '@/types/domain/dictionary';
+import type { AudioRecord } from '@/types/media/audio';
 import ShareWord from './ShareWord';
-
-// New schema types
-interface Example {
-  shona: string;
-  english: string;
-}
-
-interface Definition {
-  definition: string;
-  examples: Example[];
-}
-
-interface Meaning {
-  partOfSpeech: string;
-  definitions: Definition[];
-}
-
-interface DictionaryEntry {
-  _id?: string;
-  word: string;
-  meanings: Meaning[];
-}
 
 interface DictionaryEntryCleanProps {
   entry: DictionaryEntry;
@@ -345,6 +324,4 @@ export function DictionaryEntryCompact({
   );
 }
 
-// Export types and functions for use in other components
-export type { DictionaryEntry, Meaning, Definition, Example };
 export { formatWordDisplayForList };

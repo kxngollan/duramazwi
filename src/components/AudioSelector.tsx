@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { AudioRecord } from '@/services/audioAPIClient';
+import type { AudioRecord } from '@/types/media/audio';
 
 interface AudioSelectorProps {
   recordings: AudioRecord[];

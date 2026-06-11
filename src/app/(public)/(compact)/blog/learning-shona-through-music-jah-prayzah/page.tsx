@@ -1,7 +1,8 @@
 import { Suspense } from "react";
 import Link from 'next/link';
 import SearchBar from '@/component/search-bar.component';
-import LyricsDisplay, { LyricBlock } from '@/components/blog/LyricsDisplay';
+import LyricsDisplay from '@/components/blog/LyricsDisplay';
+import type { LyricBlock } from '@/types/content/lyrics';
 import StickyVideo from '@/components/blog/StickyVideo';
 import { Metadata } from 'next';
 import InlineIcon from '@/components/InlineIcon';

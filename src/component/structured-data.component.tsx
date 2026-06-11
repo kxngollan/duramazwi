@@ -1,4 +1,4 @@
-import { DictionaryEntry } from "@/components/dictionary-entry-clean";
+import type { DictionaryEntry } from "@/types/domain/dictionary";
 
 interface StructuredDataProps {
   entry: DictionaryEntry;

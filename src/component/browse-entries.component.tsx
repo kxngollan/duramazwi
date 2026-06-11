@@ -2,9 +2,10 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { DictionaryEntryCompact, DictionaryEntry } from "@/components/dictionary-entry-clean";
+import { DictionaryEntryCompact } from "@/components/dictionary-entry-clean";
 import { DictionaryEntrySkeleton } from "./skeleton-loader.component";
 import dataService from "@/services/dataService";
+import type { DictionaryEntry } from "@/types/domain/dictionary";
 
 interface BrowseEntriesProps {
   currentWords: string[];

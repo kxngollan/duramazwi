@@ -5,32 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import dataService from '@/services/dataService';
 import InlineIcon from '@/components/InlineIcon';
-
-export interface LyricLink {
-  word: string;
-  url: string;
-  tooltip?: string;
-}
-
-export interface LyricPair {
-  shona: string;
-  english: string;
-  links?: LyricLink[];
-  note?: string;
-  displayOrder?: 'shona-first' | 'english-first'; // Default is 'shona-first'
-}
-
-export interface LyricSection {
-  type: 'section';
-  title: string;
-}
-
-export interface LyricVerse {
-  type: 'verse';
-  lines: LyricPair[];
-}
-
-export type LyricBlock = LyricSection | LyricVerse;
+import type { LyricBlock, LyricLink } from '@/types/content/lyrics';
 
 const lyricCardClassName =
   "rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] p-6 text-[var(--color-text)] shadow-[var(--shadow-card)] transition-shadow hover:shadow-md";
@@ -230,3 +205,5 @@ export default function LyricsDisplay({ blocks }: LyricsDisplayProps) {
     </div>
   );
 }
+
+export type { LyricBlock } from '@/types/content/lyrics';

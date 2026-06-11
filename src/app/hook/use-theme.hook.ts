@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
-export type ThemePreference = "device" | "light" | "dark";
+import type { ResolvedTheme, ThemePreference } from "@/types/ui/theme";
 
 const THEME_STORAGE_KEY = "theme";
 const themeOrder: ThemePreference[] = ["device", "light", "dark"];
@@ -62,7 +61,7 @@ export function useTheme() {
     setThemePreference(nextTheme);
   };
 
-  const resolvedTheme = themePreference === "device"
+  const resolvedTheme: ResolvedTheme = themePreference === "device"
     ? prefersDark ? "dark" : "light"
     : themePreference;
 

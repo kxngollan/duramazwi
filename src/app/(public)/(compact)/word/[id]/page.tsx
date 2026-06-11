@@ -5,10 +5,11 @@ import { audioDataService } from "@/services/audioDataService";
 import { createMetadata } from "@/utils/metadata";
 // import { Courgette, Prata } from "next/font/google";
 import { Metadata } from "next/types";
-import DictionaryEntryClean, { DictionaryEntry, Meaning } from "@/components/dictionary-entry-clean";
+import DictionaryEntryClean from "@/components/dictionary-entry-clean";
 import StructuredData from "@/component/structured-data.component";
 import { createBreadcrumbs } from "@/utils/breadcrumbs";
 import BreadcrumbStructuredData from "@/components/BreadcrumbStructuredData";
+import type { DictionaryEntry, Meaning } from "@/types/domain/dictionary";
 
 // Helper function to format word display for metadata
 const formatWordForMetadata = (word: string, meanings: Meaning[]) => {
